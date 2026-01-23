@@ -1,0 +1,13 @@
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mashaiconnect.com/sitemap.xml
+
+# Prevent crawling of admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Specify crawl delay (in seconds) for polite crawling
+Crawl-delay: 1

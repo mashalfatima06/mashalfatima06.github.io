@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Evaluation - MashaAI Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+                <span class="logo-text">MashaAI Connect</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calling-agents.html">AI Calling Agents</a></li>
+                <li><a href="pricing.html">Other Services</a></li>
+                <li><a href="calculator.html" class="active">Cost Evaluation</a></li>
+                <li><a href="demo.html" class="cta-button">Book Demo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <h1>Cost Evaluation Tool</h1>
+            <p class="subtitle">See how much you can save with MashaAI Connect</p>
+
+            <div class="calculator-wrapper">
+                <!-- Input Panel -->
+                <div class="calculator-panel input-panel">
+                    <h2><i class="fas fa-calculator"></i> Your Situation</h2>
+                    
+                    <div class="input-group">
+                        <label for="currentCost">Monthly Support Cost</label>
+                        <div class="input-wrapper">
+                            <span class="currency">$</span>
+                            <input type="number" id="currentCost" min="0" step="100" value="5000">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="monthlyMinutes">Monthly Call Minutes</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="monthlyMinutes" min="0" step="100" value="10000">
+                            <span class="unit">minutes</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="agents">Support Agents</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="agents" min="1" step="1" value="3">
+                            <span class="unit">agents</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="costPerAgent">Cost Per Agent (Monthly)</label>
+                        <div class="input-wrapper">
+                            <span class="currency">$</span>
+                            <input type="number" id="costPerAgent" min="0" step="100" value="3000">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="calculator-panel results-panel">
+                    <!-- Current vs MashaAI -->
+                    <div class="cost-comparison-boxes">
+                        <div class="cost-box current-system">
+                            <h3>Your Current System</h3>
+                            <div class="cost-detail">
+                                <span class="label">Monthly Cost</span>
+                                <span class="value" id="currentMonthly">$15,000</span>
+                            </div>
+                            <div class="cost-detail">
+                                <span class="label">Annual Cost</span>
+                                <span class="value highlight" id="currentAnnual">$180,000</span>
+                            </div>
+                        </div>
+
+                        <div class="cost-box mashaai-system">
+                            <h3>MashaAI Connect</h3>
+                            <div class="cost-detail">
+                                <span class="label">Setup Fee</span>
+                                <span class="value" id="setupFee">$2,000</span>
+                            </div>
+                            <div class="cost-detail">
+                                <span class="label">Monthly Cost</span>
+                                <span class="value" id="monthlyUsage">$500</span>
+                            </div>
+                            <div class="cost-detail">
+                                <span class="label">Annual Cost</span>
+                                <span class="value highlight" id="mashaaiAnnual">$8,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Savings Boxes -->
+                    <div class="savings-boxes">
+                        <div class="savings-box first-year">
+                            <h4>Year 1 Savings</h4>
+                            <span class="savings-value" id="firstYearSavings">$172,000</span>
+                        </div>
+                        <div class="savings-box annual">
+                            <h4>Annual Savings (Year 2+)</h4>
+                            <span class="savings-value" id="annualSavings">$174,000</span>
+                        </div>
+                        <div class="savings-box five-year">
+                            <h4>5-Year Total Savings</h4>
+                            <span class="savings-value large" id="fiveYearSavings">$868,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="benefits-section">
+                <h2>Why Choose MashaAI Connect?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                        <h4>24/7 Availability</h4>
+                        <p>Never miss a customer call</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h4>Instant Scalability</h4>
+                        <p>Handle any call volume instantly</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h4>Predictable Costs</h4>
+                        <p>No hidden fees, transparent pricing</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-lock"></i></div>
+                        <h4>Enterprise Security</h4>
+                        <p>Bank-grade encryption</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="calculator-cta">
+                <h2>Ready to Transform Your Support?</h2>
+                <a href="demo.html" class="btn btn-primary">Book Your Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
+            <p>Powered by Advanced AI Technology</p>
+        </div>
+    </footer>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
