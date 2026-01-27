@@ -2,6 +2,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('demoForm');
     const successMessage = document.getElementById('successMessage');
+    const statusMessage = document.getElementById('formStatus');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const defaultSubmitText = submitButton ? submitButton.textContent : '';
 
     if (!form) return;
 
@@ -82,6 +85,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function setStatus(type, message) {
+        if (!statusMessage) {
+            return;
+        }
+        statusMessage.textContent = message;
+        statusMessage.classList.remove('success', 'error');
+
+        if (type === 'success' || type === 'error') {
+            statusMessage.classList.add(type);
+        }
+    }
+
+    function showSuccessView() {
+        if (!successMessage) {
+            return;
+        }
+
+        setStatus(null, '');
+        form.reset();
+        form.style.display = 'none';
+        successMessage.style.display = 'block';
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
     // Validate single field
     function validateField(fieldName) {
         const field = fields[fieldName];
@@ -130,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form submission
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         // Validate all fields BEFORE submission
         const fieldsToValidate = [
             'fullName', 'email', 'company', 
@@ -151,6 +178,58 @@ document.addEventListener('DOMContentLoaded', function() {
             if (firstError) {
                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
+            setStatus('error', 'Please correct the highlighted fields.');
+            return;
+        }
+
+        setStatus(null, '');
+
+        const isWeb3Forms = form.action && form.action.toLowerCase().includes('web3forms');
+
+        if (isWeb3Forms) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            setStatus(null, 'Submitting your request...');
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+
+                let result = {};
+                try {
+                    result = await response.json();
+                } catch (error) {
+                    result = {};
+                }
+
+                if (response.ok && result.success !== false) {
+                    showSuccessView();
+                    return;
+                }
+
+                const errorMessage = result.message || 'Something went wrong. Please try again.';
+                setStatus('error', errorMessage);
+            } catch (error) {
+                setStatus('error', 'Network error. Please check your connection and try again.');
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = defaultSubmitText || 'Submit';
+                }
+            }
+
             return;
         }
 
@@ -175,10 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Form Data:', formData);
             localStorage.setItem('demoBooking_' + Date.now(), JSON.stringify(formData));
 
-            // Show success message
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            showSuccessView();
         }
         // If Formspree is configured, allow normal submission
     });
