@@ -1,118 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cost Evaluation - MashaAI Connect</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Appointment Setter Pricing - MashaAI Connect</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* BODY */
+body {
+    background: radial-gradient(circle at top, #0f1f18, #050a08);
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    border-bottom: 1px solid #1c2a22;
+}
+
+.navbar .container {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.logo-icon {
+    color: #39ff88;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: #39ff88;
+}
+
+.cta-button {
+    background: #39ff88;
+    color: black !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* MAIN */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* HEADER */
+h1 {
+    font-size: 42px;
+    font-weight: 800;
+}
+
+h1 span {
+    color: #39ff88;
+}
+
+.subtext {
+    color: #aaa;
+    margin: 10px 0 40px;
+}
+
+/* SETUP */
+.setup-box {
+    background: linear-gradient(135deg, #0d2b1f, #08140f);
+    border: 1px solid #1d3d2e;
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+}
+
+.setup-price {
+    font-size: 40px;
+    font-weight: 800;
+    color: #39ff88;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    background: #0b0f0d;
+    border: 1px solid #1c2a22;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: left;
+    transition: 0.3s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,255,120,0.08);
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+.month {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: #2b6bff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* LIST */
+ul {
+    margin-top: 15px;
+    list-style: none;
+}
+
+ul li {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #cfcfcf;
+}
+
+/* COLORS */
+.green { border-top: 3px solid #39ff88; }
+.blue { border-top: 3px solid #2b6bff; }
+.red { border-top: 3px solid #ff3b3b; }
+
+/* BUTTON */
+.button {
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    background: #1a1a1a;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.button:hover {
+    background: #2a2a2a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    h1 { font-size: 32px; }
+
+    .nav-links {
+        display: none; /* optional mobile improvement */
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
-                <span class="logo-text">MashaAI Connect</span>
-            </div>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-            </button>
-            <ul class="nav-links" id="primary-navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="calling-agents.html">AI Calling Agents</a></li>
-                <li><a href="pricing.html">AI Appointment Setter</a></li>
-                <li><a href="calculator.html" class="active">Pricing</a></li>
-                <li><a href="demo.html" class="cta-button">Book Demo</a></li>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+            <span class="logo-text">MashaAI Connect</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calling-agents.html">AI Calling Agents</a></li>
+            <li><a href="pricing.html">AI Appointment Setter</a></li>
+            <li><a href="calculator.html" class="active">Pricing</a></li>
+            <li><a href="demo.html" class="cta-button">Book Demo</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <h1>AI <span>APPOINTMENT</span> SETTER</h1>
+    <p class="subtext">Automated calls, follow-ups and bookings that run 24/7</p>
+
+    <div class="setup-box">
+        <h2>ONE-TIME SETUP FEE</h2>
+        <div class="setup-price">$1500</div>
+        <p>We build, train and deploy your AI system</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card green">
+            <h3>🟢 Starter</h3>
+            <div class="price">$500 <span class="month">/month</span></div>
+            <p>200 call minutes included</p>
+            <ul>
+                <li>Basic AI appointment setter</li>
+                <li>Lead follow-up (calls + SMS)</li>
+                <li>Calendar booking</li>
+                <li>$0.80/min overage</li>
             </ul>
+            <div class="button">Choose Plan</div>
         </div>
-    </nav>
 
-    <section class="services-hero">
-    <div class="container">
-        <h1>Simple & Transparent Pricing</h1>
-        <p class="hero-subtitle">AI Calling Agents + AI Appointment Setter Plans</p>
-    </div>
-</section>
-
-<!-- AI CALLING AGENTS -->
-<section class="pricing-section">
-    <div class="container">
-
-        <h2 class="section-title">AI Calling Agents</h2>
-
-        <div class="pricing-grid single">
-
-            <div class="pricing-card">
-
-                <div class="price">
-                    <span>$500</span>
-                    <small>Setup Fee (One-time)</small>
-                </div>
-
-                <div class="price">
-                    <span>$0.50</span>
-                    <small>Per Minute Usage</small>
-                </div>
-
-                <ul>
-                    <li>24/7 AI outbound calling</li>
-                    <li>Lead qualification</li>
-                    <li>Human-like conversations</li>
-                    <li>CRM integration</li>
-                </ul>
-
-                <a href="demo.html" class="btn btn-outline">Get Started</a>
-            </div>
-
+        <div class="card blue">
+            <div class="badge">Most Popular</div>
+            <h3>🔵 Growth</h3>
+            <div class="price">$900 <span class="month">/month</span></div>
+            <p>500 call minutes included</p>
+            <ul>
+                <li>Smarter follow-up system</li>
+                <li>Multi-step sequences</li>
+                <li>Priority support</li>
+                <li>$0.70/min overage</li>
+            </ul>
+            <div class="button">Choose Plan</div>
         </div>
-    </div>
-</section>
 
-<!-- AI APPOINTMENT SETTER -->
-<!-- Main Service Section -->
-<section class="services-section">
-    <div class="container">
-
-        <div class="services-grid">
-
-            <!-- AI Appointment Setter Card -->
-            <div class="service-card single">
-
-                <div class="service-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-
-                <h3>AI Appointment Setter</h3>
-
-                <!-- Pricing Badge (clean, not overwhelming) -->
-                <div class="pricing-badge">
-                    <span>$500 One-Time Setup</span>
-                </div>
-
-                <p class="service-description">
-                    A powerful AI sales agent that instantly calls your leads, speaks naturally, handles objections, qualifies prospects, and books meetings directly into your calendar — completely automated.
-                </p>
-
-                <h4>What It Does:</h4>
-                <ul class="features-list">
-                    <li><i class="fas fa-check"></i> Calls new leads instantly after form submission</li>
-                    <li><i class="fas fa-check"></i> Smart lead qualification & filtering</li>
-                    <li><i class="fas fa-check"></i> Real-time appointment booking</li>
-                    <li><i class="fas fa-check"></i> Automated follow-ups</li>
-                    <li><i class="fas fa-check"></i> Natural human-like conversations</li>
-                    <li><i class="fas fa-check"></i> CRM & calendar integration</li>
-                    <li><i class="fas fa-check"></i> Performance analytics dashboard</li>
-                </ul>
-
-                <a href="demo.html" class="btn btn-primary">Book a Demo</a>
-            </div>
-
+        <div class="card red">
+            <h3>🔴 Pro</h3>
+            <div class="price">$1500 <span class="month">/month</span></div>
+            <p>1000 call minutes included</p>
+            <ul>
+                <li>Advanced workflows</li>
+                <li>Multi-client support</li>
+                <li>Dedicated support</li>
+                <li>$0.60/min overage</li>
+            </ul>
+            <div class="button">Choose Plan</div>
         </div>
+
     </div>
-</section>
+
+</div>
+    </section>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
+        <p>AI Appointment Setter for Modern Businesses</p>
+    </div>
+</footer>
+
 </body>
 </html>
