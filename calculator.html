@@ -79,6 +79,7 @@ font-weight:700;
 }
 
 /* MOBILE */
+/* MOBILE NAV FIX */
 .menu-toggle{
 display:none;
 flex-direction:column;
@@ -92,25 +93,34 @@ cursor:pointer;
 width:25px;
 height:3px;
 background:white;
+border-radius:2px;
 }
 
+/* MOBILE MENU */
 @media(max-width:768px){
-.menu-toggle{display:flex;}
+.menu-toggle{
+display:flex;
+}
 
 .nav-links{
-display:none;
-flex-direction:column;
 position:absolute;
 top:70px;
 right:20px;
+flex-direction:column;
 background:#0b1220;
 padding:20px;
 border-radius:12px;
 border:1px solid #173857;
+display:none;
+width:220px;
 }
 
 .nav-links.active{
 display:flex;
+}
+
+.nav-links li{
+padding:10px 0;
 }
 }
 
@@ -161,23 +171,27 @@ color:#a5b4c8;
 }
 
 .cards{
-display:flex;
-flex-wrap:wrap;
-gap:28px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
 justify-content:center;
+align-items:stretch;
+margin-top:20px;
 }
 
+/* smaller cards */
 .card{
-width:340px;
-min-height:440px;
-background:#03162d;
-border:1px solid #173857;
-border-radius:24px;
-padding:38px;
-text-align:left;
-display:flex;
-flex-direction:column;
-position:relative;
+width:100%;
+min-height:360px;
+padding:28px;
+border-radius:20px;
+}
+
+/* responsive */
+@media(max-width:1000px){
+.cards{
+grid-template-columns:1fr;
+}
 }
 
 .featured{
@@ -349,19 +363,24 @@ margin-top:100px;
 <i class="fas fa-bolt"></i> MashaAI Connect
 </div>
 
-<button class="menu-toggle">
+<button class="menu-toggle" id="menuToggle">
 <span class="menu-bar"></span>
 <span class="menu-bar"></span>
 <span class="menu-bar"></span>
 </button>
 
-<ul class="nav-links">
+<ul class="nav-links" id="navLinks">
+
 <li><a href="index.html">Home</a></li>
 <li><a href="calling-agents.html">AI Calling Agents</a></li>
 <li><a href="pricing.html" class="active">AI Appointment Setter</a></li>
 <li><a href="calculator.html">Pricing</a></li>
 <li><a href="demo.html" class="cta-button">Book Demo</a></li>
+
 </ul>
+
+</div>
+</nav>
 
 </div>
 </nav>
@@ -424,6 +443,53 @@ margin-top:100px;
 </ul>
 <a href="demo.html" class="button">Choose Plan</a>
 </div>
+  <section class="calculator-section">
+
+<h1>AI Calling Agents Pricing</h1>
+<p class="subtext">Pay only for what you use — fully scalable voice automation</p>
+
+<div class="setup-box">
+<h2>PRICING MODEL</h2>
+<div class="setup-price">$0.40 / minute</div>
+<p>No fixed monthly plans — pure usage based billing</p>
+</div>
+
+<!-- SLIDER CALCULATOR -->
+<div class="calculator-box">
+
+<label style="font-size:28px;font-weight:700;">Monthly Call Minutes</label>
+
+<input type="range" min="500" max="50000" step="500" value="5000" id="callSlider" oninput="updateCallCalc()">
+
+<div class="minutes-display">
+<span id="callMinutes">5000</span> Minutes
+</div>
+
+<div class="calc-results">
+<p>Usage Cost: <span id="callCost">$2,000</span></p>
+<p>Setup Fee (One-Time): $1,500</p>
+<h2>Total First Month: <span id="callTotal">$3,500</span></h2>
+<p class="ongoing">Future Months: <span id="callFuture">$2,000</span></p>
+</div>
+
+</div>
+
+<!-- CONTACT BUTTON -->
+<div style="margin-top:40px;">
+<a href="demo.html"
+style="display:inline-block;padding:18px 32px;border-radius:14px;
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+color:white;text-decoration:none;font-size:20px;font-weight:700;">
+Contact Sales / Book Demo
+</a>
+</div>
+
+<!-- NOTE -->
+<p style="margin-top:30px;color:#94a3b8;font-size:18px;">
+  Setup fee is one-time only. After deployment, you only pay per usage.
+</p>
+
+</section>
 
 </div>
 </section>
@@ -434,9 +500,33 @@ margin-top:100px;
 <footer class="footer">
 <p>© 2026 MashaAI Connect. All rights reserved.</p>
 </footer>
-
 <script>
-// MOBILE MENU
+function updateCallCalc(){
+let minutes = document.getElementById("callSlider").value;
+
+let cost = minutes * 0.40;
+let total = cost + 1500;
+
+document.getElementById("callMinutes").innerText = Number(minutes).toLocaleString();
+document.getElementById("callCost").innerText = "$" + cost.toLocaleString();
+document.getElementById("callFuture").innerText = "$" + cost.toLocaleString();
+document.getElementById("callTotal").innerText = "$" + total.toLocaleString();
+}
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+// toggle menu
+menuToggle.addEventListener("click", () => {
+navLinks.classList.toggle("active");
+});
+
+// close menu when clicking outside
+document.addEventListener("click", (e) => {
+if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+navLinks.classList.remove("active");
+}
+});
+updateCallCalc();
 const toggle=document.querySelector(".menu-toggle");
 const nav=document.querySelector(".nav-links");
 
