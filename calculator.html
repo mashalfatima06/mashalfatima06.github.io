@@ -40,6 +40,9 @@ position:sticky;
 top:0;
 z-index:9999;   /* FIX CLICK ISSUE */
 }
+.nav-links a{
+display:inline-block;
+}
 
 .container{
 max-width:1200px;
@@ -268,15 +271,21 @@ justify-content:center;
 <nav class="navbar">
 <div class="container">
 
-<div class="logo">⚡ MashaAI Connect</div>
+<nav class="navbar">
+  <div class="nav-container">
 
-<ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="calling-agents.html">AI Calling Agents</a></li>
-<li><a href="pricing.html" class="active">AI Appointment Setter</a></li>
-<li><a href="calculator.html">Pricing</a></li>
-<li><a href="demo.html">Book Demo</a></li>
-</ul>
+    <div class="logo">⚡ MashaAI Connect</div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="calling-agents.html">AI Calling Agents</a></li>
+      <li><a href="pricing.html" class="active">AI Appointment Setter</a></li>
+      <li><a href="calculator.html">Pricing</a></li>
+      <li><a href="demo.html">Book Demo</a></li>
+    </ul>
+
+  </div>
+</nav>
 
 </div>
 </nav>
