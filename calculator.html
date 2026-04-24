@@ -20,7 +20,7 @@ font-family:'Inter',sans-serif;
 body{
 background:linear-gradient(120deg,#020617,#071a2f,#020617);
 background-size:300% 300%;
-animation:bgMove 10s infinite alternate;
+animation:bgMove 12s infinite alternate;
 color:white;
 overflow-x:hidden;
 }
@@ -30,32 +30,15 @@ overflow-x:hidden;
 100%{background-position:100% 50%;}
 }
 
-/* FLOATING BACKGROUND */
-body::before{
-content:"";
-position:fixed;
-width:100%;
-height:100%;
-background-image:url("https://www.transparenttextures.com/patterns/stardust.png");
-opacity:0.15;
-pointer-events:none;
-}
-
 /* NAVBAR */
 .navbar{
-background:rgba(2,6,23,0.6);
-backdrop-filter:blur(12px);
+background:rgba(2,6,23,0.65);
+backdrop-filter:blur(14px);
 padding:14px 0;
 border-bottom:1px solid #173857;
 position:sticky;
 top:0;
 z-index:1000;
-animation:navDrop 0.6s ease;
-}
-
-@keyframes navDrop{
-from{transform:translateY(-20px);opacity:0;}
-to{transform:translateY(0);opacity:1;}
 }
 
 .container{
@@ -84,45 +67,21 @@ text-decoration:none;
 color:#dbeafe;
 font-size:14px;
 position:relative;
-transition:0.3s;
+padding-bottom:4px;
 }
 
-.nav-links a:hover{
+.nav-links a.active{
 color:#19c5ff;
+border-bottom:2px solid #19c5ff;
 }
 
-.nav-links a.active::after{
-content:"";
-position:absolute;
-left:0;
-bottom:-6px;
-width:100%;
-height:2px;
-background:#19c5ff;
-animation:line 0.3s ease;
-}
-
-@keyframes line{
-from{width:0;}
-to{width:100%;}
-}
-
-.cta-button{
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-padding:10px 14px;
-border-radius:8px;
-color:white;
-font-weight:700;
-}
-
-/* SECTION TITLE */
+/* TITLES */
 .section-title{
 font-size:48px;
 font-weight:900;
 text-align:center;
 margin:60px 0 10px;
 color:#19c5ff;
-animation:fadeUp 0.8s ease;
 }
 
 .section-subtext{
@@ -130,16 +89,6 @@ text-align:center;
 font-size:14px;
 color:#94a3b8;
 margin-bottom:40px;
-animation:fadeUp 1s ease;
-}
-
-.section-space{
-margin-top:100px;
-}
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
 }
 
 /* SETUP */
@@ -147,11 +96,10 @@ to{opacity:1;transform:translateY(0);}
 max-width:800px;
 margin:0 auto 30px;
 padding:20px;
-background:rgba(3,22,45,0.8);
+background:#03162d;
 border:1px solid #173857;
 border-radius:16px;
 text-align:center;
-animation:fadeUp 1s ease;
 }
 
 .setup-price{
@@ -165,7 +113,6 @@ font-weight:800;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:18px;
-margin-top:20px;
 padding:0 20px;
 }
 
@@ -176,17 +123,17 @@ border-radius:16px;
 padding:20px;
 display:flex;
 flex-direction:column;
+position:relative;
 transition:0.3s;
-animation:fadeUp 1s ease;
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 10px 30px rgba(0,183,255,0.15);
+transform:translateY(-6px);
 }
 
+/* PRICE */
 .amount{
-font-size:36px;
+font-size:38px;
 color:#19c5ff;
 font-weight:800;
 }
@@ -200,6 +147,24 @@ color:#94a3b8;
 font-size:13px;
 color:#38bdf8;
 margin:10px 0;
+}
+
+/* FEATURES (RESTORED) */
+.features{
+margin-top:10px;
+}
+
+.features li{
+font-size:13px;
+margin:8px 0;
+color:#dbeafe;
+list-style:none;
+}
+
+.features li::before{
+content:"✓";
+color:#19c5ff;
+margin-right:8px;
 }
 
 /* BUTTON */
@@ -220,23 +185,34 @@ background:#0ea5ff;
 color:white;
 }
 
-/* CALCULATOR */
+/* ALWAYS VISIBLE BADGE */
+.badge{
+position:absolute;
+top:10px;
+right:10px;
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+padding:6px 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:700;
+color:white;
+}
+
+/* CALLING AGENTS */
 .row{
 display:flex;
 gap:20px;
 flex-wrap:wrap;
-margin-top:30px;
 padding:0 20px;
 }
 
 .box{
 flex:1;
 min-width:280px;
-background:rgba(3,22,45,0.8);
+background:#03162d;
 padding:20px;
 border-radius:16px;
 border:1px solid #173857;
-animation:fadeUp 1s ease;
 }
 
 /* SLIDER */
@@ -260,22 +236,10 @@ color:#94a3b8;
 margin-top:60px;
 }
 
-/* POPULAR */
-.badge{
-position:absolute;
-top:10px;
-right:10px;
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-padding:6px 10px;
-border-radius:999px;
-font-size:12px;
-font-weight:700;
-}
-
 /* MOBILE */
 @media(max-width:768px){
 .cards{grid-template-columns:1fr;}
-.section-title{font-size:34px;}
+.section-title{font-size:36px;}
 }
 </style>
 </head>
@@ -293,7 +257,7 @@ font-weight:700;
 <li><a href="calling-agents.html">AI Calling Agents</a></li>
 <li><a href="pricing.html" class="active">AI Appointment Setter</a></li>
 <li><a href="calculator.html">Pricing</a></li>
-<li><a href="demo.html" class="cta-button">Book Demo</a></li>
+<li><a href="demo.html">Book Demo</a></li>
 </ul>
 
 </div>
@@ -314,14 +278,29 @@ font-weight:700;
 <h2>Starter</h2>
 <div class="amount">$500</div>
 <div class="minutes">200 min included</div>
+
+<ul class="features">
+<li>AI appointment system</li>
+<li>Lead follow-up</li>
+<li>Calendar booking</li>
+</ul>
+
 <a class="button" href="demo.html">Choose</a>
 </div>
 
 <div class="card">
 <div class="badge">Most Popular</div>
+
 <h2>Growth</h2>
 <div class="amount">$900</div>
 <div class="minutes">500 min included</div>
+
+<ul class="features">
+<li>Advanced automation</li>
+<li>Smart sequences</li>
+<li>Priority support</li>
+</ul>
+
 <a class="button" href="demo.html">Choose</a>
 </div>
 
@@ -329,13 +308,20 @@ font-weight:700;
 <h2>Pro</h2>
 <div class="amount">$1500</div>
 <div class="minutes">1000 min included</div>
+
+<ul class="features">
+<li>Multi workflows</li>
+<li>Advanced integrations</li>
+<li>Dedicated support</li>
+</ul>
+
 <a class="button" href="demo.html">Choose</a>
 </div>
 
 </div>
 
 <!-- CALLING AGENTS -->
-<h1 class="section-title section-space">AI Calling Agents</h1>
+<h1 class="section-title">AI Calling Agents</h1>
 <p class="section-subtext">Pay $0.40 per minute usage</p>
 
 <div class="row">
@@ -343,7 +329,8 @@ font-weight:700;
 <div class="box">
 <h2>Pricing</h2>
 <div class="setup-price">$0.40 / min</div>
-<p>One-time setup $1500</p>
+<p>One-time setup fee: $1500</p>
+
 <a href="demo.html" class="button" style="margin-top:20px;display:block;">
 Contact Sales
 </a>
