@@ -1,404 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MashaAI Connect - AI Appointment Setter</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-background:radial-gradient(circle at top,#0b1220,#020617);
-color:white;
-opacity:0;
-transform:translateY(10px);
-animation:pageLoad 0.8s ease forwards;
-overflow-x:hidden;
-}
-
-@keyframes pageLoad{
-to{opacity:1;transform:translateY(0);}
-}
-
-/* NAV */
-.navbar{
-position:sticky;
-top:0;
-background:rgba(2,6,23,0.8);
-backdrop-filter:blur(12px);
-border-bottom:1px solid #173857;
-z-index:1000;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:0 20px;
-}
-
-.navbar .container{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 20px;
-}
-
-.logo{
-font-size:22px;
-font-weight:800;
-color:#19c5ff;
-display:flex;
-gap:10px;
-align-items:center;
-}
-
-.nav-links{
-display:flex;
-gap:25px;
-list-style:none;
-}
-
-.nav-links a{
-color:#dbeafe;
-text-decoration:none;
-transition:0.3s;
-}
-
-.nav-links a:hover,
-.nav-links a.active-link{
-color:#19c5ff;
-border-bottom:2px solid #19c5ff;
-padding-bottom:4px;
-}
-
-.cta{
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-padding:10px 16px;
-border-radius:10px;
-color:white !important;
-}
-
-/* MOBILE MENU */
-.menu-toggle{
-display:none;
-flex-direction:column;
-gap:5px;
-background:none;
-border:none;
-cursor:pointer;
-}
-
-.menu-bar{
-width:25px;
-height:3px;
-background:white;
-}
-
-@media(max-width:768px){
-.menu-toggle{display:flex;}
-.nav-links{
-display:none;
-flex-direction:column;
-position:absolute;
-right:20px;
-top:70px;
-background:#0b1220;
-padding:20px;
-border-radius:12px;
-border:1px solid #173857;
-}
-.nav-links.active{display:flex;}
-}
-
-/* HERO */
-.hero{
-text-align:center;
-padding:90px 20px 60px;
-}
-
-.hero h1{
-font-size:48px;
-font-weight:800;
-color:#19c5ff;
-}
-
-.hero p{
-font-size:18px;
-color:#94a3b8;
-margin-top:15px;
-}
-
-/* SETUP */
-.setup{
-max-width:700px;
-margin:40px auto;
-padding:30px;
-text-align:center;
-background:rgba(3,22,45,0.6);
-border:1px solid #173857;
-border-radius:20px;
-backdrop-filter:blur(10px);
-}
-
-.setup h2{color:#19c5ff;}
-.setup .price{font-size:50px;font-weight:800;color:#19c5ff;}
-
-/* PRICING */
-.cards{
-display:flex;
-gap:25px;
-justify-content:center;
-flex-wrap:wrap;
-padding:50px 20px;
-}
-
-.card{
-width:320px;
-background:rgba(3,22,45,0.6);
-border:1px solid #173857;
-border-radius:20px;
-padding:30px;
-transition:0.3s;
-position:relative;
-}
-
-.card:hover{
-transform:translateY(-10px);
-border-color:#19c5ff;
-}
-
-.featured{
-border:2px solid #19c5ff;
-}
-
-.badge{
-position:absolute;
-top:15px;
-right:15px;
-background:#19c5ff;
-padding:6px 12px;
-border-radius:20px;
-font-size:12px;
-font-weight:700;
-}
-
-.plan{font-size:24px;font-weight:700;}
-.price{font-size:40px;font-weight:800;color:#19c5ff;}
-
-.features{margin-top:20px;list-style:none;}
-
-.features li{
-margin:10px 0;
-color:#dbeafe;
-}
-
-.features li:before{
-content:"✓";
-color:#19c5ff;
-margin-right:8px;
-}
-
-.btn{
-margin-top:20px;
-display:block;
-text-align:center;
-padding:12px;
-border-radius:12px;
-border:2px solid #19c5ff;
-color:#19c5ff;
-text-decoration:none;
-font-weight:700;
-transition:0.3s;
-}
-
-.btn:hover{
-background:#19c5ff;
-color:#000;
-}
-
-/* CALCULATOR */
-.calc{
-max-width:800px;
-margin:80px auto;
-padding:30px;
-text-align:center;
-background:rgba(3,22,45,0.6);
-border-radius:20px;
-border:1px solid #173857;
-}
-
-input[type=range]{
-width:100%;
-margin:20px 0;
-}
-
-.result{
-font-size:28px;
-margin-top:10px;
-color:#19c5ff;
-}
-
-/* FLOATING CTA */
-.floating-cta{
-position:fixed;
-bottom:25px;
-right:25px;
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-color:white;
-padding:14px 20px;
-border-radius:50px;
-font-weight:700;
-text-decoration:none;
-box-shadow:0 10px 30px rgba(0,183,255,0.3);
-z-index:9999;
-transition:0.3s;
-}
-
-.floating-cta:hover{
-transform:translateY(-5px) scale(1.05);
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:40px;
-color:#94a3b8;
-margin-top:80px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Appointment Setter - MashaAI Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<nav class="navbar">
-<div class="container">
-<div class="logo"><i class="fas fa-bolt"></i> MashaAI</div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+                <span class="logo-text">MashaAI Connect</span>
+            </div>
 
-<button class="menu-toggle">
-<span class="menu-bar"></span>
-<span class="menu-bar"></span>
-<span class="menu-bar"></span>
-</button>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
 
-<ul class="nav-links">
-<li><a href="#home">Home</a></li>
-<li><a href="#pricing">Pricing</a></li>
-<li><a href="#calculator">Calculator</a></li>
-<li><a href="#demo" class="cta">Book Demo</a></li>
-</ul>
-</div>
-</nav>
+            <ul class="nav-links" id="primary-navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calling-agents.html">AI Calling Agents</a></li>
+                <li><a href="appointment-setter.html" class="active">AI Appointment Setter</a></li>
+                <li><a href="calculator.html">Pricing</a></li>
+                <li><a href="demo.html" class="cta-button">Book Demo</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<section class="hero" id="home">
-<h1>AI That Books Your Customers 24/7</h1>
-<p>Automated calls, follow-ups, and appointment booking — fully AI powered.</p>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="stars"></div>
+        <div class="animated-bg"></div>
 
-<div class="setup">
-<h2>One-Time Setup</h2>
-<div class="price">$1500</div>
-<p>We build & deploy your AI system</p>
-</div>
+        <div class="floating-elements">
+            <div class="float-box float-1"></div>
+            <div class="float-box float-2"></div>
+            <div class="pulse-circle pulse-1"></div>
+            <div class="pulse-circle pulse-2"></div>
+        </div>
 
-<section class="cards" id="pricing">
+        <div class="container hero-content">
+            <h1>AI Appointment Setter</h1>
+            <p>Automatically capture, qualify, and book appointments while you sleep</p>
+            <a href="demo.html" class="btn btn-primary">Get Started Today</a>
+        </div>
+    </section>
 
-<div class="card">
-<div class="plan">Starter</div>
-<div class="price">$500</div>
-<ul class="features">
-<li>200 minutes</li>
-<li>Basic AI calls</li>
-<li>Calendar booking</li>
-</ul>
-<a class="btn" href="#demo">Choose Plan</a>
-</div>
+    <!-- Overview Section -->
+    <section class="agent-overview">
+        <div class="container">
+            <h2>What Is AI Appointment Setter?</h2>
 
-<div class="card featured">
-<div class="badge">Popular</div>
-<div class="plan">Growth</div>
-<div class="price">$900</div>
-<ul class="features">
-<li>500 minutes</li>
-<li>Advanced follow-ups</li>
-<li>CRM integration</li>
-</ul>
-<a class="btn" href="#demo">Choose Plan</a>
-</div>
+            <div class="overview-grid">
 
-<div class="card">
-<div class="plan">Pro</div>
-<div class="price">$1500</div>
-<ul class="features">
-<li>1000 minutes</li>
-<li>Multi-client system</li>
-<li>Priority support</li>
-</ul>
-<a class="btn" href="#demo">Choose Plan</a>
-</div>
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Instant Response</h3>
+                    <p>Responds to leads within seconds to maximize conversion rates.</p>
+                </div>
 
-</section>
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Lead Qualification</h3>
+                    <p>Automatically filters and qualifies leads before booking.</p>
+                </div>
 
-<section class="calc" id="calculator">
-<h2>Cost Calculator</h2>
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>Auto Booking</h3>
+                    <p>Schedules meetings directly into your calendar without manual effort.</p>
+                </div>
 
-<input type="range" min="500" max="50000" value="5000" id="range">
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-clock"></i></div>
+                    <h3>24/7 Automation</h3>
+                    <p>Never miss a lead — works day and night without interruption.</p>
+                </div>
 
-<div class="result" id="output">$2000 / month</div>
-</section>
+            </div>
+        </div>
+    </section>
 
-<section id="demo" style="text-align:center;padding:80px 20px;">
-<h2 style="color:#19c5ff;">Book a Demo</h2>
-<p style="color:#94a3b8;">We’ll show you how AI can automate your business</p>
-</section>
+    <!-- How It Works -->
+    <section class="agent-features">
+        <div class="container">
+            <h2>How It Works</h2>
+            <p style="text-align:center; margin-bottom:30px;">Fully automated in seconds</p>
 
-<footer>
-© 2026 MashaAI Connect
-</footer>
+            <div class="features-list">
 
-<!-- FLOATING CTA -->
-<a href="#demo" class="floating-cta">Book Demo</a>
+                <div class="feature-item">
+                    <h3>01 — Lead Captured</h3>
+                    <p>Customer fills your form or lands from ads.</p>
+                </div>
 
-<script>
-/* CALCULATOR */
-const range=document.getElementById("range");
-const output=document.getElementById("output");
+                <div class="feature-item">
+                    <h3>02 — AI Fetches Data</h3>
+                    <p>System instantly collects lead information.</p>
+                </div>
 
-range.oninput=function(){
-let cost=parseInt(this.value)*0.4;
-output.innerText="$"+cost.toLocaleString()+" / month";
-};
+                <div class="feature-item">
+                    <h3>03 — AI Calls</h3>
+                    <p>AI contacts, qualifies, and engages the lead.</p>
+                </div>
 
-/* MOBILE MENU */
-const toggle=document.querySelector(".menu-toggle");
-const nav=document.querySelector(".nav-links");
+                <div class="feature-item">
+                    <h3>04 — Booked</h3>
+                    <p>Appointment is automatically scheduled in your calendar.</p>
+                </div>
 
-toggle.onclick=()=>{
-nav.classList.toggle("active");
-};
+            </div>
+        </div>
+    </section>
 
-/* ACTIVE LINK */
-const links=document.querySelectorAll(".nav-links a");
+    <!-- Features Section -->
+    <section class="use-cases">
+        <div class="container">
+            <h2>Key Features</h2>
 
-links.forEach(link=>{
-link.addEventListener("click",()=>{
-links.forEach(l=>l.classList.remove("active-link"));
-link.classList.add("active-link");
-});
-});
-</script>
-         <footer class="footer">
+            <div class="usecases-grid">
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-phone"></i> AI Voice + SMS Follow-up</h3>
+                    <p>Engages leads through calls and messages automatically.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-filter"></i> Smart Lead Filtering</h3>
+                    <p>Only high-quality leads reach your calendar.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-calendar"></i> Calendar Integration</h3>
+                    <p>Google Calendar / Outlook sync in real time.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-chart-line"></i> Analytics Dashboard</h3>
+                    <p>Track bookings, conversions, and performance.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-globe"></i> Multi-Channel Capture</h3>
+                    <p>Works with website forms, ads, and landing pages.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-robot"></i> AI Smart Conversations</h3>
+                    <p>Natural human-like conversation flow.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Turn Every Lead Into a Booked Meeting</h2>
+            <p>No missed leads. No manual follow-ups. Fully automated system.</p>
+            <a href="demo.html" class="btn btn-primary">Book Demo Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
             <p>Powered by Advanced AI Technology</p>
         </div>
     </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
