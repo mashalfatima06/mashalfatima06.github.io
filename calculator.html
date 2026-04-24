@@ -1,282 +1,424 @@
+# Full Updated HTML (AI Appointment Setter + AI Calling Agents + Live Pricing Calculator)
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MashaAI Connect Pricing</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{
+background:linear-gradient(180deg,#020617,#071a2f);
+color:white;
 }
 
-body {
-    background: linear-gradient(180deg, #020617, #071a2f);
-    color: white;
+.navbar{
+background:#020617;
+padding:18px 0;
+border-bottom:1px solid #173857;
 }
 
-/* NAVBAR */
-.navbar {
-    background: #020617;
-    padding: 15px 0;
-    border-bottom: 1px solid #0f2a44;
+.container{
+max-width:1400px;
+margin:auto;
+padding:0 24px;
 }
 
-.navbar .container {
-    max-width: 1100px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+.navbar .container{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.logo {
-    font-weight: 700;
-    color: #22d3ee;
+.logo{
+font-size:24px;
+font-weight:800;
+color:#19c5ff;
 }
 
-.nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
+.nav-links{
+display:flex;
+gap:32px;
+list-style:none;
 }
 
-.nav-links a {
-    color: #ccc;
-    text-decoration: none;
+.nav-links a{
+text-decoration:none;
+color:#dbeafe;
 }
 
-.nav-links a:hover,
-.nav-links .active {
-    color: #22d3ee;
+.cta-button{
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+padding:12px 18px;
+border-radius:10px;
 }
 
-.cta-button {
-    background: linear-gradient(90deg, #06b6d4, #3b82f6);
-    padding: 8px 14px;
-    border-radius: 8px;
-    color: white !important;
+.page-section{
+padding:70px 0;
+text-align:center;
 }
 
-/* MAIN */
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 60px 20px;
-    text-align: center;
+h1{
+font-size:72px;
+font-weight:800;
+color:#19c5ff;
+margin-bottom:18px;
 }
 
-h1 {
-    font-size: 42px;
-    font-weight: 800;
-    color: #22d3ee;
+.subtext{
+font-size:28px;
+color:#94a3b8;
+margin-bottom:50px;
 }
 
-.subtext {
-    color: #9ca3af;
-    margin: 15px 0 40px;
+.setup-box{
+max-width:920px;
+margin:0 auto 55px;
+padding:55px;
+background:#03162d;
+border:1px solid #173857;
+border-radius:24px;
 }
 
-/* SETUP BOX */
-.setup-box {
-    background: #061426;
-    border: 1px solid #0f2a44;
-    padding: 30px;
-    border-radius: 16px;
-    margin-bottom: 40px;
+.setup-box h2{
+font-size:30px;
+margin-bottom:14px;
+color:#19c5ff;
 }
 
-.setup-price {
-    font-size: 42px;
-    color: #38bdf8;
+.setup-price{
+font-size:76px;
+font-weight:800;
+color:#19c5ff;
+margin-bottom:14px;
 }
 
-/* CARDS */
-.cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+.setup-box p{
+font-size:24px;
+color:#a5b4c8;
 }
 
-.card {
-    width: 300px;
-    background: #061426;
-    border: 1px solid #0f2a44;
-    border-radius: 16px;
-    padding: 25px;
-    text-align: left;
-    transition: 0.3s;
+.cards{
+display:flex;
+flex-wrap:wrap;
+gap:28px;
+justify-content:center;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 25px rgba(56,189,248,0.2);
+.card{
+width:390px;
+min-height:560px;
+background:#03162d;
+border:1px solid #173857;
+border-radius:24px;
+padding:38px;
+text-align:left;
+display:flex;
+flex-direction:column;
+position:relative;
 }
 
-.price {
-    font-size: 34px;
-    font-weight: 800;
-    color: #38bdf8;
+.featured{
+border:2px solid #0ea5ff;
+box-shadow:0 0 28px rgba(0,183,255,.2);
 }
 
-.month {
-    color: #9ca3af;
+.popular{
+position:absolute;
+top:18px;
+right:18px;
+padding:10px 18px;
+border-radius:999px;
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+font-weight:700;
 }
 
-ul {
-    margin-top: 15px;
-    list-style: none;
+.plan-name{
+font-size:42px;
+font-weight:700;
+margin-bottom:25px;
 }
 
-ul li {
-    margin: 8px 0;
-    color: #cbd5f5;
+.dot{color:#19c5ff;margin-right:8px;}
+
+.price{
+display:flex;
+align-items:flex-end;
+gap:10px;
+margin-bottom:18px;
 }
 
-/* BUTTON */
-.button {
-    margin-top: 15px;
-    padding: 12px;
-    text-align: center;
-    background: linear-gradient(90deg, #06b6d4, #3b82f6);
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
+.amount{
+font-size:88px;
+line-height:1;
+font-weight:800;
+color:#19c5ff;
 }
 
-.button:hover {
-    opacity: 0.9;
+.month{
+font-size:26px;
+color:#94a3b8;
+margin-bottom:14px;
 }
 
-/* CALLING AGENT SECTION */
-.section {
-    margin-top: 80px;
+.minutes{
+font-size:30px;
+color:#38bdf8;
+margin-bottom:26px;
 }
 
-.contact-box {
-    background: #061426;
-    border: 1px solid #0f2a44;
-    padding: 40px;
-    border-radius: 16px;
+.divider{
+height:1px;
+background:#264969;
+margin-bottom:30px;
 }
 
-.contact-box h2 {
-    color: #22d3ee;
-    margin-bottom: 10px;
+.features{list-style:none;}
+
+.features li{
+margin:18px 0;
+font-size:26px;
+color:#dbeafe;
 }
 
-.contact-box p {
-    color: #9ca3af;
-    margin-bottom: 20px;
+.features li:before{
+content:'✓';
+color:#19c5ff;
+margin-right:12px;
+font-weight:800;
 }
 
-.contact-btn {
-    display: inline-block;
-    padding: 14px 20px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #06b6d4, #3b82f6);
-    font-weight: 600;
+.button{
+margin-top:auto;
+padding:20px;
+text-align:center;
+border-radius:14px;
+border:2px solid #0ea5ff;
+color:#0ea5ff;
+font-size:28px;
+font-weight:700;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .card {
-        width: 100%;
-        max-width: 350px;
-    }
+.featured .button{
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+color:white;
+border:none;
+}
+
+.product-section{
+margin-top:120px;
+padding-top:60px;
+border-top:1px solid #173857;
+}
+
+.calculator-section{
+margin-top:140px;
+text-align:center;
+}
+
+.calculator-box{
+max-width:850px;
+margin:auto;
+padding:60px;
+background:#03162d;
+border:1px solid #173857;
+border-radius:24px;
+}
+
+.calculator-box label{
+display:block;
+font-size:30px;
+margin-bottom:20px;
+}
+
+input[type=range]{
+width:100%;
+height:8px;
+background:#24425f;
+border-radius:999px;
+appearance:none;
+margin:30px 0;
+}
+
+input[type=range]::-webkit-slider-thumb{
+appearance:none;
+width:34px;
+height:34px;
+border-radius:50%;
+background:#19c5ff;
+box-shadow:0 0 18px rgba(25,197,255,.5);
+}
+
+.minutes-display{
+font-size:44px;
+font-weight:800;
+color:#19c5ff;
+margin-bottom:35px;
+}
+
+.calc-results p{
+font-size:30px;
+margin:16px 0;
+}
+
+.calc-results h2{
+font-size:52px;
+margin-top:28px;
+color:#19c5ff;
+}
+
+.ongoing{
+font-size:32px;
+color:#8fd6ff;
+margin-top:20px;
+}
+
+.footer{
+padding:50px 20px;
+text-align:center;
+color:#94a3b8;
+margin-top:100px;
+}
+
+@media(max-width:768px){
+h1{font-size:50px}
+.card{width:100%}
+.amount{font-size:64px}
+.features li{font-size:22px}
+.nav-links{display:none}
 }
 </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
-    <div class="container">
-        <div class="logo">⚡ MashaAI Connect</div>
-
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">AI Calling Agents</a></li>
-            <li><a href="#" class="active">AI Appointment Setter</a></li>
-            <li><a href="#" class="cta-button">Book Demo</a></li>
-        </ul>
-    </div>
+<div class="container">
+<div class="logo">⚡ MashaAI Connect</div>
+<ul class="nav-links">
+<li><a href="#">Home</a></li>
+<li><a href="#">AI Calling Agents</a></li>
+<li><a href="#">AI Appointment Setter</a></li>
+<li><a href="#">Pricing</a></li>
+<li><a href="#" class="cta-button">Book Demo</a></li>
+</ul>
+</div>
 </nav>
 
-<!-- APPOINTMENT SETTER -->
 <div class="container">
-    <h1>AI Appointment Setter</h1>
-    <p class="subtext">Automated calls, follow-ups and bookings that run 24/7</p>
 
-    <div class="setup-box">
-        <h2>ONE-TIME SETUP FEE</h2>
-        <div class="setup-price">$1500</div>
-        <p>We build, train and deploy your AI system</p>
-    </div>
+<section class="page-section">
+<h1>AI Appointment Setter</h1>
+<p class="subtext">Automated calls, follow-ups and bookings that run 24/7</p>
 
-    <div class="cards">
-        <div class="card">
-            <h3>Starter</h3>
-            <div class="price">$500 <span class="month">/month</span></div>
-            <p>200 call minutes included</p>
-            <ul>
-                <li>Basic AI appointment setter</li>
-                <li>Lead follow-up</li>
-                <li>Calendar booking</li>
-            </ul>
-            <div class="button">Choose Plan</div>
-        </div>
+<div class="setup-box">
+<h2>ONE-TIME SETUP FEE</h2>
+<div class="setup-price">$1500</div>
+<p>We build, train and deploy your AI system</p>
+</div>
 
-        <div class="card">
-            <h3>Growth</h3>
-            <div class="price">$900 <span class="month">/month</span></div>
-            <p>500 call minutes included</p>
-            <ul>
-                <li>Smarter follow-up</li>
-                <li>Sequences</li>
-                <li>Priority support</li>
-            </ul>
-            <div class="button">Choose Plan</div>
-        </div>
+<div class="cards">
 
-        <div class="card">
-            <h3>Pro</h3>
-            <div class="price">$1500 <span class="month">/month</span></div>
-            <p>1000 call minutes included</p>
-            <ul>
-                <li>Advanced workflows</li>
-                <li>Multi-client</li>
-                <li>Dedicated support</li>
-            </ul>
-            <div class="button">Choose Plan</div>
-        </div>
-    </div>
+<div class="card">
+<div class="plan-name"><span class="dot">●</span>Starter</div>
+<div class="price"><span class="amount">$500</span><span class="month">/month</span></div>
+<div class="minutes">200 call minutes included</div>
+<div class="divider"></div>
+<ul class="features">
+<li>Basic AI appointment setter</li>
+<li>Lead follow-up</li>
+<li>Calendar booking</li>
+<li>$0.40/min usage</li>
+</ul>
+<div class="button">Choose Plan</div>
+</div>
 
-    <!-- AI CALLING AGENTS -->
-    <div class="section">
-        <div class="contact-box">
-            <h2>AI Calling Agents</h2>
-            <p>Fully custom AI voice agents for inbound & outbound calls. Pricing depends on scale, integrations, and complexity.</p>
-            <a href="#" class="contact-btn">Contact Sales</a>
-        </div>
-    </div>
+<div class="card featured">
+<div class="popular">Most Popular</div>
+<div class="plan-name"><span class="dot">●</span>Growth</div>
+<div class="price"><span class="amount">$900</span><span class="month">/month</span></div>
+<div class="minutes">500 call minutes included</div>
+<div class="divider"></div>
+<ul class="features">
+<li>Advanced follow-up</li>
+<li>Sequences</li>
+<li>Priority support</li>
+<li>$0.40/min usage</li>
+</ul>
+<div class="button">Choose Plan</div>
+</div>
+
+<div class="card">
+<div class="plan-name"><span class="dot">●</span>Pro</div>
+<div class="price"><span class="amount">$1500</span><span class="month">/month</span></div>
+<div class="minutes">1000 call minutes included</div>
+<div class="divider"></div>
+<ul class="features">
+<li>Advanced workflows</li>
+<li>Multi-client</li>
+<li>Dedicated support</li>
+<li>$0.40/min usage</li>
+</ul>
+<div class="button">Choose Plan</div>
+</div>
+</div>
+</section>
+
+<section class="product-section">
+<h1>AI Calling Agents</h1>
+<p class="subtext">Human-like AI voice agents for inbound, outbound, support and sales.</p>
+
+<div class="setup-box">
+<h2>CUSTOM IMPLEMENTATION</h2>
+<div class="setup-price">Custom Pricing</div>
+<p>Based on workflows, integrations and scale</p>
+</div>
+
+<section class="calculator-section">
+<h1>Estimate Your Monthly Cost</h1>
+<p class="subtext">Drag slider to estimate usage at $0.40/min + $1500 setup</p>
+
+<div class="calculator-box">
+<label>Monthly Call Minutes</label>
+<input type="range" min="500" max="50000" step="500" value="5000" id="minutesSlider" oninput="updateCalculator()">
+
+<div class="minutes-display">
+<span id="minuteValue">5000</span> Minutes
+</div>
+
+<div class="calc-results">
+<p>Usage Cost: <span id="usageCost">$2,000</span></p>
+<p>One-Time Setup Fee: $1,500</p>
+<h2>Total First Month: <span id="totalCost">$3,500</span></h2>
+<p class="ongoing">Future Months: <span id="ongoingCost">$2,000</span></p>
+</div>
+</div>
+</section>
 
 </div>
-<!-- Footer -->
+
 <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
-            <p>Powered by Advanced AI Technology</p>
-        </div>
-    </footer>
+<p>© 2026 MashaAI Connect. All rights reserved.</p>
+</footer>
+
+<script>
+function updateCalculator(){
+let minutes=document.getElementById('minutesSlider').value;
+let usage=minutes*0.40;
+let total=usage+1500;
+
+document.getElementById('minuteValue').innerText=Number(minutes).toLocaleString();
+document.getElementById('usageCost').innerText='$'+usage.toLocaleString();
+document.getElementById('ongoingCost').innerText='$'+usage.toLocaleString();
+document.getElementById('totalCost').innerText='$'+total.toLocaleString();
+}
+updateCalculator();
+</script>
 
 </body>
 </html>
+```
+
