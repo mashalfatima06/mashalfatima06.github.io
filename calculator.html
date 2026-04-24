@@ -55,10 +55,26 @@ gap:10px;
 }
 
 /* LOGO */
-.logo{
-font-weight:700;
-color:#19c5ff;
-white-space:nowrap;
+<style>
+        .logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+
+    /* Glow effect to match blue theme */
+    filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 18px;
+    color: #22d3ee;
 }
 
 /* NAV LINKS FIX */
