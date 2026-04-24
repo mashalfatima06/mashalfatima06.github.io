@@ -29,27 +29,26 @@ overflow-x:hidden;
 0%{background-position:0% 50%;}
 100%{background-position:100% 50%;}
 }
+
+/* LOGO */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+display:flex;
+align-items:center;
+gap:4px;
 }
 
 .logo img {
-    height: 42px;
-    width: auto;
-    object-fit: contain;
-
-    /* Glow effect to match blue theme */
-    filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
+height:42px;
+filter:drop-shadow(0 0 8px rgba(56,189,248,0.6));
 }
 
 .logo-text {
-    font-weight: 700;
-    font-size: 18px;
-    color: #22d3ee;
+font-weight:700;
+font-size:18px;
+color:#22d3ee;
 }
-/* NAVBAR FIXED */
+
+/* NAVBAR */
 .navbar{
 background:rgba(2,6,23,0.75);
 backdrop-filter:blur(14px);
@@ -57,10 +56,7 @@ padding:14px 0;
 border-bottom:1px solid #173857;
 position:sticky;
 top:0;
-z-index:9999;   /* FIX CLICK ISSUE */
-}
-.nav-links a{
-display:inline-block;
+z-index:9999;
 }
 
 .container{
@@ -72,7 +68,8 @@ justify-content:space-between;
 align-items:center;
 gap:10px;
 }
-/* NAV LINKS FIX */
+
+/* NAV LINKS */
 .nav-links{
 display:flex;
 gap:22px;
@@ -82,17 +79,12 @@ justify-content:flex-end;
 align-items:center;
 }
 
-.nav-links li{
-display:flex;
-}
-
 .nav-links a{
 text-decoration:none;
 color:#dbeafe;
 font-size:14px;
 padding:6px 8px;
-display:inline-block;   /* IMPORTANT FIX CLICK AREA */
-position:relative;
+display:inline-block;
 transition:0.2s;
 }
 
@@ -103,6 +95,18 @@ color:#19c5ff;
 .nav-links a.active{
 color:#19c5ff;
 border-bottom:2px solid #19c5ff;
+}
+
+/* HERO FIX */
+.hero{
+padding:40px 0;
+position:relative;
+}
+
+.hero-content{
+width:100%;
+flex-direction:column;
+align-items:center;
 }
 
 /* TITLES */
@@ -167,11 +171,6 @@ color:#19c5ff;
 font-weight:800;
 }
 
-.month{
-font-size:13px;
-color:#94a3b8;
-}
-
 .minutes{
 font-size:13px;
 color:#38bdf8;
@@ -224,6 +223,7 @@ font-weight:700;
 color:white;
 }
 
+/* ROW */
 .row{
 display:flex;
 gap:20px;
@@ -252,6 +252,7 @@ font-weight:700;
 text-align:center;
 }
 
+/* FOOTER */
 .footer{
 text-align:center;
 padding:40px 0;
@@ -259,14 +260,13 @@ color:#94a3b8;
 margin-top:60px;
 }
 
-/* MOBILE FIX */
+/* MOBILE */
 @media(max-width:768px){
 .cards{grid-template-columns:1fr;}
 .section-title{font-size:36px;}
 
 .container{
 flex-direction:column;
-gap:10px;
 text-align:center;
 }
 
@@ -279,39 +279,26 @@ justify-content:center;
 
 <body>
 
- <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-           <div class="logo">
-        <img src="logo.png" alt="MashaAI Logo">
-        <span class="logo-text">MashaAI Connect</span>
-            </div>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-            </button>
-            <ul class="nav-links" id="primary-navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="calling-agents.html">AI Calling Agents</a></li>
-                <li><a href="pricing.html">AI Appointment Setter</a></li>
-                <li><a href="calculator.html" class="active">Pricing</a></li>
-                <li><a href="demo.html" class="cta-button">Book Demo</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar">
+<div class="container">
+<div class="logo">
+<img src="logo.png">
+<span class="logo-text">MashaAI Connect</span>
+</div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="stars"></div>
-        <div class="animated-bg"></div>
-        <div class="floating-elements">
-            <div class="float-box float-1"></div>
-            <div class="float-box float-2"></div>
-            <div class="pulse-circle pulse-1"></div>
-            <div class="pulse-circle pulse-2"></div>
-        </div>
-        <div class="container hero-content">
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="calling-agents.html">AI Calling Agents</a></li>
+<li><a href="pricing.html">AI Appointment Setter</a></li>
+<li><a href="calculator.html" class="active">Pricing</a></li>
+<li><a href="demo.html">Book Demo</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container hero-content">
+
 <h1 class="section-title">AI Appointment Setter</h1>
 <p class="section-subtext">Automated calls, follow-ups and bookings</p>
 
@@ -326,29 +313,24 @@ justify-content:center;
 <h2>Starter</h2>
 <div class="amount">$399</div>
 <div class="minutes">200 min included</div>
-
 <ul class="features">
 <li>AI appointment system</li>
 <li>Lead follow-up</li>
 <li>Calendar booking</li>
 </ul>
-
 <a class="button" href="demo.html">Choose</a>
 </div>
 
 <div class="card">
 <div class="badge">Most Popular</div>
-
 <h2>Growth</h2>
 <div class="amount">$799</div>
 <div class="minutes">500 min included</div>
-
 <ul class="features">
 <li>Advanced automation</li>
 <li>Smart sequences</li>
 <li>Priority support</li>
 </ul>
-
 <a class="button" href="demo.html">Choose</a>
 </div>
 
@@ -356,13 +338,11 @@ justify-content:center;
 <h2>Pro</h2>
 <div class="amount">$1399</div>
 <div class="minutes">1000 min included</div>
-
 <ul class="features">
 <li>Multi workflows</li>
 <li>Advanced integrations</li>
 <li>Dedicated support</li>
 </ul>
-
 <a class="button" href="demo.html">Choose</a>
 </div>
 
@@ -377,14 +357,12 @@ justify-content:center;
 <h2>Pricing</h2>
 <div class="setup-price">$0.40 / min</div>
 <p>One-time setup fee: $1500</p>
-
 <a href="demo.html" class="button" style="margin-top:20px;display:block;">
 Contact Sales
 </a>
 </div>
 
 <div class="box">
-
 <label>Monthly Minutes</label>
 <input type="range" min="500" max="50000" step="500" value="5000" id="slider">
 
@@ -394,10 +372,12 @@ Contact Sales
 
 <p>Usage: $<span id="cost">2000</span></p>
 <h2>Total: $<span id="total">2000</span></h2>
-
 </div>
 
 </div>
+
+</div>
+</section>
 
 <footer class="footer">
 <div class="container">
