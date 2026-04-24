@@ -117,22 +117,24 @@ display:flex;
 }
 }
 
-/* TEXT */
-h1{
-font-size:26px;
+/* SECTION TITLES */
+.section-title{
+font-size:34px;
+font-weight:800;
 text-align:center;
-margin:25px 0 10px;
+margin:60px 0 10px;
+color:#19c5ff;
 }
 
-h2{
-font-size:20px;
-}
-
-.subtext{
+.section-subtext{
 text-align:center;
-font-size:13px;
+font-size:14px;
 color:#94a3b8;
-margin-bottom:25px;
+margin-bottom:40px;
+}
+
+.section-space{
+margin-top:90px;
 }
 
 /* SETUP BOX */
@@ -168,6 +170,7 @@ border-radius:16px;
 padding:20px;
 display:flex;
 flex-direction:column;
+position:relative;
 }
 
 .amount{
@@ -253,7 +256,20 @@ color:#19c5ff;
 text-align:center;
 padding:40px 0;
 color:#94a3b8;
-margin-top:50px;
+margin-top:60px;
+}
+
+/* POPULAR BADGE */
+.badge{
+position:absolute;
+top:10px;
+right:10px;
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+padding:6px 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:700;
+color:white;
 }
 </style>
 </head>
@@ -285,10 +301,9 @@ margin-top:50px;
 </div>
 </nav>
 
-<!-- CONTENT -->
-
-<h1>AI Appointment Setter</h1>
-<p class="subtext">Automated calls, follow-ups and bookings</p>
+<!-- AI APPOINTMENT SETTER -->
+<h1 class="section-title">AI Appointment Setter</h1>
+<p class="section-subtext">Automated calls, follow-ups and bookings</p>
 
 <div class="setup-box">
 <h2>ONE-TIME SETUP</h2>
@@ -311,6 +326,7 @@ margin-top:50px;
 </div>
 
 <div class="card featured">
+<div class="badge">Most Popular</div>
 <h2>Growth</h2>
 <div class="amount">$900 <span class="month">/mo</span></div>
 <div class="minutes">500 min included</div>
@@ -337,8 +353,8 @@ margin-top:50px;
 </div>
 
 <!-- AI CALLING AGENTS -->
-<h1>AI Calling Agents</h1>
-<p class="subtext">Pay only $0.40 per minute usage</p>
+<h1 class="section-title section-space">AI Calling Agents</h1>
+<p class="section-subtext">Pay only $0.40 per minute usage</p>
 
 <div class="row">
 
