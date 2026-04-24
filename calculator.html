@@ -18,35 +18,11 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-color:white;
-overflow-x:hidden;
-background:#020617;
-}
-
-/* ===== NEW BACKGROUND STYLE (MATCHED) ===== */
-.stars{
-position:fixed;
-width:100%;
-height:100%;
-background:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);
-background-size:50px 50px;
-animation:moveStars 60s linear infinite;
-z-index:-3;
-}
-
-@keyframes moveStars{
-from{transform:translateY(0);}
-to{transform:translateY(-1000px);}
-}
-
-.animated-bg{
-position:fixed;
-width:100%;
-height:100%;
 background:linear-gradient(120deg,#020617,#071a2f,#020617);
 background-size:300% 300%;
 animation:bgMove 12s infinite alternate;
-z-index:-2;
+color:white;
+overflow-x:hidden;
 }
 
 @keyframes bgMove{
@@ -54,100 +30,46 @@ z-index:-2;
 100%{background-position:100% 50%;}
 }
 
-.floating-elements{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-}
-
-.float-box{
-position:absolute;
-width:60px;
-height:60px;
-background:rgba(25,197,255,0.08);
-border:1px solid rgba(25,197,255,0.2);
-animation:float 8s infinite ease-in-out;
-}
-
-.float-1{top:20%;left:10%;}
-.float-2{top:70%;right:15%;}
-
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
-}
-
-/* ===== NAVBAR (UPDATED STYLE) ===== */
+/* NAVBAR */
 .navbar{
+background:rgba(2,6,23,0.65);
+backdrop-filter:blur(14px);
+padding:14px 0;
+border-bottom:1px solid #173857;
 position:sticky;
 top:0;
 z-index:1000;
-background:rgba(2,6,23,0.6);
-backdrop-filter:blur(14px);
-border-bottom:1px solid #173857;
 }
 
 .container{
 max-width:1200px;
 margin:auto;
-padding:15px 20px;
+padding:0 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-weight:800;
-color:#19c5ff;
-}
-
-.logo-icon{
-font-size:18px;
-}
-
+/* FIXED NAV ISSUE */
 .nav-links{
 display:flex;
 gap:22px;
 list-style:none;
+flex-wrap:wrap;
+justify-content:flex-end;
 }
 
 .nav-links a{
 text-decoration:none;
 color:#dbeafe;
 font-size:14px;
+position:relative;
+padding-bottom:4px;
 }
 
 .nav-links a.active{
 color:#19c5ff;
 border-bottom:2px solid #19c5ff;
-padding-bottom:3px;
-}
-
-.cta-button{
-padding:8px 14px;
-border:1px solid #0ea5ff;
-border-radius:8px;
-color:#0ea5ff !important;
-}
-
-/* MOBILE MENU */
-.menu-toggle{
-display:none;
-flex-direction:column;
-gap:5px;
-background:none;
-border:none;
-cursor:pointer;
-}
-
-.menu-bar{
-width:22px;
-height:2px;
-background:white;
 }
 
 /* TITLES */
@@ -166,7 +88,7 @@ color:#94a3b8;
 margin-bottom:40px;
 }
 
-/* KEEP YOUR ORIGINAL DESIGN BELOW (UNCHANGED) */
+/* SETUP */
 .setup-box{
 max-width:800px;
 margin:0 auto 30px;
@@ -183,6 +105,7 @@ color:#19c5ff;
 font-weight:800;
 }
 
+/* CARDS */
 .cards{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -211,10 +134,19 @@ color:#19c5ff;
 font-weight:800;
 }
 
+.month{
+font-size:13px;
+color:#94a3b8;
+}
+
 .minutes{
 font-size:13px;
 color:#38bdf8;
 margin:10px 0;
+}
+
+.features{
+margin-top:10px;
 }
 
 .features li{
@@ -239,6 +171,24 @@ border:1px solid #0ea5ff;
 color:#0ea5ff;
 text-decoration:none;
 font-size:14px;
+transition:0.3s;
+}
+
+.button:hover{
+background:#0ea5ff;
+color:white;
+}
+
+.badge{
+position:absolute;
+top:10px;
+right:10px;
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+padding:6px 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:700;
+color:white;
 }
 
 .row{
@@ -257,6 +207,18 @@ border-radius:16px;
 border:1px solid #173857;
 }
 
+input[type=range]{
+width:100%;
+margin:20px 0;
+}
+
+.minutes-display{
+font-size:22px;
+color:#19c5ff;
+font-weight:700;
+text-align:center;
+}
+
 .footer{
 text-align:center;
 padding:40px 0;
@@ -264,22 +226,19 @@ color:#94a3b8;
 margin-top:60px;
 }
 
-/* MOBILE */
+/* MOBILE FIX FOR NAV */
 @media(max-width:768px){
 .cards{grid-template-columns:1fr;}
-.menu-toggle{display:flex;}
-.nav-links{
-display:none;
+.section-title{font-size:36px;}
+
+.container{
 flex-direction:column;
-position:absolute;
-top:70px;
-right:20px;
-background:#03162d;
-padding:15px;
-border-radius:10px;
+gap:10px;
+text-align:center;
 }
-.nav-links.show{
-display:flex;
+
+.nav-links{
+justify-content:center;
 }
 }
 </style>
@@ -287,41 +246,21 @@ display:flex;
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="stars"></div>
-<div class="animated-bg"></div>
-<div class="floating-elements">
-<div class="float-box float-1"></div>
-<div class="float-box float-2"></div>
-</div>
-
-<!-- NAVBAR -->
 <nav class="navbar">
 <div class="container">
 
-<div class="logo">
-<span class="logo-icon"><i class="fas fa-bolt"></i></span>
-<span>MashaAI Connect</span>
-</div>
-
-<button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
-<span class="menu-bar"></span>
-<span class="menu-bar"></span>
-<span class="menu-bar"></span>
-</button>
+<div class="logo">⚡ MashaAI Connect</div>
 
 <ul class="nav-links">
 <li><a href="index.html">Home</a></li>
 <li><a href="calling-agents.html">AI Calling Agents</a></li>
 <li><a href="pricing.html" class="active">AI Appointment Setter</a></li>
 <li><a href="calculator.html">Pricing</a></li>
-<li><a href="demo.html" class="cta-button">Book Demo</a></li>
+<li><a href="demo.html">Book Demo</a></li>
 </ul>
 
 </div>
 </nav>
-
-<!-- EVERYTHING BELOW IS YOUR ORIGINAL CONTENT (UNCHANGED) -->
 
 <h1 class="section-title">AI Appointment Setter</h1>
 <p class="section-subtext">Automated calls, follow-ups and bookings</p>
@@ -337,23 +276,29 @@ display:flex;
 <h2>Starter</h2>
 <div class="amount">$500</div>
 <div class="minutes">200 min included</div>
+
 <ul class="features">
 <li>AI appointment system</li>
 <li>Lead follow-up</li>
 <li>Calendar booking</li>
 </ul>
+
 <a class="button" href="demo.html">Choose</a>
 </div>
 
 <div class="card">
+<div class="badge">Most Popular</div>
+
 <h2>Growth</h2>
 <div class="amount">$900</div>
 <div class="minutes">500 min included</div>
+
 <ul class="features">
 <li>Advanced automation</li>
 <li>Smart sequences</li>
 <li>Priority support</li>
 </ul>
+
 <a class="button" href="demo.html">Choose</a>
 </div>
 
@@ -361,22 +306,67 @@ display:flex;
 <h2>Pro</h2>
 <div class="amount">$1500</div>
 <div class="minutes">1000 min included</div>
+
 <ul class="features">
 <li>Multi workflows</li>
 <li>Advanced integrations</li>
 <li>Dedicated support</li>
 </ul>
+
 <a class="button" href="demo.html">Choose</a>
 </div>
 
 </div>
 
-<div class="footer">
-<div class="container">
+<h1 class="section-title">AI Calling Agents</h1>
+<p class="section-subtext">Pay $0.40 per minute usage</p>
+
+<div class="row">
+
+<div class="box">
+<h2>Pricing</h2>
+<div class="setup-price">$0.40 / min</div>
+<p>One-time setup fee: $1500</p>
+
+<a href="demo.html" class="button" style="margin-top:20px;display:block;">
+Contact Sales
+</a>
+</div>
+
+<div class="box">
+
+<label>Monthly Minutes</label>
+<input type="range" min="500" max="50000" step="500" value="5000" id="slider">
+
+<div class="minutes-display">
+<span id="mins">5000</span> min
+</div>
+
+<p>Usage: $<span id="cost">2000</span></p>
+<h2>Total: $<span id="total">2000</span></h2>
+
+</div>
+
+</div>
+
+  <footer class="footer">
+        <div class="container">
             <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
             <p>Powered by Advanced AI Technology</p>
         </div>
-</div>
+    </footer>
+<script>
+const slider=document.getElementById("slider");
+
+slider.oninput=function(){
+let m=this.value;
+let cost=m*0.40;
+
+document.getElementById("mins").innerText=m;
+document.getElementById("cost").innerText=cost.toLocaleString();
+document.getElementById("total").innerText=cost.toLocaleString();
+};
+</script>
 
 </body>
 </html>
