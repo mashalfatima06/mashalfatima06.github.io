@@ -4,230 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Demo - MashaAI Connect</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ✅ Logo (same as index) */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo img {
+            height: 42px;
+            filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            color: #22d3ee;
+        }
+
+        /* ✅ FIX: allow clicks through background */
+        .stars,
+        .animated-bg,
+        .floating-elements,
+        .float-box,
+        .pulse-circle {
+            pointer-events: none;
+        }
+
+        /* ✅ Ensure form is clickable */
+        .demo-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-form-container {
+            position: relative;
+            z-index: 5;
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
-                <span class="logo-text">MashaAI Connect</span>
-            </div>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-            </button>
-            <ul class="nav-links" id="primary-navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="calling-agents.html">AI Calling Agents</a></li>
-                <li><a href="pricing.html">AI Appointment Setter</a></li>
-                <li><a href="calculator.html">Pricing</a></li>
-                <li><a href="demo.html" class="active cta-button">Book Demo</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Demo Section -->
-    <section class="demo-section">
-        <div class="stars"></div>
-        <div class="container">
-            <div class="demo-wrapper">
-                <!-- Form Section -->
-                <div class="demo-form-container">
-                    <h1>Book Your Demo</h1>
-                    <p>See MashaAI Connect in action and discover how we can transform your customer communication</p>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="MashaAI Logo">
+            <span class="logo-text">MashaAI Connect</span>
+        </div>
+
+        <button class="menu-toggle" type="button">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calling-agents.html">AI Calling Agents</a></li>
+            <li><a href="pricing.html">AI Appointment Setter</a></li>
+            <li><a href="calculator.html">Pricing</a></li>
+            <li><a href="demo.html" class="active cta-button">Book Demo</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- DEMO SECTION -->
+<section class="demo-section">
+    <div class="stars"></div>
+
+    <div class="container">
+        <div class="demo-wrapper">
+
+            <!-- FORM -->
+            <div class="demo-form-container">
+                <h1>Book Your Demo</h1>
+
+                <form action="https://api.web3forms.com/submit" method="POST">
                     
-                    <form id="demoForm" class="demo-form" action="https://api.web3forms.com/submit" method="POST">
-                         <input type="hidden" name="access_key" value="3aa93d8f-dec2-4a6a-9e8f-c4b84841298f">
-                        <div class="form-group">
-                            <label for="fullName">Full Name *</label>
-                            <input 
-                                type="text" 
-                                id="fullName" 
-                                name="fullName" 
-                                required 
-                                placeholder="Enter your full name"
-                            >
-                            <span class="error" id="nameError"></span>
-                        </div>
+                    <input type="hidden" name="access_key" value="3aa93d8f-dec2-4a6a-9e8f-c4b84841298f">
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    name="email" 
-                                    required 
-                                    placeholder="your@email.com"
-                                >
-                                <span class="error" id="emailError"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="company">Company Name *</label>
-                                <input 
-                                    type="text" 
-                                    id="company" 
-                                    name="company" 
-                                    required 
-                                    placeholder="Your company name"
-                                >
-                                <span class="error" id="companyError"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="industry">Industry *</label>
-                            <select id="industry" name="industry" required>
-                                <option value="">Select your industry</option>
-                                <option value="healthcare">Healthcare</option>
-                                <option value="ecommerce">E-Commerce</option>
-                                <option value="fintech">FinTech</option>
-                                <option value="education">Education</option>
-                                <option value="saas">SaaS</option>
-                                <option value="hospitality">Hospitality</option>
-                                <option value="real-estate">Real Estate</option>
-                                <option value="other">Other</option>
-                            </select>
-                            <span class="error" id="industryError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="interests">What are you interested in? *</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="interests" value="calling-agents">
-                                    AI Calling Agents
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="interests" value="whatsapp">
-                                    WhatsApp Automation
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="interests" value="email">
-                                    Email Automation
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="interests" value="custom">
-                                    Custom Automation
-                                </label>
-                            </div>
-                            <span class="error" id="interestsError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="companySize">Company Size *</label>
-                            <select id="companySize" name="companySize" required>
-                                <option value="">Select company size</option>
-                                <option value="1-10">1-10 employees</option>
-                                <option value="11-50">11-50 employees</option>
-                                <option value="51-200">51-200 employees</option>
-                                <option value="201-500">201-500 employees</option>
-                                <option value="500+">500+ employees</option>
-                            </select>
-                            <span class="error" id="sizeError"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="monthlyVolume">Current Monthly Call Volume</label>
-                            <input 
-                                type="number" 
-                                id="monthlyVolume" 
-                                name="monthlyVolume" 
-                                placeholder="Estimated number of calls per month"
-                                min="0"
-                            >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Tell us about your needs (Optional)</label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
-                                rows="5" 
-                                placeholder="Describe your business challenges and how we can help..."
-                            ></textarea>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="terms" name="terms" required>
-                                I agree to receive communications from MashaAI Connect *
-                            </label>
-                            <span class="error" id="termsError"></span>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-large">Schedule Demo</button>
-                        <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
-                        <span class="form-note">We'll reach out within 24 hours to confirm your demo</span>
-                    </form>
-
-                    <!-- Success Message -->
-                    <div id="successMessage" class="success-message" style="display: none;">
-                        <div class="success-content">
-                            <span class="success-icon"><i class="fas fa-check-circle"></i></span>
-                            <h3>Demo Booked Successfully!</h3>
-                            <p>Thank you for your interest. We'll contact you shortly to confirm your demo time.</p>
-                            <a href="index.html" class="btn btn-secondary">Back to Home</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Info Section -->
-                <div class="demo-info">
-                    <h2>What to Expect</h2>
-                    <div class="info-item">
-                        <span class="info-icon"><i class="fas fa-calendar"></i></span>
-                        <div>
-                            <h4>30-Minute Demo</h4>
-                            <p>Personalized walkthrough of our AI solution tailored to your industry</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon"><i class="fas fa-lightbulb"></i></span>
-                        <div>
-                            <h4>Custom Insights</h4>
-                            <p>Analysis of your current process and how AI can optimize it</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon"><i class="fas fa-dollar-sign"></i></span>
-                        <div>
-                            <h4>ROI Analysis</h4>
-                            <p>Detailed breakdown of potential savings specific to your business</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon"><i class="fas fa-handshake"></i></span>
-                        <div>
-                            <h4>Implementation Plan</h4>
-                            <p>Clear roadmap and timeline for getting you started</p>
-                        </div>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="fullName" required>
                     </div>
 
-                    <div class="support-box">
-                        <h3>Have Questions?</h3>
-                        <p>Email us at: <strong>info@mashaaiconnect.it.com</strong></p>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label>Company *</label>
+                        <input type="text" name="company" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Industry *</label>
+                        <select name="industry" required>
+                            <option value="">Select</option>
+                            <option>Healthcare</option>
+                            <option>E-Commerce</option>
+                            <option>FinTech</option>
+                            <option>Education</option>
+                        </select>
+                    </div>
+
+                    <!-- ✅ FIXED CHECKBOXES -->
+                    <div class="form-group">
+                        <label>Interests *</label>
+                        <label><input type="checkbox" name="interests[]" value="AI Calling"> AI Calling</label>
+                        <label><input type="checkbox" name="interests[]" value="WhatsApp"> WhatsApp</label>
+                        <label><input type="checkbox" name="interests[]" value="Email"> Email</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="terms" required>
+                            I agree to terms *
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Schedule Demo
+                    </button>
+                </form>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
-            <p>Powered by Advanced AI Technology</p>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="main.js"></script>
-    <script src="form.js"></script>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
+        <p>Powered by Advanced AI Technology</p>
+    </div>
+</footer>
+
 </body>
 </html>
-
-
