@@ -1,316 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Appointment Setter - MashaAI Connect</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body {
-    background: linear-gradient(180deg, #020617, #071a2f);
-    color: white;
-}
-
-/* NAVBAR */
-.navbar {
-    background: #020617;
-    padding: 15px 0;
-    border-bottom: 1px solid #0f2a44;
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 0 20px;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-weight: 700;
-    color: #22d3ee;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-}
-
-.nav-links a {
-    color: #ccc;
-    text-decoration: none;
-}
-
-.nav-links .active {
-    color: #22d3ee;
-}
-
-.cta-button {
-    background: linear-gradient(90deg, #06b6d4, #3b82f6);
-    padding: 8px 14px;
-    border-radius: 8px;
-    color: white !important;
-}
-
-/* HERO */
-.services-hero {
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.services-hero h1 {
-    font-size: 48px;
-    color: #22d3ee;
-}
-
-.hero-subtitle {
-    color: #9ca3af;
-    margin: 20px 0;
-}
-
-.btn {
-    padding: 12px 18px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #06b6d4, #3b82f6);
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-}
-
-/* SERVICE CARD */
-.services-section {
-    padding: 60px 0;
-}
-
-.service-card {
-    background: #061426;
-    border: 1px solid #0f2a44;
-    padding: 30px;
-    border-radius: 16px;
-}
-
-/* FEATURES GRID */
-.features-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px 40px;
-    margin-top: 20px;
-    list-style: none;
-}
-
-.features-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid #0f2a44;
-    padding-bottom: 10px;
-    color: #cbd5f5;
-}
-
-.features-list i {
-    color: #22d3ee;
-}
-
-/* PROCESS SECTION */
-.process-section {
-    padding: 80px 0;
-}
-
-.process-section h2 {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: #9ca3af;
-}
-
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.process-step {
-    background: #061426;
-    border: 1px solid #0f2a44;
-    padding: 25px;
-    border-radius: 16px;
-    transition: 0.3s;
-}
-
-.process-step:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 20px rgba(56,189,248,0.15);
-}
-
-.process-icon {
-    color: #22d3ee;
-    margin-bottom: 10px;
-}
-
-.step-number {
-    color: #38bdf8;
-    font-weight: bold;
-}
-
-/* BENEFITS */
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.benefit-item {
-    background: #061426;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #0f2a44;
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-    .process-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .features-list {
-        grid-template-columns: 1fr;
-    }
-
-    .benefits-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 500px) {
-    .process-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .benefits-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Appointment Setter - MashaAI Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar">
         <div class="container">
             <div class="logo">
                 <span class="logo-icon"><i class="fas fa-bolt"></i></span>
                 <span class="logo-text">MashaAI Connect</span>
             </div>
+
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
                 <span class="menu-bar"></span>
                 <span class="menu-bar"></span>
                 <span class="menu-bar"></span>
             </button>
+
             <ul class="nav-links" id="primary-navigation">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="calling-agents.html" class="active">AI Calling Agents</a></li>
-                <li><a href="pricing.html">AI Appointment Setter</a></li>
+                <li><a href="calling-agents.html">AI Calling Agents</a></li>
+                <li><a href="pricing.html" class="active">AI Appointment Setter</a></li>
                 <li><a href="calculator.html">Pricing</a></li>
                 <li><a href="demo.html" class="cta-button">Book Demo</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="stars"></div>
+        <div class="animated-bg"></div>
 
-<!-- HERO -->
-<section class="services-hero">
-    <div class="container">
-        <h1>AI Appointment Setter</h1>
-        <p class="hero-subtitle">
-            Turn every lead into an opportunity with a fully automated AI system.
-        </p>
-        <a href="#" class="btn">Book a Free Demo</a>
-    </div>
-</section>
-
-<!-- SERVICE -->
-<section class="services-section">
-    <div class="container">
-        <div class="service-card">
-            <h3>Smart AI Sales Agent</h3>
-
-            <ul class="features-list">
-                <li><i class="fas fa-check"></i> 24/7 AI outbound & inbound calling</li>
-                <li><i class="fas fa-check"></i> Smart lead qualification</li>
-                <li><i class="fas fa-check"></i> Real-time scheduling</li>
-                <li><i class="fas fa-check"></i> Automated follow-ups</li>
-                <li><i class="fas fa-check"></i> Human-like conversations</li>
-                <li><i class="fas fa-check"></i> CRM integration</li>
-            </ul>
+        <div class="floating-elements">
+            <div class="float-box float-1"></div>
+            <div class="float-box float-2"></div>
+            <div class="pulse-circle pulse-1"></div>
+            <div class="pulse-circle pulse-2"></div>
         </div>
-    </div>
-</section>
 
-<!-- PROCESS -->
-<section class="process-section">
-    <div class="container">
-        <h2>How It Works</h2>
-        <p class="section-subtitle">Fully automated in seconds</p>
-
-        <div class="process-grid">
-
-            <div class="process-step">
-                <div class="process-icon"><i class="fas fa-file-alt"></i></div>
-                <span class="step-number">01</span>
-                <h4>Lead Captured</h4>
-                <p>Customer fills your form.</p>
-            </div>
-
-            <div class="process-step">
-                <div class="process-icon"><i class="fas fa-database"></i></div>
-                <span class="step-number">02</span>
-                <h4>AI Fetches Data</h4>
-                <p>System pulls lead info instantly.</p>
-            </div>
-
-            <div class="process-step">
-                <div class="process-icon"><i class="fas fa-phone"></i></div>
-                <span class="step-number">03</span>
-                <h4>AI Calls</h4>
-                <p>AI contacts and qualifies lead.</p>
-            </div>
-
-            <div class="process-step">
-                <div class="process-icon"><i class="fas fa-calendar"></i></div>
-                <span class="step-number">04</span>
-                <h4>Booked</h4>
-                <p>Meeting scheduled automatically.</p>
-            </div>
-
+        <div class="container hero-content">
+            <h1>AI Appointment Setter</h1>
+            <p>Automatically capture, qualify, and book appointments while you sleep</p>
+            <a href="demo.html" class="btn btn-primary">Get Started Today</a>
         </div>
-    </div>
-</section>
-<!-- Footer -->
+    </section>
+
+    <!-- Overview Section -->
+    <section class="agent-overview">
+        <div class="container">
+            <h2>What Is AI Appointment Setter?</h2>
+
+            <div class="overview-grid">
+
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Instant Response</h3>
+                    <p>Responds to leads within seconds to maximize conversion rates.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Lead Qualification</h3>
+                    <p>Automatically filters and qualifies leads before booking.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>Auto Booking</h3>
+                    <p>Schedules meetings directly into your calendar without manual effort.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon"><i class="fas fa-clock"></i></div>
+                    <h3>24/7 Automation</h3>
+                    <p>Never miss a lead — works day and night without interruption.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="agent-features">
+        <div class="container">
+            <h2>How It Works</h2>
+            <p style="text-align:center; margin-bottom:30px;">Fully automated in seconds</p>
+
+            <div class="features-list">
+
+                <div class="feature-item">
+                    <h3>01 — Lead Captured</h3>
+                    <p>Customer fills your form or lands from ads.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>02 — AI Fetches Data</h3>
+                    <p>System instantly collects lead information.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>03 — AI Calls</h3>
+                    <p>AI contacts, qualifies, and engages the lead.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h3>04 — Booked</h3>
+                    <p>Appointment is automatically scheduled in your calendar.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="use-cases">
+        <div class="container">
+            <h2>Key Features</h2>
+
+            <div class="usecases-grid">
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-phone"></i> AI Voice + SMS Follow-up</h3>
+                    <p>Engages leads through calls and messages automatically.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-filter"></i> Smart Lead Filtering</h3>
+                    <p>Only high-quality leads reach your calendar.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-calendar"></i> Calendar Integration</h3>
+                    <p>Google Calendar / Outlook sync in real time.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-chart-line"></i> Analytics Dashboard</h3>
+                    <p>Track bookings, conversions, and performance.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-globe"></i> Multi-Channel Capture</h3>
+                    <p>Works with website forms, ads, and landing pages.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <h3><i class="fas fa-robot"></i> AI Smart Conversations</h3>
+                    <p>Natural human-like conversation flow.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Turn Every Lead Into a Booked Meeting</h2>
+            <p>No missed leads. No manual follow-ups. Fully automated system.</p>
+            <a href="demo.html" class="btn btn-primary">Book Demo Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
             <p>Powered by Advanced AI Technology</p>
         </div>
     </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
