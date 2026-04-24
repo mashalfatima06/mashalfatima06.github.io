@@ -30,15 +30,15 @@ overflow-x:hidden;
 100%{background-position:100% 50%;}
 }
 
-/* NAVBAR */
+/* NAVBAR FIXED */
 .navbar{
-background:rgba(2,6,23,0.65);
+background:rgba(2,6,23,0.75);
 backdrop-filter:blur(14px);
 padding:14px 0;
 border-bottom:1px solid #173857;
 position:sticky;
 top:0;
-z-index:1000;
+z-index:9999;   /* FIX CLICK ISSUE */
 }
 
 .container{
@@ -48,23 +48,42 @@ padding:0 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:10px;
 }
 
-/* FIXED NAV ISSUE */
+/* LOGO */
+.logo{
+font-weight:700;
+color:#19c5ff;
+white-space:nowrap;
+}
+
+/* NAV LINKS FIX */
 .nav-links{
 display:flex;
 gap:22px;
 list-style:none;
 flex-wrap:wrap;
 justify-content:flex-end;
+align-items:center;
+}
+
+.nav-links li{
+display:flex;
 }
 
 .nav-links a{
 text-decoration:none;
 color:#dbeafe;
 font-size:14px;
+padding:6px 8px;
+display:inline-block;   /* IMPORTANT FIX CLICK AREA */
 position:relative;
-padding-bottom:4px;
+transition:0.2s;
+}
+
+.nav-links a:hover{
+color:#19c5ff;
 }
 
 .nav-links a.active{
@@ -226,7 +245,7 @@ color:#94a3b8;
 margin-top:60px;
 }
 
-/* MOBILE FIX FOR NAV */
+/* MOBILE FIX */
 @media(max-width:768px){
 .cards{grid-template-columns:1fr;}
 .section-title{font-size:36px;}
@@ -349,12 +368,13 @@ Contact Sales
 
 </div>
 
-  <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
-            <p>Powered by Advanced AI Technology</p>
-        </div>
-    </footer>
+<footer class="footer">
+<div class="container">
+<p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
+<p>Powered by Advanced AI Technology</p>
+</div>
+</footer>
+
 <script>
 const slider=document.getElementById("slider");
 
