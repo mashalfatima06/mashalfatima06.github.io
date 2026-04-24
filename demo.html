@@ -1,153 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Demo - MashaAI Connect</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Demo - MashaAI Connect</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        /* ✅ Logo (same as index) */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+<style>
 
-        .logo img {
-            height: 42px;
-            filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
-        }
+/* GENERAL */
+body {
+    font-family: Arial, sans-serif;
+    background: #020617;
+    color: white;
+    margin: 0;
+}
 
-        .logo-text {
-            font-weight: 700;
-            font-size: 18px;
-            color: #22d3ee;
-        }
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.logo img {
+    height: 42px;
+    filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
+}
+.logo-text {
+    color: #22d3ee;
+    font-weight: bold;
+}
 
-        /* ✅ FIX: allow clicks through background */
-        .stars,
-        .animated-bg,
-        .floating-elements,
-        .float-box,
-        .pulse-circle {
-            pointer-events: none;
-        }
+/* NAVBAR */
+.navbar {
+    padding: 15px 0;
+    background: #020617;
+}
+.container {
+    width: 90%;
+    margin: auto;
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+.cta-button {
+    background: #22d3ee;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
 
-        /* ✅ Ensure form is clickable */
-        .demo-wrapper {
-            position: relative;
-            z-index: 2;
-        }
+/* FORM */
+.demo-section {
+    padding: 60px 0;
+}
 
-        .demo-form-container {
-            position: relative;
-            z-index: 5;
-        }
-    </style>
+.demo-form-container {
+    max-width: 600px;
+    margin: auto;
+    background: #0f172a;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+/* INPUTS */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #1e293b;
+    background: #020617;
+    color: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #22d3ee;
+    box-shadow: 0 0 8px rgba(34,211,238,0.5);
+}
+
+/* PRODUCT CARDS */
+.product-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    flex: 1;
+    cursor: pointer;
+}
+
+.product-card input {
+    display: none;
+}
+
+.card-content {
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+    background: #020617;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card-content i {
+    font-size: 22px;
+    color: #22d3ee;
+}
+
+.product-card:hover .card-content {
+    transform: translateY(-4px);
+    border-color: #22d3ee;
+}
+
+.product-card input:checked + .card-content {
+    border: 2px solid #22d3ee;
+    box-shadow: 0 0 15px rgba(34,211,238,0.4);
+}
+
+/* BUTTON */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #22d3ee, #3b82f6);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+/* SUCCESS */
+#successMessage {
+    display: none;
+    text-align: center;
+}
+
+</style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-    <div class="container">
-        <div class="logo">
-            <img src="logo.png" alt="MashaAI Logo">
-            <span class="logo-text">MashaAI Connect</span>
-        </div>
-
-        <button class="menu-toggle" type="button">
-            <span class="menu-bar"></span>
-            <span class="menu-bar"></span>
-            <span class="menu-bar"></span>
-        </button>
-
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="calling-agents.html">AI Calling Agents</a></li>
-            <li><a href="pricing.html">AI Appointment Setter</a></li>
-            <li><a href="calculator.html">Pricing</a></li>
-            <li><a href="demo.html" class="active cta-button">Book Demo</a></li>
-        </ul>
+<div class="container">
+    <div class="logo">
+        <img src="logo.png">
+        <span class="logo-text">MashaAI Connect</span>
     </div>
+</div>
 </nav>
 
-<!-- DEMO SECTION -->
+<!-- FORM -->
 <section class="demo-section">
-    <div class="stars"></div>
+<div class="container">
 
-    <div class="container">
-        <div class="demo-wrapper">
+<div class="demo-form-container">
 
-            <!-- FORM -->
-            <div class="demo-form-container">
-                <h1>Book Your Demo</h1>
+<h1>Book Your Demo</h1>
 
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    
-                    <input type="hidden" name="access_key" value="3aa93d8f-dec2-4a6a-9e8f-c4b84841298f">
+<form id="demoForm" action="https://api.web3forms.com/submit" method="POST">
 
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" name="fullName" required>
-                    </div>
+<input type="hidden" name="access_key" value="3aa93d8f-dec2-4a6a-9e8f-c4b84841298f">
 
-                    <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" name="email" required>
-                    </div>
+<label>Full Name *</label>
+<input type="text" name="fullName" required>
 
-                    <div class="form-group">
-                        <label>Company *</label>
-                        <input type="text" name="company" required>
-                    </div>
+<label>Email *</label>
+<input type="email" name="email" required>
 
-                    <div class="form-group">
-                        <label>Industry *</label>
-                        <select name="industry" required>
-                            <option value="">Select</option>
-                            <option>Healthcare</option>
-                            <option>E-Commerce</option>
-                            <option>FinTech</option>
-                            <option>Education</option>
-                        </select>
-                    </div>
+<label>Company *</label>
+<input type="text" name="company" required>
 
-                    <!-- ✅ FIXED CHECKBOXES -->
-                    <div class="form-group">
-                        <label>Interests *</label>
-                        <label><input type="checkbox" name="interests[]" value="AI Calling"> AI Calling</label>
-                        <label><input type="checkbox" name="interests[]" value="WhatsApp"> WhatsApp</label>
-                        <label><input type="checkbox" name="interests[]" value="Email"> Email</label>
-                    </div>
+<label>Industry *</label>
+<select name="industry" required>
+<option value="">Select</option>
+<option>Healthcare</option>
+<option>E-Commerce</option>
+<option>FinTech</option>
+<option>Education</option>
+</select>
 
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" name="terms" required>
-                            I agree to terms *
-                        </label>
-                    </div>
+<!-- PRODUCT SELECT -->
+<label>Select Product *</label>
+<div class="product-options">
 
-                    <button type="submit" class="btn btn-primary">
-                        Schedule Demo
-                    </button>
-                </form>
-            </div>
+<label class="product-card">
+<input type="radio" name="product" value="AI Calling Agents" required>
+<div class="card-content">
+<i class="fas fa-phone-alt"></i>
+<h4>AI Calling Agents</h4>
+<p>Automate customer calls</p>
+</div>
+</label>
 
-        </div>
-    </div>
+<label class="product-card">
+<input type="radio" name="product" value="AI Appointment Setter" required>
+<div class="card-content">
+<i class="fas fa-calendar-check"></i>
+<h4>AI Appointment Setter</h4>
+<p>Automate bookings & outreach</p>
+</div>
+</label>
+
+</div>
+
+<label>
+<input type="checkbox" name="terms" required>
+I agree to terms *
+</label>
+
+<button type="submit" class="btn-primary">
+Schedule Demo
+</button>
+
+</form>
+
+<!-- SUCCESS -->
+<div id="successMessage">
+<h2>✅ Demo Booked!</h2>
+<p>We’ll contact you soon.</p>
+</div>
+
+</div>
+</div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
-        <p>Powered by Advanced AI Technology</p>
-    </div>
-</footer>
+<script>
+const form = document.getElementById("demoForm");
+const success = document.getElementById("successMessage");
+
+form.addEventListener("submit", function() {
+    setTimeout(() => {
+        form.style.display = "none";
+        success.style.display = "block";
+    }, 1000);
+});
+</script>
 
 </body>
 </html>
