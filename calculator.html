@@ -50,16 +50,13 @@ justify-content:space-between;
 align-items:center;
 }
 
-.logo{
-font-size:20px;
-font-weight:800;
-color:#19c5ff;
-}
-
+/* FIXED NAV ISSUE */
 .nav-links{
 display:flex;
 gap:22px;
 list-style:none;
+flex-wrap:wrap;
+justify-content:flex-end;
 }
 
 .nav-links a{
@@ -131,7 +128,6 @@ transition:0.3s;
 transform:translateY(-6px);
 }
 
-/* PRICE */
 .amount{
 font-size:38px;
 color:#19c5ff;
@@ -149,7 +145,6 @@ color:#38bdf8;
 margin:10px 0;
 }
 
-/* FEATURES (RESTORED) */
 .features{
 margin-top:10px;
 }
@@ -167,7 +162,6 @@ color:#19c5ff;
 margin-right:8px;
 }
 
-/* BUTTON */
 .button{
 margin-top:auto;
 padding:12px;
@@ -185,7 +179,6 @@ background:#0ea5ff;
 color:white;
 }
 
-/* ALWAYS VISIBLE BADGE */
 .badge{
 position:absolute;
 top:10px;
@@ -198,7 +191,6 @@ font-weight:700;
 color:white;
 }
 
-/* CALLING AGENTS */
 .row{
 display:flex;
 gap:20px;
@@ -215,7 +207,6 @@ border-radius:16px;
 border:1px solid #173857;
 }
 
-/* SLIDER */
 input[type=range]{
 width:100%;
 margin:20px 0;
@@ -228,7 +219,6 @@ font-weight:700;
 text-align:center;
 }
 
-/* FOOTER */
 .footer{
 text-align:center;
 padding:40px 0;
@@ -236,17 +226,26 @@ color:#94a3b8;
 margin-top:60px;
 }
 
-/* MOBILE */
+/* MOBILE FIX FOR NAV */
 @media(max-width:768px){
 .cards{grid-template-columns:1fr;}
 .section-title{font-size:36px;}
+
+.container{
+flex-direction:column;
+gap:10px;
+text-align:center;
+}
+
+.nav-links{
+justify-content:center;
+}
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav class="navbar">
 <div class="container">
 
@@ -263,7 +262,6 @@ margin-top:60px;
 </div>
 </nav>
 
-<!-- APPOINTMENT SETTER -->
 <h1 class="section-title">AI Appointment Setter</h1>
 <p class="section-subtext">Automated calls, follow-ups and bookings</p>
 
@@ -320,7 +318,6 @@ margin-top:60px;
 
 </div>
 
-<!-- CALLING AGENTS -->
 <h1 class="section-title">AI Calling Agents</h1>
 <p class="section-subtext">Pay $0.40 per minute usage</p>
 
@@ -352,9 +349,9 @@ Contact Sales
 
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
-© 2026 MashaAI Connect
+© 2026 MashaAI Connect. All rights reserved.
+Powered by Advanced AI Technology
 </div>
 
 <script>
