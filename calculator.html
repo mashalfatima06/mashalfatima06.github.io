@@ -3,423 +3,402 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MashaAI Connect Pricing</title>
+<title>MashaAI Connect - AI Appointment Setter</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{
-background:linear-gradient(180deg,#020617,#071a2f);
-color:white;
+
+html{
+scroll-behavior:smooth;
 }
 
+body{
+background:radial-gradient(circle at top,#0b1220,#020617);
+color:white;
+opacity:0;
+transform:translateY(10px);
+animation:pageLoad 0.8s ease forwards;
+overflow-x:hidden;
+}
+
+@keyframes pageLoad{
+to{opacity:1;transform:translateY(0);}
+}
+
+/* NAV */
 .navbar{
-background:#020617;
-padding:18px 0;
+position:sticky;
+top:0;
+background:rgba(2,6,23,0.8);
+backdrop-filter:blur(12px);
 border-bottom:1px solid #173857;
+z-index:1000;
 }
 
 .container{
-max-width:1400px;
+max-width:1200px;
 margin:auto;
-padding:0 24px;
+padding:0 20px;
 }
 
 .navbar .container{
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:18px 20px;
 }
 
 .logo{
-font-size:24px;
+font-size:22px;
 font-weight:800;
 color:#19c5ff;
+display:flex;
+gap:10px;
+align-items:center;
 }
 
 .nav-links{
 display:flex;
-gap:32px;
+gap:25px;
 list-style:none;
 }
 
 .nav-links a{
-text-decoration:none;
 color:#dbeafe;
+text-decoration:none;
+transition:0.3s;
 }
 
-.cta-button{
+.nav-links a:hover,
+.nav-links a.active-link{
+color:#19c5ff;
+border-bottom:2px solid #19c5ff;
+padding-bottom:4px;
+}
+
+.cta{
 background:linear-gradient(90deg,#0ea5ff,#2563eb);
-padding:12px 18px;
+padding:10px 16px;
 border-radius:10px;
+color:white !important;
 }
 
-.page-section{
-padding:70px 0;
-text-align:center;
+/* MOBILE MENU */
+.menu-toggle{
+display:none;
+flex-direction:column;
+gap:5px;
+background:none;
+border:none;
+cursor:pointer;
 }
 
-h1{
-font-size:36px;
-font-weight:800;
-color:#19c5ff;
-margin-bottom:18px;
+.menu-bar{
+width:25px;
+height:3px;
+background:white;
 }
 
-.subtext{
-font-size:20px;
-color:#94a3b8;
-margin-bottom:50px;
-}
-
-.setup-box{
-max-width:920px;
-margin:0 auto 55px;
-padding:28px;
-background:#03162d;
+@media(max-width:768px){
+.menu-toggle{display:flex;}
+.nav-links{
+display:none;
+flex-direction:column;
+position:absolute;
+right:20px;
+top:70px;
+background:#0b1220;
+padding:20px;
+border-radius:12px;
 border:1px solid #173857;
-border-radius:24px;
+}
+.nav-links.active{display:flex;}
 }
 
-.setup-box h2{
-font-size:30px;
-margin-bottom:14px;
-color:#19c5ff;
+/* HERO */
+.hero{
+text-align:center;
+padding:90px 20px 60px;
 }
 
-.setup-price{
-font-size:56px;
+.hero h1{
+font-size:48px;
 font-weight:800;
 color:#19c5ff;
-margin-bottom:14px;
 }
 
-.setup-box p{
-font-size:24px;
-color:#a5b4c8;
+.hero p{
+font-size:18px;
+color:#94a3b8;
+margin-top:15px;
 }
 
+/* SETUP */
+.setup{
+max-width:700px;
+margin:40px auto;
+padding:30px;
+text-align:center;
+background:rgba(3,22,45,0.6);
+border:1px solid #173857;
+border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+.setup h2{color:#19c5ff;}
+.setup .price{font-size:50px;font-weight:800;color:#19c5ff;}
+
+/* PRICING */
 .cards{
 display:flex;
-flex-wrap:wrap;
-gap:28px;
+gap:25px;
 justify-content:center;
+flex-wrap:wrap;
+padding:50px 20px;
 }
 
 .card{
-width:340px;
-min-height:440px;
-background:#03162d;
+width:320px;
+background:rgba(3,22,45,0.6);
 border:1px solid #173857;
-border-radius:24px;
-padding:38px;
-text-align:left;
-display:flex;
-flex-direction:column;
+border-radius:20px;
+padding:30px;
+transition:0.3s;
 position:relative;
 }
 
+.card:hover{
+transform:translateY(-10px);
+border-color:#19c5ff;
+}
+
 .featured{
-border:2px solid #0ea5ff;
-box-shadow:0 0 28px rgba(0,183,255,.2);
+border:2px solid #19c5ff;
 }
 
-.popular{
+.badge{
 position:absolute;
-top:18px;
-right:18px;
-padding:10px 18px;
-border-radius:999px;
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
+top:15px;
+right:15px;
+background:#19c5ff;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
 font-weight:700;
 }
 
-.plan-name{
-font-size:30px;
-font-weight:700;
-margin-bottom:25px;
-}
+.plan{font-size:24px;font-weight:700;}
+.price{font-size:40px;font-weight:800;color:#19c5ff;}
 
-.dot{color:#19c5ff;margin-right:8px;}
-
-.price{
-display:flex;
-align-items:flex-end;
-gap:10px;
-margin-bottom:18px;
-}
-
-.amount{
-font-size:64px;
-line-height:1;
-font-weight:800;
-color:#19c5ff;
-}
-
-.month{
-font-size:26px;
-color:#94a3b8;
-margin-bottom:14px;
-}
-
-.minutes{
-font-size:22px;
-color:#38bdf8;
-margin-bottom:26px;
-}
-
-.divider{
-height:1px;
-background:#264969;
-margin-bottom:30px;
-}
-
-.features{list-style:none;}
+.features{margin-top:20px;list-style:none;}
 
 .features li{
-margin:18px 0;
-font-size:18px;
+margin:10px 0;
 color:#dbeafe;
 }
 
 .features li:before{
-content:'✓';
+content:"✓";
 color:#19c5ff;
-margin-right:12px;
-font-weight:800;
+margin-right:8px;
 }
 
-.button{
-margin-top:auto;
-padding:20px;
-text-align:center;
-border-radius:14px;
-border:2px solid #0ea5ff;
-color:#0ea5ff;
-font-size:20px;
-font-weight:700;
-}
-
-.featured .button{
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-color:white;
-border:none;
-}
-
-.product-section{
-margin-top:120px;
-padding-top:60px;
-border-top:1px solid #173857;
-}
-
-.calculator-section{
-margin-top:140px;
-text-align:center;
-}
-
-.calculator-box{
-max-width:850px;
-margin:auto;
-padding:40px;
-background:#03162d;
-border:1px solid #173857;
-border-radius:24px;
-}
-
-.calculator-box label{
+.btn{
+margin-top:20px;
 display:block;
-font-size:30px;
-margin-bottom:20px;
+text-align:center;
+padding:12px;
+border-radius:12px;
+border:2px solid #19c5ff;
+color:#19c5ff;
+text-decoration:none;
+font-weight:700;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#19c5ff;
+color:#000;
+}
+
+/* CALCULATOR */
+.calc{
+max-width:800px;
+margin:80px auto;
+padding:30px;
+text-align:center;
+background:rgba(3,22,45,0.6);
+border-radius:20px;
+border:1px solid #173857;
 }
 
 input[type=range]{
 width:100%;
-height:8px;
-background:#24425f;
-border-radius:999px;
-appearance:none;
-margin:30px 0;
+margin:20px 0;
 }
 
-input[type=range]::-webkit-slider-thumb{
-appearance:none;
-width:34px;
-height:34px;
-border-radius:50%;
-background:#19c5ff;
-box-shadow:0 0 18px rgba(25,197,255,.5);
-}
-
-.minutes-display{
-font-size:32px;
-font-weight:800;
-color:#19c5ff;
-margin-bottom:35px;
-}
-
-.calc-results p{
-font-size:30px;
-margin:16px 0;
-}
-
-.calc-results h2{
-font-size:52px;
-margin-top:28px;
+.result{
+font-size:28px;
+margin-top:10px;
 color:#19c5ff;
 }
 
-.ongoing{
-font-size:32px;
-color:#8fd6ff;
-margin-top:20px;
+/* FLOATING CTA */
+.floating-cta{
+position:fixed;
+bottom:25px;
+right:25px;
+background:linear-gradient(90deg,#0ea5ff,#2563eb);
+color:white;
+padding:14px 20px;
+border-radius:50px;
+font-weight:700;
+text-decoration:none;
+box-shadow:0 10px 30px rgba(0,183,255,0.3);
+z-index:9999;
+transition:0.3s;
 }
 
-.footer{
-padding:50px 20px;
+.floating-cta:hover{
+transform:translateY(-5px) scale(1.05);
+}
+
+/* FOOTER */
+footer{
 text-align:center;
+padding:40px;
 color:#94a3b8;
-margin-top:100px;
-}
-
-@media(max-width:768px){
-h1{font-size:50px}
-.card{width:100%}
-.amount{font-size:64px}
-.features li{font-size:22px}
-.nav-links{display:none}
+margin-top:80px;
 }
 </style>
 </head>
+
 <body>
+
 <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
-                <span class="logo-text">MashaAI Connect</span>
-            </div>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-                <span class="menu-bar"></span>
-            </button>
-            <ul class="nav-links" id="primary-navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="calling-agents.html" class="active">AI Calling Agents</a></li>
-                <li><a href="pricing.html">AI Appointment Setter</a></li>
-                <li><a href="calculator.html">Pricing</a></li>
-                <li><a href="demo.html" class="cta-button">Book Demo</a></li>
-            </ul>
-        </div>
-    </nav>
 <div class="container">
+<div class="logo"><i class="fas fa-bolt"></i> MashaAI</div>
 
-<section class="page-section">
-<h1>AI Appointment Setter</h1>
-<p class="subtext">Automated calls, follow-ups and bookings that run 24/7</p>
+<button class="menu-toggle">
+<span class="menu-bar"></span>
+<span class="menu-bar"></span>
+<span class="menu-bar"></span>
+</button>
 
-<div class="setup-box">
-<h2>ONE-TIME SETUP FEE</h2>
-<div class="setup-price">$1500</div>
-<p>We build, train and deploy your AI system</p>
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#calculator">Calculator</a></li>
+<li><a href="#demo" class="cta">Book Demo</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<h1>AI That Books Your Customers 24/7</h1>
+<p>Automated calls, follow-ups, and appointment booking — fully AI powered.</p>
+</section>
+
+<div class="setup">
+<h2>One-Time Setup</h2>
+<div class="price">$1500</div>
+<p>We build & deploy your AI system</p>
 </div>
 
-<div class="cards">
+<section class="cards" id="pricing">
 
 <div class="card">
-<div class="plan-name"><span class="dot">●</span>Starter</div>
-<div class="price"><span class="amount">$500</span><span class="month">/month</span></div>
-<div class="minutes">200 call minutes included</div>
-<div class="divider"></div>
+<div class="plan">Starter</div>
+<div class="price">$500</div>
 <ul class="features">
-<li>Basic AI appointment setter</li>
-<li>Lead follow-up</li>
+<li>200 minutes</li>
+<li>Basic AI calls</li>
 <li>Calendar booking</li>
-<li>$0.40/min usage</li>
 </ul>
-<a href="demo.html" class="button">Choose Plan</a>
+<a class="btn" href="#demo">Choose Plan</a>
 </div>
 
 <div class="card featured">
-<div class="popular">Most Popular</div>
-<div class="plan-name"><span class="dot">●</span>Growth</div>
-<div class="price"><span class="amount">$900</span><span class="month">/month</span></div>
-<div class="minutes">500 call minutes included</div>
-<div class="divider"></div>
+<div class="badge">Popular</div>
+<div class="plan">Growth</div>
+<div class="price">$900</div>
 <ul class="features">
-<li>Advanced follow-up</li>
-<li>Sequences</li>
-<li>Priority support</li>
-<li>$0.40/min usage</li>
+<li>500 minutes</li>
+<li>Advanced follow-ups</li>
+<li>CRM integration</li>
 </ul>
-<a href="demo.html" class="button">Choose Plan</a>
+<a class="btn" href="#demo">Choose Plan</a>
 </div>
 
 <div class="card">
-<div class="plan-name"><span class="dot">●</span>Pro</div>
-<div class="price"><span class="amount">$1500</span><span class="month">/month</span></div>
-<div class="minutes">1000 call minutes included</div>
-<div class="divider"></div>
+<div class="plan">Pro</div>
+<div class="price">$1500</div>
 <ul class="features">
-<li>Advanced workflows</li>
-<li>Multi-client</li>
-<li>Dedicated support</li>
-<li>$0.40/min usage</li>
+<li>1000 minutes</li>
+<li>Multi-client system</li>
+<li>Priority support</li>
 </ul>
-<a href="demo.html" class="button">Choose Plan</a>
-</div>
-</div>
-</section>
-
-<section class="product-section">
-<h1>AI Calling Agents</h1>
-<p class="subtext">Human-like AI voice agents for inbound, outbound, support and sales.</p>
-<section class="calculator-section">
-<h1>Estimate Your Monthly Cost</h1>
-<p class="subtext">Drag slider to estimate usage at $0.40/min + $1500 setup</p>
-
-<div class="calculator-box">
-<label>Monthly Call Minutes</label>
-<input type="range" min="500" max="50000" step="500" value="5000" id="minutesSlider" oninput="updateCalculator()">
-
-<div class="minutes-display">
-<span id="minuteValue">5000</span> Minutes
-</div>
-
-<div class="calc-results">
-<p>Usage Cost: <span id="usageCost">$2,000</span></p>
-<p>One-Time Setup Fee: $1,500</p>
-<h2>Total First Month: <span id="totalCost">$3,500</span></h2>
-<p class="ongoing">Future Months: <span id="ongoingCost">$2,000</span></p>
-</div>
-</div>
-
-<div style="margin-top:40px;">
-<a href="demo.html" class="contact-btn" style="display:inline-block;padding:18px 32px;border-radius:14px;background:linear-gradient(90deg,#0ea5ff,#2563eb);color:white;text-decoration:none;font-size:20px;font-weight:700;">Contact Sales / Book Demo</a>
+<a class="btn" href="#demo">Choose Plan</a>
 </div>
 
 </section>
 
-</div>
+<section class="calc" id="calculator">
+<h2>Cost Calculator</h2>
 
-<footer class="footer">
-<p>© 2026 MashaAI Connect. All rights reserved.</p>
+<input type="range" min="500" max="50000" value="5000" id="range">
+
+<div class="result" id="output">$2000 / month</div>
+</section>
+
+<section id="demo" style="text-align:center;padding:80px 20px;">
+<h2 style="color:#19c5ff;">Book a Demo</h2>
+<p style="color:#94a3b8;">We’ll show you how AI can automate your business</p>
+</section>
+
+<footer>
+© 2026 MashaAI Connect
 </footer>
 
+<!-- FLOATING CTA -->
+<a href="#demo" class="floating-cta">Book Demo</a>
+
 <script>
-function updateCalculator(){
-let minutes=document.getElementById('minutesSlider').value;
-let usage=minutes*0.40;
-let total=usage+1500;
+/* CALCULATOR */
+const range=document.getElementById("range");
+const output=document.getElementById("output");
 
-document.getElementById('minuteValue').innerText=Number(minutes).toLocaleString();
-document.getElementById('usageCost').innerText='$'+usage.toLocaleString();
-document.getElementById('ongoingCost').innerText='$'+usage.toLocaleString();
-document.getElementById('totalCost').innerText='$'+total.toLocaleString();
-}
-updateCalculator();
+range.oninput=function(){
+let cost=parseInt(this.value)*0.4;
+output.innerText="$"+cost.toLocaleString()+" / month";
+};
+
+/* MOBILE MENU */
+const toggle=document.querySelector(".menu-toggle");
+const nav=document.querySelector(".nav-links");
+
+toggle.onclick=()=>{
+nav.classList.toggle("active");
+};
+
+/* ACTIVE LINK */
+const links=document.querySelectorAll(".nav-links a");
+
+links.forEach(link=>{
+link.addEventListener("click",()=>{
+links.forEach(l=>l.classList.remove("active-link"));
+link.classList.add("active-link");
+});
+});
 </script>
-
+         <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
+            <p>Powered by Advanced AI Technology</p>
+        </div>
+    </footer>
 </body>
 </html>
-```
-
