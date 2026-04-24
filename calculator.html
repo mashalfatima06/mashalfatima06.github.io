@@ -29,7 +29,26 @@ overflow-x:hidden;
 0%{background-position:0% 50%;}
 100%{background-position:100% 50%;}
 }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 
+.logo img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+
+    /* Glow effect to match blue theme */
+    filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 18px;
+    color: #22d3ee;
+}
 /* NAVBAR FIXED */
 .navbar{
 background:rgba(2,6,23,0.75);
@@ -53,30 +72,6 @@ justify-content:space-between;
 align-items:center;
 gap:10px;
 }
-
-/* LOGO */
-<style>
-        .logo {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.logo img {
-    height: 42px;
-    width: auto;
-    object-fit: contain;
-
-    /* Glow effect to match blue theme */
-    filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
-}
-
-.logo-text {
-    font-weight: 700;
-    font-size: 18px;
-    color: #22d3ee;
-}
-
 /* NAV LINKS FIX */
 .nav-links{
 display:flex;
@@ -286,7 +281,7 @@ justify-content:center;
 
 <nav class="navbar">
         <div class="container">
-           <div class="logo">
+          <div class="logo">
     <img src="logo.png" alt="MashaAI Logo">
     <span class="logo-text">MashaAI Connect</span>
 </div>
