@@ -6,87 +6,43 @@
 <title>Book Demo - MashaAI Connect</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 
 <style>
-
-/* GENERAL */
-body {
-    font-family: Arial, sans-serif;
-    background: #020617;
-    color: white;
-    margin: 0;
-}
 
 /* LOGO */
 .logo {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 .logo img {
     height: 42px;
     filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
 }
 .logo-text {
+    font-weight: 700;
+    font-size: 18px;
     color: #22d3ee;
-    font-weight: bold;
 }
 
-/* NAVBAR */
-.navbar {
-    padding: 15px 0;
-    background: #020617;
-}
-.container {
-    width: 90%;
-    margin: auto;
-}
-.nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-}
-.nav-links a {
-    color: white;
-    text-decoration: none;
-}
-.cta-button {
-    background: #22d3ee;
-    padding: 6px 12px;
-    border-radius: 6px;
+/* FIX BACKGROUND CLICK ISSUE */
+.stars,
+.animated-bg,
+.floating-elements,
+.float-box,
+.pulse-circle {
+    pointer-events: none;
 }
 
-/* FORM */
-.demo-section {
-    padding: 60px 0;
+/* FORM ON TOP */
+.demo-wrapper {
+    position: relative;
+    z-index: 2;
 }
-
 .demo-form-container {
-    max-width: 600px;
-    margin: auto;
-    background: #0f172a;
-    padding: 30px;
-    border-radius: 12px;
-}
-
-/* INPUTS */
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #1e293b;
-    background: #020617;
-    color: white;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #22d3ee;
-    box-shadow: 0 0 8px rgba(34,211,238,0.5);
+    position: relative;
+    z-index: 5;
 }
 
 /* PRODUCT CARDS */
@@ -94,6 +50,7 @@ textarea:focus {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .product-card {
@@ -109,13 +66,14 @@ textarea:focus {
     padding: 20px;
     border-radius: 12px;
     border: 1px solid #1e293b;
-    background: #020617;
+    background: #0f172a;
     text-align: center;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .card-content i {
     font-size: 22px;
+    margin-bottom: 10px;
     color: #22d3ee;
 }
 
@@ -129,25 +87,32 @@ textarea:focus {
     box-shadow: 0 0 15px rgba(34,211,238,0.4);
 }
 
+/* INPUT GLOW */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #22d3ee;
+    box-shadow: 0 0 8px rgba(34,211,238,0.5);
+}
+
 /* BUTTON */
 .btn-primary {
-    width: 100%;
-    padding: 12px;
     background: linear-gradient(135deg, #22d3ee, #3b82f6);
     border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
+    transition: 0.3s;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(34,211,238,0.3);
 }
 
 /* SUCCESS */
 #successMessage {
     display: none;
     text-align: center;
+    margin-top: 20px;
 }
 
 </style>
@@ -157,88 +122,131 @@ textarea:focus {
 
 <!-- NAVBAR -->
 <nav class="navbar">
-<div class="container">
-    <div class="logo">
-        <img src="logo.png">
-        <span class="logo-text">MashaAI Connect</span>
+    <div class="container">
+
+        <div class="logo">
+            <img src="logo.png" alt="MashaAI Logo">
+            <span class="logo-text">MashaAI Connect</span>
+        </div>
+
+        <button class="menu-toggle" type="button">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calling-agents.html">AI Calling Agents</a></li>
+            <li><a href="pricing.html">AI Appointment Setter</a></li>
+            <li><a href="calculator.html">Pricing</a></li>
+            <li><a href="demo.html" class="active cta-button">Book Demo</a></li>
+        </ul>
+
     </div>
-</div>
 </nav>
 
-<!-- FORM -->
+<!-- DEMO SECTION -->
 <section class="demo-section">
-<div class="container">
+    <div class="stars"></div>
 
-<div class="demo-form-container">
+    <div class="container">
+        <div class="demo-wrapper">
 
-<h1>Book Your Demo</h1>
+            <div class="demo-form-container">
+                <h1>Book Your Demo</h1>
+                <p>See how our AI products can transform your business</p>
 
-<form id="demoForm" action="https://api.web3forms.com/submit" method="POST">
+                <form id="demoForm" action="https://api.web3forms.com/submit" method="POST">
 
-<input type="hidden" name="access_key" value="3aa93d8f-dec2-4a6a-9e8f-c4b84841298f">
+                    <input type="hidden" name="access_key" value="3aa93d8f-dec2-4a6a-9e8f-c4b84841298f">
 
-<label>Full Name *</label>
-<input type="text" name="fullName" required>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="fullName" required>
+                    </div>
 
-<label>Email *</label>
-<input type="email" name="email" required>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
 
-<label>Company *</label>
-<input type="text" name="company" required>
+                    <div class="form-group">
+                        <label>Company *</label>
+                        <input type="text" name="company" required>
+                    </div>
 
-<label>Industry *</label>
-<select name="industry" required>
-<option value="">Select</option>
-<option>Healthcare</option>
-<option>E-Commerce</option>
-<option>FinTech</option>
-<option>Education</option>
-</select>
+                    <div class="form-group">
+                        <label>Industry *</label>
+                        <select name="industry" required>
+                            <option value="">Select your industry</option>
+                            <option>Healthcare</option>
+                            <option>E-Commerce</option>
+                            <option>FinTech</option>
+                            <option>Education</option>
+                            <option>Real Estate</option>
+                        </select>
+                    </div>
 
-<!-- PRODUCT SELECT -->
-<label>Select Product *</label>
-<div class="product-options">
+                    <!-- PRODUCT CARDS -->
+                    <div class="form-group">
+                        <label>Select Product *</label>
 
-<label class="product-card">
-<input type="radio" name="product" value="AI Calling Agents" required>
-<div class="card-content">
-<i class="fas fa-phone-alt"></i>
-<h4>AI Calling Agents</h4>
-<p>Automate customer calls</p>
-</div>
-</label>
+                        <div class="product-options">
 
-<label class="product-card">
-<input type="radio" name="product" value="AI Appointment Setter" required>
-<div class="card-content">
-<i class="fas fa-calendar-check"></i>
-<h4>AI Appointment Setter</h4>
-<p>Automate bookings & outreach</p>
-</div>
-</label>
+                            <label class="product-card">
+                                <input type="radio" name="product" value="AI Calling Agents" required>
+                                <div class="card-content">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <h4>AI Calling Agents</h4>
+                                    <p>Automate customer calls with AI</p>
+                                </div>
+                            </label>
 
-</div>
+                            <label class="product-card">
+                                <input type="radio" name="product" value="AI Appointment Setter" required>
+                                <div class="card-content">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <h4>AI Appointment Setter</h4>
+                                    <p>Automate booking & outreach</p>
+                                </div>
+                            </label>
 
-<label>
-<input type="checkbox" name="terms" required>
-I agree to terms *
-</label>
+                        </div>
+                    </div>
 
-<button type="submit" class="btn-primary">
-Schedule Demo
-</button>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="terms" required>
+                            I agree to receive communications *
+                        </label>
+                    </div>
 
-</form>
+                    <button type="submit" class="btn btn-primary btn-large">
+                        Schedule Demo
+                    </button>
 
-<!-- SUCCESS -->
-<div id="successMessage">
-<h2>✅ Demo Booked!</h2>
-<p>We’ll contact you soon.</p>
-</div>
+                </form>
 
-</div>
-</div>
+                <!-- SUCCESS -->
+                <div id="successMessage">
+                    <h3>✅ Demo Booked Successfully!</h3>
+                    <p>We’ll contact you within 24 hours.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </section>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
 
 <script>
 const form = document.getElementById("demoForm");
