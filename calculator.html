@@ -10,18 +10,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
 
 body{
 background:radial-gradient(circle at top,#0b1220,#020617);
 color:white;
+font-size:14px;
 }
 
 /* NAVBAR */
 .navbar{
 background:rgba(2,6,23,0.85);
 backdrop-filter:blur(12px);
-padding:18px 0;
+padding:16px 0;
 border-bottom:1px solid #173857;
 position:sticky;
 top:0;
@@ -29,38 +35,33 @@ z-index:1000;
 }
 
 .container{
-max-width:1400px;
+max-width:1200px;
 margin:auto;
-padding:0 24px;
+padding:0 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
 .logo{
-font-size:24px;
+font-size:20px;
 font-weight:800;
 color:#19c5ff;
 display:flex;
-align-items:center;
 gap:10px;
+align-items:center;
 }
 
 .nav-links{
 display:flex;
-gap:32px;
+gap:25px;
 list-style:none;
 }
 
 .nav-links a{
 text-decoration:none;
 color:#dbeafe;
-transition:0.3s;
-font-weight:500;
-}
-
-.nav-links a:hover{
-color:#19c5ff;
+font-size:14px;
 }
 
 .nav-links a.active{
@@ -71,291 +72,195 @@ padding-bottom:4px;
 
 .cta-button{
 background:linear-gradient(90deg,#0ea5ff,#2563eb);
-padding:12px 18px;
-border-radius:10px;
+padding:10px 14px;
+border-radius:8px;
 color:white;
 text-decoration:none;
 font-weight:700;
+font-size:13px;
 }
 
 /* MOBILE */
-/* MOBILE NAV FIX */
 .menu-toggle{
 display:none;
 flex-direction:column;
-gap:5px;
+gap:4px;
 background:none;
 border:none;
 cursor:pointer;
 }
 
 .menu-bar{
-width:25px;
+width:22px;
 height:3px;
 background:white;
 border-radius:2px;
 }
 
-/* MOBILE MENU */
 @media(max-width:768px){
-.menu-toggle{
-display:flex;
-}
+.menu-toggle{display:flex;}
 
 .nav-links{
+display:none;
 position:absolute;
-top:70px;
+top:65px;
 right:20px;
 flex-direction:column;
 background:#0b1220;
-padding:20px;
-border-radius:12px;
+padding:16px;
+border-radius:10px;
 border:1px solid #173857;
-display:none;
-width:220px;
 }
 
 .nav-links.active{
 display:flex;
 }
-
-.nav-links li{
-padding:10px 0;
-}
 }
 
-/* PAGE CONTENT (YOUR ORIGINAL DESIGN) */
-.page-section{
-padding:70px 0;
-text-align:center;
-}
-
+/* TEXT */
 h1{
-font-size:36px;
-font-weight:800;
-color:#19c5ff;
-margin-bottom:18px;
+font-size:26px;
+text-align:center;
+margin:25px 0 10px;
+}
+
+h2{
+font-size:20px;
 }
 
 .subtext{
-font-size:20px;
+text-align:center;
+font-size:13px;
 color:#94a3b8;
-margin-bottom:50px;
-}
-
-.setup-box{
-max-width:920px;
-margin:0 auto 55px;
-padding:28px;
-background:#03162d;
-border:1px solid #173857;
-border-radius:24px;
-}
-
-.setup-box h2{
-font-size:30px;
-margin-bottom:14px;
-color:#19c5ff;
-}
-
-.setup-price{
-font-size:56px;
-font-weight:800;
-color:#19c5ff;
-margin-bottom:14px;
-}
-
-.setup-box p{
-font-size:24px;
-color:#a5b4c8;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-justify-content:center;
-align-items:stretch;
-margin-top:20px;
-}
-
-/* smaller cards */
-.card{
-width:100%;
-min-height:360px;
-padding:28px;
-border-radius:20px;
-}
-
-/* responsive */
-@media(max-width:1000px){
-.cards{
-grid-template-columns:1fr;
-}
-}
-
-.featured{
-border:2px solid #0ea5ff;
-box-shadow:0 0 28px rgba(0,183,255,.2);
-}
-
-.popular{
-position:absolute;
-top:18px;
-right:18px;
-padding:10px 18px;
-border-radius:999px;
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-font-weight:700;
-}
-
-.plan-name{
-font-size:30px;
-font-weight:700;
 margin-bottom:25px;
 }
 
-.dot{
-color:#19c5ff;
-margin-right:8px;
+/* SETUP BOX */
+.setup-box{
+max-width:800px;
+margin:0 auto 30px;
+padding:20px;
+background:#03162d;
+border:1px solid #173857;
+border-radius:16px;
+text-align:center;
 }
 
-.price{
+.setup-price{
+font-size:38px;
+color:#19c5ff;
+font-weight:800;
+margin:10px 0;
+}
+
+/* CARDS */
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-top:20px;
+}
+
+.card{
+background:#03162d;
+border:1px solid #173857;
+border-radius:16px;
+padding:20px;
 display:flex;
-align-items:flex-end;
-gap:10px;
-margin-bottom:18px;
+flex-direction:column;
 }
 
 .amount{
-font-size:64px;
-line-height:1;
-font-weight:800;
+font-size:38px;
 color:#19c5ff;
+font-weight:800;
 }
 
 .month{
-font-size:26px;
+font-size:14px;
 color:#94a3b8;
-margin-bottom:14px;
 }
 
 .minutes{
-font-size:22px;
+font-size:14px;
 color:#38bdf8;
-margin-bottom:26px;
-}
-
-.divider{
-height:1px;
-background:#264969;
-margin-bottom:30px;
-}
-
-.features{
-list-style:none;
+margin:10px 0;
 }
 
 .features li{
-margin:18px 0;
-font-size:18px;
+font-size:13px;
+margin:10px 0;
 color:#dbeafe;
-}
-
-.features li:before{
-content:'✓';
-color:#19c5ff;
-margin-right:12px;
-font-weight:800;
 }
 
 .button{
 margin-top:auto;
-padding:20px;
+padding:12px;
 text-align:center;
-border-radius:14px;
-border:2px solid #0ea5ff;
+border-radius:10px;
+border:1px solid #0ea5ff;
 color:#0ea5ff;
-font-size:20px;
-font-weight:700;
 text-decoration:none;
+font-size:14px;
 }
 
-.featured .button{
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-color:white;
-border:none;
+.featured{
+border:1px solid #0ea5ff;
 }
 
-/* CALCULATOR */
-.calculator-section{
-margin-top:140px;
-text-align:center;
+/* CALCULATOR ROW */
+.row{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:30px;
 }
 
-.calculator-box{
-max-width:850px;
-margin:auto;
-padding:40px;
+.box{
+flex:1;
+min-width:280px;
 background:#03162d;
+padding:20px;
+border-radius:16px;
 border:1px solid #173857;
-border-radius:24px;
 }
 
+/* SLIDER */
 input[type=range]{
 width:100%;
-height:8px;
-background:#24425f;
-border-radius:999px;
-appearance:none;
-margin:30px 0;
-}
-
-input[type=range]::-webkit-slider-thumb{
-appearance:none;
-width:34px;
-height:34px;
-border-radius:50%;
-background:#19c5ff;
+margin:20px 0;
 }
 
 .minutes-display{
-font-size:32px;
-font-weight:800;
+font-size:22px;
 color:#19c5ff;
-margin-bottom:35px;
+font-weight:700;
+text-align:center;
 }
 
 .calc-results p{
-font-size:30px;
-margin:16px 0;
+font-size:14px;
+margin:10px 0;
 }
 
 .calc-results h2{
-font-size:52px;
-margin-top:28px;
+font-size:28px;
 color:#19c5ff;
-}
-
-.ongoing{
-font-size:32px;
-color:#8fd6ff;
-margin-top:20px;
 }
 
 /* FOOTER */
 .footer{
-padding:50px 20px;
 text-align:center;
+padding:40px 0;
 color:#94a3b8;
-margin-top:100px;
+margin-top:50px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION FIXED -->
+<!-- NAV -->
 <nav class="navbar">
 <div class="container">
 
@@ -370,168 +275,130 @@ margin-top:100px;
 </button>
 
 <ul class="nav-links" id="navLinks">
-
 <li><a href="index.html">Home</a></li>
 <li><a href="calling-agents.html">AI Calling Agents</a></li>
-<li><a href="pricing.html" class="active">AI Appointment Setter</a></li>
+<li><a href="pricing.html">AI Appointment Setter</a></li>
 <li><a href="calculator.html">Pricing</a></li>
 <li><a href="demo.html" class="cta-button">Book Demo</a></li>
-
 </ul>
 
 </div>
 </nav>
 
-</div>
-</nav>
+<!-- CONTENT -->
 
-<div class="container">
-
-<!-- YOUR ORIGINAL CONTENT (UNCHANGED) -->
-
-<section class="page-section">
 <h1>AI Appointment Setter</h1>
-<p class="subtext">Automated calls, follow-ups and bookings that run 24/7</p>
+<p class="subtext">Automated calls, follow-ups and bookings</p>
 
 <div class="setup-box">
-<h2>ONE-TIME SETUP FEE</h2>
+<h2>ONE-TIME SETUP</h2>
 <div class="setup-price">$1500</div>
-<p>We build, train and deploy your AI system</p>
+<p>We build and deploy your AI system</p>
 </div>
 
 <div class="cards">
 
 <div class="card">
-<div class="plan-name"><span class="dot">●</span>Starter</div>
-<div class="price"><span class="amount">$500</span><span class="month">/month</span></div>
-<div class="minutes">200 call minutes included</div>
-<div class="divider"></div>
+<h2>Starter</h2>
+<div class="amount">$500 <span class="month">/mo</span></div>
+<div class="minutes">200 min included</div>
 <ul class="features">
-<li>Basic AI appointment setter</li>
+<li>Basic AI system</li>
 <li>Lead follow-up</li>
 <li>Calendar booking</li>
-<li>$0.40/min usage</li>
 </ul>
-<a href="demo.html" class="button">Choose Plan</a>
+<a class="button" href="demo.html">Choose</a>
 </div>
 
 <div class="card featured">
-<div class="popular">Most Popular</div>
-<div class="plan-name"><span class="dot">●</span>Growth</div>
-<div class="price"><span class="amount">$900</span><span class="month">/month</span></div>
-<div class="minutes">500 call minutes included</div>
-<div class="divider"></div>
+<h2>Growth</h2>
+<div class="amount">$900 <span class="month">/mo</span></div>
+<div class="minutes">500 min included</div>
 <ul class="features">
-<li>Advanced follow-up</li>
+<li>Advanced automation</li>
 <li>Sequences</li>
 <li>Priority support</li>
-<li>$0.40/min usage</li>
 </ul>
-<a href="demo.html" class="button">Choose Plan</a>
+<a class="button" href="demo.html">Choose</a>
 </div>
 
 <div class="card">
-<div class="plan-name"><span class="dot">●</span>Pro</div>
-<div class="price"><span class="amount">$1500</span><span class="month">/month</span></div>
-<div class="minutes">1000 call minutes included</div>
-<div class="divider"></div>
+<h2>Pro</h2>
+<div class="amount">$1500 <span class="month">/mo</span></div>
+<div class="minutes">1000 min included</div>
 <ul class="features">
-<li>Advanced workflows</li>
-<li>Multi-client</li>
+<li>Multi workflows</li>
 <li>Dedicated support</li>
-<li>$0.40/min usage</li>
+<li>Custom setup</li>
 </ul>
-<a href="demo.html" class="button">Choose Plan</a>
-</div>
-  <section class="calculator-section">
-
-<h1>AI Calling Agents Pricing</h1>
-<p class="subtext">Pay only for what you use — fully scalable voice automation</p>
-
-<div class="setup-box">
-<h2>PRICING MODEL</h2>
-<div class="setup-price">$0.40 / minute</div>
-<p>No fixed monthly plans — pure usage based billing</p>
-</div>
-
-<!-- SLIDER CALCULATOR -->
-<div class="calculator-box">
-
-<label style="font-size:28px;font-weight:700;">Monthly Call Minutes</label>
-
-<input type="range" min="500" max="50000" step="500" value="5000" id="callSlider" oninput="updateCallCalc()">
-
-<div class="minutes-display">
-<span id="callMinutes">5000</span> Minutes
-</div>
-
-<div class="calc-results">
-<p>Usage Cost: <span id="callCost">$2,000</span></p>
-<p>Setup Fee (One-Time): $1,500</p>
-<h2>Total First Month: <span id="callTotal">$3,500</span></h2>
-<p class="ongoing">Future Months: <span id="callFuture">$2,000</span></p>
+<a class="button" href="demo.html">Choose</a>
 </div>
 
 </div>
 
-<!-- CONTACT BUTTON -->
-<div style="margin-top:40px;">
-<a href="demo.html"
-style="display:inline-block;padding:18px 32px;border-radius:14px;
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
-color:white;text-decoration:none;font-size:20px;font-weight:700;">
-Contact Sales / Book Demo
+<!-- AI CALLING AGENTS -->
+<h1>AI Calling Agents</h1>
+<p class="subtext">Pay only $0.40 per minute usage</p>
+
+<div class="row">
+
+<div class="box">
+<h2>Pricing</h2>
+<div class="setup-price">$0.40 / min</div>
+<p>+ $1500 setup fee (one time)</p>
+
+<a href="demo.html" class="button" style="margin-top:20px;display:block;">
+Contact Sales
 </a>
 </div>
 
-<!-- NOTE -->
-<p style="margin-top:30px;color:#94a3b8;font-size:18px;">
-  Setup fee is one-time only. After deployment, you only pay per usage.
-</p>
+<div class="box">
 
-</section>
+<label>Monthly Minutes</label>
+<input type="range" min="500" max="50000" step="500" value="5000" id="slider">
+
+<div class="minutes-display">
+<span id="mins">5000</span> min
+</div>
+
+<div class="calc-results">
+<p>Usage: $<span id="cost">2000</span></p>
+<p>Setup: $1500</p>
+<h2>Total: $<span id="total">3500</span></h2>
+</div>
 
 </div>
-</section>
 
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">
-<p>© 2026 MashaAI Connect. All rights reserved.</p>
-</footer>
+<div class="footer">
+© 2026 MashaAI Connect
+</div>
+
 <script>
-function updateCallCalc(){
-let minutes = document.getElementById("callSlider").value;
+// slider
+const slider=document.getElementById("slider");
 
-let cost = minutes * 0.40;
-let total = cost + 1500;
+slider.oninput=function(){
+let m=this.value;
+let cost=m*0.40;
+document.getElementById("mins").innerText=m;
+document.getElementById("cost").innerText=cost;
+document.getElementById("total").innerText=cost+1500;
+};
 
-document.getElementById("callMinutes").innerText = Number(minutes).toLocaleString();
-document.getElementById("callCost").innerText = "$" + cost.toLocaleString();
-document.getElementById("callFuture").innerText = "$" + cost.toLocaleString();
-document.getElementById("callTotal").innerText = "$" + total.toLocaleString();
+// mobile nav
+const menu=document.getElementById("menuToggle");
+const nav=document.getElementById("navLinks");
+
+menu.onclick=()=>nav.classList.toggle("active");
+
+// auto active nav
+document.querySelectorAll(".nav-links a").forEach(a=>{
+if(a.href===window.location.href){
+a.classList.add("active");
 }
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-// toggle menu
-menuToggle.addEventListener("click", () => {
-navLinks.classList.toggle("active");
-});
-
-// close menu when clicking outside
-document.addEventListener("click", (e) => {
-if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-navLinks.classList.remove("active");
-}
-});
-updateCallCalc();
-const toggle=document.querySelector(".menu-toggle");
-const nav=document.querySelector(".nav-links");
-
-toggle.addEventListener("click",()=>{
-nav.classList.toggle("active");
 });
 </script>
 
