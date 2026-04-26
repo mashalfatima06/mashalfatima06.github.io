@@ -18,22 +18,15 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-background:linear-gradient(120deg,#020617,#071a2f,#020617);
-background-size:300% 300%;
-animation:bgMove 12s infinite alternate;
+background:#020617;
 color:white;
 overflow-x:hidden;
 }
 
-@keyframes bgMove{
-0%{background-position:0% 50%;}
-100%{background-position:100% 50%;}
-}
-
-/* NAVBAR */
+/* NAVBAR (MATCH OTHER PAGES) */
 .navbar{
-background:rgba(2,6,23,0.75);
-backdrop-filter:blur(14px);
+background:rgba(2,6,23,0.85);
+backdrop-filter:blur(12px);
 padding:14px 0;
 border-bottom:1px solid #173857;
 position:sticky;
@@ -51,7 +44,6 @@ align-items:center;
 gap:10px;
 }
 
-/* LOGO */
 .logo {
 display:flex;
 align-items:center;
@@ -69,7 +61,6 @@ font-size:18px;
 color:#22d3ee;
 }
 
-/* NAV */
 .nav-links{
 display:flex;
 gap:22px;
@@ -84,21 +75,21 @@ transition:0.2s;
 }
 
 .nav-links a:hover{
-color:#19c5ff;
+color:#22d3ee;
 }
 
 .nav-links a.active{
-color:#19c5ff;
-border-bottom:2px solid #19c5ff;
+color:#22d3ee;
+border-bottom:2px solid #22d3ee;
 }
 
-/* TITLES */
+/* HEADINGS */
 .section-title{
-font-size:48px;
+font-size:42px;
 font-weight:900;
 text-align:center;
 margin:60px 0 10px;
-color:#19c5ff;
+color:#22d3ee;
 }
 
 .section-subtext{
@@ -108,55 +99,26 @@ color:#94a3b8;
 margin-bottom:40px;
 }
 
-/* SETUP CARD */
-.setup-horizontal{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-padding:20px 25px;
-background:#03162d;
-border:1px solid #173857;
-border-radius:16px;
-margin:20px;
-flex-wrap:wrap;
-}
-
-.setup-horizontal h3{
-font-size:16px;
-color:#94a3b8;
-}
-
-.setup-horizontal p{
-font-size:13px;
-color:#94a3b8;
-max-width:400px;
-}
-
-.setup-horizontal .price{
-font-size:42px;
-font-weight:800;
-color:#19c5ff;
-}
-
-/* SETUP BOX */
+/* SETUP BOX (UNIFIED LOOK) */
 .setup-box{
-max-width:800px;
+max-width:850px;
 margin:0 auto 30px;
-padding:20px;
-background:#03162d;
+padding:25px;
+background:rgba(3,22,45,0.9);
 border:1px solid #173857;
 border-radius:16px;
 text-align:center;
+box-shadow:0 0 25px rgba(34,211,238,0.08);
 }
 
 .setup-price{
-font-size:40px;
-color:#19c5ff;
+font-size:44px;
+color:#22d3ee;
 font-weight:800;
+margin:10px 0;
 }
 
-/* 🔥 BIGGER PRICING CARDS (UPDATED) */
+/* PRICING CARDS */
 .cards{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -165,30 +127,26 @@ padding:0 20px;
 }
 
 .card{
-background:#03162d;
+background:rgba(3,22,45,0.9);
 border:1px solid #173857;
 border-radius:16px;
-padding:28px; /* increased */
+padding:28px;
 display:flex;
 flex-direction:column;
 position:relative;
 transition:0.3s;
-min-height:320px; /* increased size */
+min-height:320px;
 }
 
 .card:hover{
 transform:translateY(-8px);
+border-color:#22d3ee;
 }
 
 .amount{
-font-size:42px; /* bigger */
-color:#19c5ff;
+font-size:42px;
+color:#22d3ee;
 font-weight:800;
-}
-
-.minutes{
-font-size:13px;
-color:#38bdf8;
 margin:10px 0;
 }
 
@@ -205,32 +163,34 @@ list-style:none;
 
 .features li::before{
 content:"✓";
-color:#19c5ff;
+color:#22d3ee;
 margin-right:8px;
 }
 
+/* BUTTON (MATCH OTHER PAGES CTA STYLE) */
 .button{
 margin-top:auto;
 padding:12px;
 text-align:center;
 border-radius:10px;
-border:1px solid #0ea5ff;
-color:#0ea5ff;
+border:1px solid #22d3ee;
+color:#22d3ee;
 text-decoration:none;
 font-size:14px;
 transition:0.3s;
 }
 
 .button:hover{
-background:#0ea5ff;
-color:white;
+background:#22d3ee;
+color:#020617;
 }
 
+/* BADGE */
 .badge{
 position:absolute;
 top:10px;
 right:10px;
-background:linear-gradient(90deg,#0ea5ff,#2563eb);
+background:linear-gradient(90deg,#22d3ee,#0ea5ff);
 padding:6px 10px;
 border-radius:999px;
 font-size:12px;
@@ -238,7 +198,7 @@ font-weight:700;
 color:white;
 }
 
-/* ROW */
+/* ROW SECTION */
 .row{
 display:flex;
 gap:20px;
@@ -249,20 +209,22 @@ padding:0 20px;
 .box{
 flex:1;
 min-width:280px;
-background:#03162d;
+background:rgba(3,22,45,0.9);
 padding:20px;
 border-radius:16px;
 border:1px solid #173857;
 }
 
+/* RANGE SLIDER */
 input[type=range]{
 width:100%;
 margin:20px 0;
+accent-color:#22d3ee;
 }
 
 .minutes-display{
 font-size:22px;
-color:#19c5ff;
+color:#22d3ee;
 font-weight:700;
 text-align:center;
 }
@@ -273,16 +235,16 @@ text-align:center;
 padding:40px 0;
 color:#94a3b8;
 margin-top:60px;
+border-top:1px solid #173857;
 }
 
-/* MOBILE FIX */
+/* MOBILE */
 @media(max-width:768px){
 .cards{
 grid-template-columns:1fr;
 }
-
 .section-title{
-font-size:36px;
+font-size:32px;
 }
 }
 </style>
@@ -387,12 +349,12 @@ Contact Sales
 
 </div>
 
-  <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
-               <p>Powered by Advanced AI Technology</p>
-        </div>
-    </footer>
+<footer class="footer">
+<div class="container">
+<p>&copy; 2026 MashaAI Connect. All rights reserved.</p>
+<p>Powered by Advanced AI Technology</p>
+</div>
+</footer>
 
 <script>
 const slider=document.getElementById("slider");
