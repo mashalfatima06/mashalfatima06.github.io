@@ -91,15 +91,16 @@ h1 .underline-cyan::after{content:'';position:absolute;bottom:-4px;left:0;right:
 .trust-card h4{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--dark)}
 .trust-card p{color:var(--text2);font-size:.9rem;line-height:1.68}
 @media(max-width:900px){.trust-grid{grid-template-columns:1fr}}
-.demo-wrap{margin-top:56px;max-width:900px;margin-left:auto;margin-right:auto}
-.demo-embed{position:relative;width:100%;aspect-ratio:4/5;max-height:820px;background:#0A0F1C;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow2)}
+.demo-wrap{margin-top:56px;max-width:920px;margin-left:auto;margin-right:auto}
+.demo-embed{position:relative;width:100%;height:1200px;background:#0A0F1C;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow2)}
 .demo-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .demo-caption{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:20px}
 .demo-badge{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--text2)}
 .demo-caption p{color:var(--text2);font-size:.9rem;margin:0}
 .demo-caption a{color:var(--cyan2);font-weight:600;text-decoration:none}
 .demo-caption a:hover{text-decoration:underline}
-@media(max-width:640px){.demo-embed{aspect-ratio:3/4;max-height:640px}}
+@media(max-width:900px){.demo-embed{height:1400px}}
+@media(max-width:520px){.demo-embed{height:1420px}}
 #how{background:var(--dark);overflow:hidden}
 #how .sec-title,#how .tag{color:#fff}
 #how .sec-sub{color:rgba(255,255,255,.55)}
