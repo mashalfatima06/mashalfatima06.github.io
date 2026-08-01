@@ -22,7 +22,7 @@ function switchPricing(id,btn){
   btn.classList.add('active');
 }
 
-// Industries dropdown (click/tap, works on mobile — not hover-only)
+// Industries dropdown (click/tap, works on mobile - not hover-only)
 function toggleDropdown(btn){
   const li=btn.closest('.has-dropdown');
   document.querySelectorAll('.has-dropdown.open').forEach(el=>{if(el!==li)el.classList.remove('open')});
