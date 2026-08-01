@@ -1,0 +1,39 @@
+# MashaAI Connect
+
+> MashaAI Connect is an AI appointment setting and calling platform that contacts new leads within 60 seconds of form submission, qualifies them through natural voice conversation, and books the appointment directly into the client's calendar. Built for real estate teams, healthcare clinics, and marketing/sales agencies, along with mortgage brokers and insurance agencies.
+
+## Core Offering
+
+- AI Appointment Setter: contacts leads from website forms and ad campaigns within 60 seconds, qualifies them via conversation, and books directly into Google Calendar, Calendly, HubSpot, or GoHighLevel.
+- AI Calling Agents: human-like outbound and inbound voice agents built on Retell AI's voice infrastructure, with under 500ms response latency, live call transfer to humans, call recording/transcription, and sentiment analysis.
+
+## Pricing
+
+- Starter: $399/month, 250 lead calls/month
+- Growth: $799/month, 550 lead calls/month, CRM integration (GoHighLevel, HubSpot)
+- Pro: $1,399/month, 1,000 lead calls/month, dedicated account manager
+- One-time setup fee: $700 across all plans
+- AI Calling Agents: $700 one-time setup + $0.40 per minute of call usage, no monthly seat fee
+
+## Industries Served
+
+- [Real Estate](https://mashaaiconnect.com/real-estate.html): buyer/seller lead follow-up, viewing scheduling, property tour booking
+- [Healthcare & Clinics](https://mashaaiconnect.com/healthcare.html): patient booking, appointment reminders, reduced no-shows, HIPAA BAA available
+- [Agencies](https://mashaaiconnect.com/agencies.html): white-label AI appointment setting that marketing/sales agencies resell to their own clients
+
+## Key Facts
+
+- Lead response time: under 60 seconds, compared to a typical 30 minutes to 24 hours for human teams
+- TCPA-compliant by design, with mandatory consent capture on lead intake forms
+- Voice-first architecture (no SMS/A2P 10DLC registration delays)
+- Full call recording, transcription, and real-time CRM/calendar sync
+
+## Pages
+
+- [Homepage](https://mashaaiconnect.com/): overview, services, pricing, FAQ
+- [Real Estate](https://mashaaiconnect.com/real-estate.html)
+- [Healthcare & Clinics](https://mashaaiconnect.com/healthcare.html)
+- [Agencies](https://mashaaiconnect.com/agencies.html)
+- [Speed to Lead Data](https://mashaaiconnect.com/speed-to-lead.html): research on real estate lead response time and conversion rates
+- [Privacy Policy](https://mashaaiconnect.com/privacy.html)
+- [Terms of Service](https://mashaaiconnect.com/terms.html)
