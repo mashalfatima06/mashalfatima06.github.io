@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>MashaAI Connect — From form to booked appointment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0F1C;
+    --surface:#121A2B;
+    --surface-2:#182238;
+    --border:#24304A;
+    --text:#EAF0FF;
+    --muted:#8B97B4;
+    --blue:#5B8DEF;
+    --green:#35D399;
+    --amber:#F5A623;
+    --red:#FF5F6D;
+    --font-display:'Space Grotesk',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:var(--font-body);
+    color:var(--text);
+    background:
+      radial-gradient(1100px 520px at 50% -8%, rgba(91,141,239,.16), transparent 62%),
+      radial-gradient(900px 500px at 90% 110%, rgba(53,211,153,.05), transparent 55%),
+      var(--bg);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .wrap{ max-width:880px; margin:0 auto; padding:64px 20px 48px; }
+
+  /* ---------- Intro ---------- */
+  .intro{ margin-bottom:34px; }
+  .eyebrow{
+    margin:0 0 14px;
+    font:600 11px var(--font-mono);
+    letter-spacing:2.6px;
+    text-transform:uppercase;
+    color:var(--blue);
+  }
+  h1{
+    margin:0 0 16px;
+    font:700 clamp(27px,4.6vw,42px)/1.12 var(--font-display);
+    color:var(--text);
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    margin:0;
+    max-width:60ch;
+    font:400 clamp(14px,2vw,16px)/1.6 var(--font-body);
+    color:var(--muted);
+  }
+
+  /* ---------- Browser chrome card ---------- */
+  .demo{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(91,141,239,.06);
+  }
+  .chrome{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:13px 18px;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--border);
+  }
+  .dots{ display:flex; gap:8px; flex:0 0 auto; }
+  .dot{ width:12px; height:12px; border-radius:50%; }
+  .dot.r{ background:#FF5F6D; }
+  .dot.y{ background:#F5A623; }
+  .dot.g{ background:#35D399; }
+  .url{
+    flex:1;
+    min-width:0;
+    padding:7px 14px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    font:400 12.5px var(--font-mono);
+    color:var(--muted);
+    text-align:center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .timer{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:1px;
+    padding:6px 12px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    transition:border-color .3s, box-shadow .3s;
+  }
+  .timer-label{
+    font:600 8.5px var(--font-mono);
+    letter-spacing:1.6px;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .timer-value{
+    font:500 14px/1 var(--font-mono);
+    color:var(--text);
+    letter-spacing:.5px;
+    font-variant-numeric:tabular-nums;
+  }
+  .timer.urgent{
+    border-color:rgba(245,166,35,.55);
+    animation:urgentPulse 1s ease infinite;
+  }
+  .timer.urgent .timer-value{ color:var(--amber); }
+  .timer.done{ border-color:rgba(53,211,153,.55); }
+  .timer.done .timer-value{ color:var(--green); }
+  @keyframes urgentPulse{
+    0%,100%{ box-shadow:0 0 0 0 rgba(245,166,35,.28); }
+    50%{ box-shadow:0 0 0 7px rgba(245,166,35,0); }
+  }
+
+  /* ---------- Stage tracker ---------- */
+  .tracker{
+    display:flex;
+    align-items:center;
+    padding:22px 26px 34px;
+  }
+  .step{
+    position:relative;
+    flex:0 0 auto;
+    z-index:2;
+  }
+  .node{
+    width:28px; height:28px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg);
+    border:2px solid var(--border);
+    color:var(--muted);
+    font:600 12px var(--font-body);
+    transition:background .35s, border-color .35s, color .35s, box-shadow .35s, transform .35s;
+  }
+  .num{ display:flex; }
+  .check{ display:none; width:13px; height:13px; }
+  .check path{ stroke-dasharray:18; stroke-dashoffset:18; }
+  .step.active .node{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
+    box-shadow:0 0 0 4px rgba(91,141,239,.18), 0 0 18px rgba(91,141,239,.5);
+    transform:scale(1.08);
+  }
+  .step.done .node{
+    background:var(--green);
+    border-color:var(--green);
+    color:#06281A;
+  }
+  .step.done .num{ display:none; }
+  .step.done .check{ display:block; animation:drawCheck .35s ease forwards .05s; }
+  .step .label{
+    position:absolute;
+    top:calc(100% + 9px);
+    left:50%;
+    transform:translateX(-50%);
+    white-space:nowrap;
+    font:500 11.5px var(--font-body);
+    color:var(--muted);
+    transition:color .3s;
+  }
+  .step.active .label{ color:var(--text); }
+  .step.done .label{ color:var(--green); }
+  @keyframes drawCheck{ to{ stroke-dashoffset:0; } }
+  .tracker-line{
+    flex:1;
+    height:2px;
+    margin:0 12px;
+    background:var(--border);
+    border-radius:2px;
+    position:relative;
+    overflow:hidden;
+  }
+  .tracker-line .fill{
+    position:absolute; inset:0;
+    width:0;
+    background:var(--blue);
+    transition:width .6s ease;
+  }
+  .tracker-line.filled .fill{ width:100%; }
+
+  /* ---------- Stage area / panels ---------- */
+  .stage{
+    display:grid;
+    padding:4px 24px 28px;
+  }
+  .panel{
+    grid-area:1 / 1;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px 32px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(18px);
+    transition:opacity .45s ease, transform .45s ease, visibility .45s;
+  }
+  .panel.active{
+    opacity:1;
+    visibility:visible;
+    transform:none;
+  }
+
+  /* ---------- Panel 1: Form ---------- */
+  .form-card{ max-width:470px; margin:0 auto; }
+  .form-head{ display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+  .brand-mark{
+    flex:0 0 auto;
+    width:44px; height:44px;
+    border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg,#1E2C4A,#24304A);
+    border:1px solid var(--border);
+    color:var(--blue);
+  }
+  .brand-mark svg{ width:21px; height:21px; }
+  .form-head h3{
+    margin:0;
+    font:600 19px/1.2 var(--font-display);
+    color:var(--text);
+  }
+  .form-head p{
+    margin:3px 0 0;
+    font:400 12.5px var(--font-body);
+    color:var(--muted);
+  }
+  .field{ margin-bottom:14px; }
+  .field > label{
+    display:block;
+    margin-bottom:6px;
+    font:500 12px var(--font-body);
+    color:var(--muted);
+  }
+  .input{
+    min-height:42px;
+    display:flex; align-items:center;
+    padding:11px 13px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:9px;
+    font:400 13.5px var(--font-mono);
+    letter-spacing:.3px;
+    color:var(--text);
+    transition:border-color .3s, box-shadow .3s;
+  }
+  .input .value{
+    white-space:pre;
+    transition:filter .6s ease, opacity .6s ease;
+  }
+  .input .value.blurred{
+    filter:blur(5px);
+    opacity:.85;
+    text-shadow:0 0 8px rgba(234,240,255,.25);
+  }
+  .input.active{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(91,141,239,.12);
+  }
+  .caret{
+    display:none;
+    width:1.6px; height:1.05em;
+    margin-left:1px;
+    background:var(--blue);
+    animation:blink 1s steps(1) infinite;
+  }
+  .input.active .caret{ display:inline-block; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .consent{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:18px;
+    cursor:default;
+    font:400 12.5px/1.5 var(--font-body);
+    color:var(--muted);
+    user-select:none;
+  }
+  .box{
+    flex:0 0 auto;
+    width:18px; height:18px;
+    margin-top:1px;
+    border-radius:5px;
+    border:1.5px solid var(--border);
+    background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    color:#06281A;
+    transition:background .25s, border-color .25s;
+  }
+  .box svg{ width:11px; height:11px; }
+  .box path{
+    stroke-dasharray:18;
+    stroke-dashoffset:18;
+    transition:stroke-dashoffset .25s ease .05s;
+  }
+  .consent.checked .box{ background:var(--green); border-color:var(--green); }
+  .consent.checked .box path{ stroke-dashoffset:0; }
+
+  .submit{
+    width:100%;
+    margin-top:22px;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#1A2337;
+    color:var(--muted);
+    font:600 14px var(--font-body);
+    cursor:default;
+    transition:background .3s, color .3s, border-color .3s, transform .12s, box-shadow .3s;
+  }
+  .submit.armed{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
+    box-shadow:0 4px 18px rgba(91,141,239,.35);
+  }
+  .submit.pressed{
+    transform:translateY(2px);
+    box-shadow:0 1px 4px rgba(0,0,0,.35);
+    background:#4E7FD6;
+  }
+  .fine{
+    margin:12px 0 0;
+    text-align:center;
+    font:400 11.5px var(--font-body);
+    color:var(--muted);
+  }
+
+  /* ---------- Panel 2: Workflow ---------- */
+  .wf-head{ text-align:center; margin-bottom:28px; }
+  .wf-head h3{
+    margin:0;
+    font:600 19px var(--font-display);
+    color:var(--text);
+  }
+  .wf-head p{
+    margin:4px 0 0;
+    font:400 12.5px var(--font-body);
+    color:var(--muted);
+  }
+  .flow{
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+  }
+  .node-card{
+    flex:0 1 210px;
+    min-width:0;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px 14px;
+    text-align:center;
+    opacity:.45;
+    filter:saturate(.25);
+    transform:translateY(4px);
+    transition:opacity .5s, filter .5s, transform .5s, border-color .5s, box-shadow .5s;
+  }
+  .node-card.active{
+    opacity:1; filter:none; transform:none;
+    border-color:var(--blue);
+    box-shadow:0 0 0 4px rgba(91,141,239,.12), 0 10px 26px rgba(0,0,0,.28);
+  }
+  .node-card.done{
+    opacity:1; filter:none; transform:none;
+    border-color:var(--green);
+    box-shadow:0 0 0 4px rgba(53,211,153,.12);
+  }
+  .node-icon{
+    width:46px; height:46px;
+    margin:0 auto 12px;
+    border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    color:var(--muted);
+    transition:background .5s, border-color .5s, color .5s;
+  }
+  .node-icon svg{ width:22px; height:22px; }
+  .node-card.active .node-icon{
+    background:rgba(91,141,239,.16);
+    border-color:var(--blue);
+    color:var(--blue);
+  }
+  .node-card.done .node-icon{
+    background:rgba(53,211,153,.12);
+    border-color:var(--green);
+    color:var(--green);
+  }
+  .node-title{
+    font:600 13.5px var(--font-body);
+    color:var(--text);
+  }
+  .node-card.done .node-title{ color:var(--green); }
+  .node-sub{
+    margin-top:4px;
+    font:400 11px var(--font-mono);
+    color:var(--muted);
+  }
+  .node-status{
+    display:block;
+    margin-top:9px;
+    font:600 9.5px var(--font-mono);
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .node-status::before{ content:'Queued'; }
+  .node-card.active .node-status::before{ content:'Running'; color:var(--blue); }
+  .node-card.done .node-status::before{ content:'Complete'; color:var(--green); }
+  .flow-line{
+    flex:0 0 auto;
+    align-self:center;
+    width:54px; height:2px;
+    margin:0 12px;
+    background:var(--border);
+    border-radius:2px;
+    position:relative;
+    overflow:hidden;
+  }
+  .flow-line .fill{
+    position:absolute; inset:0;
+    width:0;
+    background:var(--blue);
+    transition:width .5s ease;
+  }
+  .flow-line.filled .fill{ width:100%; }
+
+  /* ---------- Panel 3: Call ---------- */
+  .call-layout{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:34px;
+    align-items:center;
+    justify-content:center;
+  }
+  .phone{ width:228px; justify-self:center; }
+  .phone-bezel{
+    position:relative;
+    aspect-ratio:9 / 19.5;
+    padding:10px;
+    border-radius:36px;
+    background:#05070D;
+    border:2px solid #2A3550;
+    overflow:hidden;
+    box-shadow:0 22px 55px rgba(0,0,0,.5);
+  }
+  .notch{
+    position:absolute;
+    top:0; left:50%;
+    transform:translateX(-50%);
+    width:42%; height:24px;
+    background:#05070D;
+    border-radius:0 0 16px 16px;
+    z-index:3;
+  }
+  .rec-badge{
+    position:absolute;
+    top:36px; left:14px;
+    z-index:4;
+    display:flex; align-items:center; gap:6px;
+    padding:4px 10px;
+    border-radius:20px;
+    background:rgba(10,15,28,.72);
+    border:1px solid var(--border);
+    font:600 9px var(--font-mono);
+    letter-spacing:1.4px;
+    color:#fff;
+  }
+  .rec-dot{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--red);
+    animation:pulse 1.3s ease infinite;
+  }
+  .rec-dot.playing{ background:var(--green); }
+  @keyframes pulse{
+    0%,100%{ opacity:1; box-shadow:0 0 0 0 rgba(255,95,109,.45); }
+    50%{ opacity:.45; box-shadow:0 0 0 5px rgba(255,95,109,0); }
+  }
+  #callVideo{
+    display:block;
+    width:100%; height:100%;
+    object-fit:cover;
+    border-radius:26px;
+    background:#000;
+  }
+  .phone-overlay{
+    position:absolute; inset:0;
+    z-index:2;
+    border-radius:26px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+    background:rgba(10,15,28,.84);
+    backdrop-filter:blur(3px);
+    text-align:center;
+    padding:18px;
+    transition:opacity .35s ease;
+  }
+  .phone-overlay.hidden{ opacity:0; pointer-events:none; }
+  .phone-overlay .play-pulse{ animation:playPulse 1.8s ease infinite; }
+  @keyframes playPulse{
+    0%{ box-shadow:0 0 0 0 rgba(91,141,239,.45); }
+    70%{ box-shadow:0 0 0 18px rgba(91,141,239,0); }
+    100%{ box-shadow:0 0 0 0 rgba(91,141,239,0); }
+  }
+  .play-btn{
+    width:64px; height:64px;
+    border-radius:50%;
+    border:none;
+    background:var(--blue);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:transform .2s;
+  }
+  .play-btn svg{ width:24px; height:24px; margin-left:3px; }
+  .play-btn:hover{ transform:scale(1.07); }
+  .play-btn:focus-visible{ outline:2px solid var(--text); outline-offset:3px; }
+  .phone-overlay p{
+    margin:0;
+    font:500 12.5px var(--font-body);
+    color:var(--text);
+    max-width:16ch;
+  }
+  .phone-error{
+    position:absolute; inset:0;
+    z-index:2;
+    border-radius:26px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    background:var(--bg);
+    padding:22px;
+    text-align:center;
+  }
+  .phone-error[hidden]{ display:none; }
+  .phone-error .title{ margin:0; font:600 12.5px var(--font-body); color:var(--amber); }
+  .phone-error .sub{ margin:0; font:400 10.5px/1.6 var(--font-mono); color:var(--muted); }
+  .call-info{ max-width:350px; }
+  .call-tag{
+    display:inline-flex;
+    align-items:center; gap:9px;
+    font:600 12px var(--font-body);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--text);
+  }
+  .call-desc{
+    margin:15px 0 0;
+    font:400 14px/1.7 var(--font-body);
+    color:var(--muted);
+  }
+  .skip{
+    display:inline-flex;
+    align-items:center; gap:7px;
+    margin-top:20px;
+    padding:0;
+    border:none;
+    background:none;
+    font:600 13.5px var(--font-body);
+    color:var(--blue);
+    cursor:pointer;
+    transition:color .2s, gap .2s;
+  }
+  .skip:hover{ color:var(--text); gap:10px; }
+  .skip:focus-visible{ outline:2px solid var(--blue); outline-offset:4px; border-radius:4px; }
+
+  /* ---------- Panel 4: Booked ---------- */
+  .booked{ max-width:430px; margin:0 auto; padding:8px 0; text-align:center; }
+  .check-badge{
+    width:72px; height:72px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(53,211,153,.12);
+    border:1px solid var(--green);
+    color:var(--green);
+    box-shadow:0 0 34px rgba(53,211,153,.22);
+  }
+  .check-badge svg{ width:32px; height:32px; }
+  .check-badge path{
+    stroke-dasharray:40;
+    stroke-dashoffset:40;
+  }
+  .panel-booked.go .check-badge path{ animation:drawCheck .6s ease forwards .1s; }
+  .panel-booked.go h3{ animation:rise .5s ease both .15s; }
+  .panel-booked.go .booked-sub{ animation:rise .5s ease both .22s; }
+  .panel-booked.go .appt-card{ animation:rise .5s ease both .3s; }
+  .panel-booked.go .booked-foot{ animation:rise .5s ease both .38s; }
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:none; }
+  }
+  .booked h3{
+    margin:0;
+    font:700 25px var(--font-display);
+    color:var(--text);
+    letter-spacing:-.01em;
+  }
+  .booked-sub{
+    margin:8px 0 24px;
+    font:400 13px var(--font-body);
+    color:var(--muted);
+  }
+  .appt-card{
+    margin:0 auto 20px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:4px 20px;
+    text-align:left;
+  }
+  .appt-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:13px 0;
+    border-bottom:1px dashed var(--border);
+  }
+  .appt-row:last-child{ border-bottom:none; }
+  .appt-row span{
+    font:400 11px var(--font-body);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .appt-row strong{
+    font:600 13px var(--font-mono);
+    color:var(--text);
+    text-align:right;
+  }
+  .booked-foot{
+    margin:0;
+    font:400 12px var(--font-body);
+    color:var(--muted);
+  }
+
+  /* ---------- Flash overlay ---------- */
+  .flash{
+    position:fixed; inset:0;
+    z-index:50;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(10,15,28,.93);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease, visibility .3s;
+  }
+  .flash.show{ opacity:1; visibility:visible; }
+  .flash-box{
+    text-align:center;
+    transform:scale(.9);
+    transition:transform .35s ease;
+  }
+  .flash.show .flash-box{ transform:scale(1); }
+  .flash-icon{
+    width:66px; height:66px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+  }
+  .flash-icon svg{ width:30px; height:30px; }
+  .flash.blue .flash-icon{ background:var(--blue); box-shadow:0 0 70px rgba(91,141,239,.6); }
+  .flash.green .flash-icon{ background:var(--green); box-shadow:0 0 70px rgba(53,211,153,.6); }
+  .flash-text{
+    margin:0;
+    font:700 clamp(28px,7vw,46px)/1.1 var(--font-display);
+    color:#fff;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+  }
+  .flash-sub{
+    margin:12px 0 0;
+    font:400 13px var(--font-body);
+    color:var(--muted);
+  }
+
+  /* ---------- Footer ---------- */
+  .foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-top:26px;
+  }
+  .wordmark{
+    font:600 18px var(--font-display);
+    color:var(--text);
+    letter-spacing:.2px;
+  }
+  .wordmark .ai{ color:var(--blue); }
+  .replay{
+    display:inline-flex;
+    align-items:center; gap:8px;
+    padding:10px 20px;
+    border-radius:9px;
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--text);
+    font:600 13px var(--font-body);
+    cursor:pointer;
+    transition:border-color .2s, color .2s, background .2s;
+  }
+  .replay svg{ width:14px; height:14px; }
+  .replay:hover{ border-color:var(--blue); color:var(--blue); background:rgba(91,141,239,.08); }
+  .replay:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:720px){
+    .call-layout{ grid-template-columns:1fr; gap:24px; }
+    .phone{ width:200px; }
+    .tracker{ padding:20px 18px 32px; }
+  }
+  @media (max-width:560px){
+    .wrap{ padding:44px 14px 32px; }
+    .chrome{ padding:11px 12px; gap:10px; }
+    .dots{ display:none; }
+    .url{ font-size:10.5px; }
+    .timer{ padding:5px 9px; }
+    .stage{ padding:4px 14px 20px; }
+    .panel{ padding:22px 18px; }
+    .step .label{ display:none; }
+    .tracker{ padding:20px 10px 20px; }
+    .tracker-line{ margin:0 8px; }
+    .flow{ flex-direction:column; align-items:center; gap:4px; }
+    .flow-line{
+      width:2px; height:40px;
+      margin:2px 0;
+    }
+    .flow-line .fill{ width:100%; height:0; transition:height .5s ease; }
+    .flow-line.filled .fill{ height:100%; }
+    .node-card{ width:min(240px,100%); }
+  }
+  @media (max-width:380px){
+    .phone{ width:180px; }
+    .timer-label{ display:none; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="intro">
+      <p class="eyebrow">How it works</p>
+      <h1>From form to booked appointment — automatically</h1>
+      <p class="subhead">Watch what happens the moment a lead submits a form on your site. This is a real call, unedited.</p>
+    </header>
+
+    <div class="demo">
+      <div class="chrome">
+        <div class="dots" aria-hidden="true">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        </div>
+        <div class="url">mashaaiconnect.com/live-demo</div>
+        <div class="timer" id="timer" title="Response time — the seconds between form submit and call">
+          <span class="timer-label">response time</span>
+          <span class="timer-value" id="timerText" aria-live="off">00:00</span>
+        </div>
+      </div>
+
+      <div class="tracker" id="tracker">
+        <div class="step"><span class="node"><span class="num">1</span><svg class="check" viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Lead fills form</span></div>
+        <div class="tracker-line"><span class="fill"></span></div>
+        <div class="step"><span class="node"><span class="num">2</span><svg class="check" viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Workflow triggers</span></div>
+        <div class="tracker-line"><span class="fill"></span></div>
+        <div class="step"><span class="node"><span class="num">3</span><svg class="check" viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">AI calls lead</span></div>
+        <div class="tracker-line"><span class="fill"></span></div>
+        <div class="step"><span class="node"><span class="num">4</span><svg class="check" viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Appointment booked</span></div>
+      </div>
+
+      <div class="stage">
+
+        <!-- Panel 1 — Form fill -->
+        <section class="panel" id="panel-form" aria-label="Step 1: lead form">
+          <div class="form-card">
+            <div class="form-head">
+              <div class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10.5 9-7.5 9 7.5"/><path d="M5 9.5V19a1 1 0 0 0 1 1h4v-5.5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1V20h4a1 1 0 0 0 1-1V9.5"/></svg>
+              </div>
+              <div>
+                <h3>Get a free rate quote</h3>
+                <p>Skyline Realty Group</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-name">Name</label>
+              <div class="input" id="f-name"><span class="value"></span><span class="caret" aria-hidden="true"></span></div>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <div class="input" id="f-phone"><span class="value"></span><span class="caret" aria-hidden="true"></span></div>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <div class="input" id="f-email"><span class="value"></span><span class="caret" aria-hidden="true"></span></div>
+            </div>
+            <div class="field">
+              <label for="f-interest">Interested in</label>
+              <div class="input" id="f-interest"><span class="value"></span><span class="caret" aria-hidden="true"></span></div>
+            </div>
+            <label class="consent" id="consent">
+              <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>I agree to be contacted about this request</span>
+            </label>
+            <button class="submit" id="submitBtn" type="button" tabindex="-1" aria-hidden="true"><span id="submitLabel">Get my quote</span></button>
+            <p class="fine">No spam — a live agent responds within 60 seconds of submit.</p>
+          </div>
+        </section>
+
+        <!-- Panel 2 — Workflow trigger -->
+        <section class="panel" id="panel-workflow" aria-label="Step 2: workflow triggers">
+          <div class="wf-head">
+            <h3>Automation workflow</h3>
+            <p>Triggered instantly on submission</p>
+          </div>
+          <div class="flow">
+            <div class="node-card" id="wf-0">
+              <div class="node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.5h13L22 12v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5z"/></svg>
+              </div>
+              <div class="node-title">Lead received</div>
+              <div class="node-sub">form → CRM</div>
+              <span class="node-status"></span>
+            </div>
+            <div class="flow-line"><span class="fill"></span></div>
+            <div class="node-card" id="wf-1">
+              <div class="node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <div class="node-title">Lead qualified</div>
+              <div class="node-sub">scored &amp; verified</div>
+              <span class="node-status"></span>
+            </div>
+            <div class="flow-line"><span class="fill"></span></div>
+            <div class="node-card" id="wf-2">
+              <div class="node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/><path d="M3 14v-3a9 9 0 0 1 18 0v3"/></svg>
+              </div>
+              <div class="node-title">Agent dispatched</div>
+              <div class="node-sub">dialing now…</div>
+              <span class="node-status"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel 3 — Real call -->
+        <section class="panel" id="panel-call" aria-label="Step 3: real client call">
+          <div class="call-layout">
+            <div class="phone">
+              <div class="phone-bezel">
+                <div class="notch" aria-hidden="true"></div>
+                <video id="callVideo" playsinline webkit-playsinline preload="metadata" aria-label="Real client call recording">
+                  <source src="call-recording.mp4" type="video/mp4">
+                </video>
+                <div class="rec-badge" aria-hidden="true"><span class="rec-dot" id="recBadgeDot"></span>REC</div>
+                <div class="phone-overlay" id="phoneOverlay">
+                  <button class="play-btn play-pulse" id="playBtn" type="button" aria-label="Play real client call recording">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                  </button>
+                  <p>Tap to play — real client call</p>
+                </div>
+                <div class="phone-error" id="phoneError" hidden>
+                  <p class="title">call-recording.mp4 not found</p>
+                  <p class="sub">Place it next to this HTML file.</p>
+                </div>
+              </div>
+            </div>
+            <div class="call-info">
+              <div class="call-tag">
+                <span class="rec-dot" id="callTagDot"></span>
+                Real call · unedited
+              </div>
+              <p class="call-desc">This is an actual recording — the same form above, the same lead, the same call. Nothing staged.</p>
+              <button class="skip" id="skipBtn" type="button">Skip to result <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel 4 — Booked -->
+        <section class="panel" id="panel-booked" aria-label="Step 4: appointment booked">
+          <div class="booked">
+            <div class="check-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Appointment booked</h3>
+            <p class="booked-sub">Senior buyer specialist consult · Rachel, North Phoenix</p>
+            <div class="appt-card">
+              <div class="appt-row"><span>Date</span><strong id="apptDate">—</strong></div>
+              <div class="appt-row"><span>Time</span><strong>3:00 PM</strong></div>
+              <div class="appt-row"><span>Appointment</span><strong>Senior buyer specialist consult</strong></div>
+              <div class="appt-row"><span>Preferences</span><strong>3-bed · North Phoenix · under $480K · near good schools</strong></div>
+            </div>
+            <p class="booked-foot">Rescheduled &amp; confirmed · synced to calendar · logged to CRM</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <footer class="foot">
+      <div class="wordmark">Masha<span class="ai">AI</span>&nbsp;Connect</div>
+      <button class="replay" id="replayBtn" type="button" aria-label="Replay the demo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.6-6.3L3 8"/><path d="M3 3v5h5"/></svg>
+        Replay
+      </button>
+    </footer>
+
+  </div>
+
+  <div class="flash" id="flash" aria-live="assertive">
+    <div class="flash-box">
+      <div class="flash-icon" id="flashIcon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <p class="flash-text" id="flashText">FORM SUBMITTED</p>
+      <p class="flash-sub" id="flashSub"></p>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function $(id) { return document.getElementById(id); }
+  function $$(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  var timerEl = $('timer');
+  var timerText = $('timerText');
+  var flashEl = $('flash');
+  var flashText = $('flashText');
+  var flashSub = $('flashSub');
+
+  var steps = $$('.step');
+  var trackerLines = $$('.tracker-line');
+  var panels = $$('.panel');
+
+  var nameInput = $('f-name');
+  var phoneInput = $('f-phone');
+  var emailInput = $('f-email');
+  var interestInput = $('f-interest');
+  var consentEl = $('consent');
+  var submitBtn = $('submitBtn');
+  var submitLabel = $('submitLabel');
+
+  var wfNodes = [$('wf-0'), $('wf-1'), $('wf-2')];
+  var wfLines = $$('.flow-line');
+
+  var video = $('callVideo');
+  var phoneOverlay = $('phoneOverlay');
+  var playBtn = $('playBtn');
+  var skipBtn = $('skipBtn');
+  var phoneError = $('phoneError');
+
+  var bookedPanel = $('panel-booked');
+  var apptDate = $('apptDate');
+  var replayBtn = $('replayBtn');
+
+  var formFields = [
+    { input: nameInput, text: 'Rachel Hayes', blur: true },
+    { input: phoneInput, text: '+1 (212) 555-0148', blur: true },
+    { input: emailInput, text: 'rachel.hayes@gmail.com', blur: true },
+    { input: interestInput, text: 'Buying a home in North Phoenix' }
+  ];
+
+  var timerInt = null;
+  var timerSec = 0;
+  var runId = 0;
+  var resolveCallWait = null;
+
+  /* ---------------- Timer ---------------- */
+  function startTimer() {
+    clearInterval(timerInt);
+    timerSec = 0;
+    timerText.textContent = '00:00';
+    timerEl.classList.remove('urgent', 'done');
+    timerInt = setInterval(function () {
+      timerSec++;
+      var m = String(Math.floor(timerSec / 60)).padStart(2, '0');
+      var s = String(timerSec % 60).padStart(2, '0');
+      timerText.textContent = m + ':' + s;
+      if (timerSec === 8) timerEl.classList.add('urgent');
+    }, 1000);
+  }
+  function freezeTimer() {
+    clearInterval(timerInt);
+    timerEl.classList.remove('urgent');
+    timerEl.classList.add('done');
+  }
+  function elapsedLabel() {
+    var m = Math.floor(timerSec / 60);
+    var s = timerSec % 60;
+    if (m === 0) return 'Booked in ' + s + 's';
+    return 'Booked in ' + m + 'm ' + s + 's';
+  }
+
+  /* ---------------- Tracker ---------------- */
+  function setStep(n) {
+    steps.forEach(function (st, i) {
+      st.classList.toggle('done', i < n);
+      st.classList.toggle('active', i === n);
+    });
+    trackerLines.forEach(function (ln, i) {
+      ln.classList.toggle('filled', i < n);
+    });
+  }
+  function completeAllSteps() {
+    steps.forEach(function (st) {
+      st.classList.remove('active');
+      st.classList.add('done');
+    });
+    trackerLines.forEach(function (ln) { ln.classList.add('filled'); });
+  }
+
+  /* ---------------- Panels ---------------- */
+  function showPanel(name) {
+    panels.forEach(function (p) { p.classList.remove('active'); });
+    $('panel-' + name).classList.add('active');
+  }
+
+  /* ---------------- Flash ---------------- */
+  function doFlash(text, tone, sub) {
+    flashEl.classList.remove('blue', 'green');
+    flashEl.classList.add(tone);
+    flashText.textContent = text;
+    if (sub) { flashSub.textContent = sub; flashSub.hidden = false; }
+    else { flashSub.textContent = ''; flashSub.hidden = true; }
+    flashEl.classList.add('show');
+    return sleep(reduced ? 90 : 1350)
+      .then(function () {
+        flashEl.classList.remove('show');
+        return sleep(reduced ? 30 : 360);
+      });
+  }
+
+  /* ---------------- Video / call ---------------- */
+  function setRecPlaying(on) {
+    $$('.rec-dot').forEach(function (d) { d.classList.toggle('playing', on); });
+  }
+  function settleCall() {
+    if (resolveCallWait) {
+      var r = resolveCallWait;
+      resolveCallWait = null;
+      r();
+    }
+  }
+  function waitCall() {
+    return new Promise(function (res) { resolveCallWait = res; });
+  }
+  function prepareCall() {
+    setRecPlaying(false);
+    phoneOverlay.classList.remove('hidden');
+    phoneError.hidden = true;
+    try { video.pause(); } catch (e) {}
+  }
+
+  /* ---------------- Form animation ---------------- */
+  function typeForm(id) {
+    var seq = formFields.reduce(function (chain, f) {
+      return chain.then(function () {
+        if (aborted(id)) return Promise.resolve();
+        f.input.classList.add('active');
+        if (reduced) {
+          f.input.querySelector('.value').textContent = f.text;
+        } else {
+          return typeChars(f.input, f.text, id);
+        }
+      }).then(function () {
+        return sleep(reduced ? 80 : 520);
+      }).then(function () {
+        f.input.classList.remove('active');
+        if (f.blur) f.input.querySelector('.value').classList.add('blurred');
+      });
+    }, Promise.resolve());
+
+    return seq
+      .then(function () {
+        if (aborted(id)) return;
+        consentEl.classList.add('checked');
+        return sleep(reduced ? 80 : 620);
+      })
+      .then(function () {
+        if (aborted(id)) return;
+        submitBtn.classList.add('armed');
+        return sleep(reduced ? 100 : 750);
+      })
+      .then(function () {
+        if (aborted(id)) return;
+        submitBtn.classList.add('pressed');
+        submitLabel.textContent = 'Submitting…';
+        return sleep(reduced ? 150 : 1150);
+      });
+  }
+  function typeChars(input, text, id) {
+    return new Promise(function (resolve) {
+      var i = 0;
+      (function step() {
+        if (aborted(id)) return resolve();
+        if (i >= text.length) return resolve();
+        input.querySelector('.value').textContent = text.slice(0, i + 1);
+        i++;
+        setTimeout(step, 40 + Math.random() * 55);
+      })();
+    });
+  }
+
+  /* ---------------- Workflow animation ---------------- */
+  function runWorkflow(id) {
+    var chain = Promise.resolve();
+    for (var i = 0; i < 3; i++) {
+      (function (idx) {
+        chain = chain.then(function () {
+          if (aborted(id)) return;
+          if (idx > 0) {
+            wfNodes[idx - 1].classList.remove('active');
+            wfNodes[idx - 1].classList.add('done');
+            wfLines[idx - 1].classList.add('filled');
+          }
+          wfNodes[idx].classList.add('active');
+          return sleep(reduced ? 120 : 950);
+        });
+      })(i);
+    }
+    return chain.then(function () {
+      if (aborted(id)) return;
+      wfNodes[2].classList.remove('active');
+      wfNodes[2].classList.add('done');
+      return sleep(reduced ? 80 : 450);
+    });
+  }
+
+  /* ---------------- Reset ---------------- */
+  function resetAll() {
+    timerEl.classList.remove('urgent', 'done');
+    setRecPlaying(false);
+
+    phoneOverlay.classList.remove('hidden');
+    phoneError.hidden = true;
+    try { video.pause(); } catch (e) {}
+    try { video.currentTime = 0; } catch (e) {}
+    try { video.load(); } catch (e) {}
+
+    formFields.forEach(function (f) {
+      f.input.classList.remove('active');
+      f.input.querySelector('.value').textContent = '';
+      f.input.querySelector('.value').classList.remove('blurred');
+    });
+    consentEl.classList.remove('checked');
+    submitBtn.classList.remove('armed', 'pressed');
+    submitLabel.textContent = 'Get my quote';
+
+    wfNodes.forEach(function (n) { n.classList.remove('active', 'done'); });
+    wfLines.forEach(function (l) { l.classList.remove('filled'); });
+
+    bookedPanel.classList.remove('go');
+    panels.forEach(function (p) { p.classList.remove('active'); });
+    steps.forEach(function (s) { s.classList.remove('active', 'done'); });
+    trackerLines.forEach(function (l) { l.classList.remove('filled'); });
+  }
+
+  function aborted(id) { return id !== runId; }
+
+  /* ---------------- Main sequence ---------------- */
+  function runSequence() {
+    var id = ++runId;
+    settleCall();
+    resetAll();
+    startTimer();
+
+    setStep(0);
+    showPanel('form');
+
+    typeForm(id)
+      .then(function () { if (aborted(id)) return; return doFlash('FORM SUBMITTED', 'blue', 'Lead captured — automation armed'); })
+      .then(function () {
+        if (aborted(id)) return;
+        setStep(1);
+        showPanel('workflow');
+        return runWorkflow(id);
+      })
+      .then(function () { if (aborted(id)) return; return doFlash('WORKFLOW TRIGGERED', 'blue', 'Agent dispatched — dialing now'); })
+      .then(function () {
+        if (aborted(id)) return;
+        setStep(2);
+        showPanel('call');
+        prepareCall();
+        return waitCall();
+      })
+      .then(function () {
+        if (aborted(id)) return;
+        try { video.pause(); } catch (e) {}
+        setRecPlaying(false);
+        completeAllSteps();
+        showPanel('booked');
+        bookedPanel.classList.add('go');
+        return doFlash('APPOINTMENT BOOKED', 'green', elapsedLabel() + ' — inside the 60-second window');
+      })
+      .then(function () {
+        if (!aborted(id)) freezeTimer();
+      });
+  }
+
+  /* ---------------- Events ---------------- */
+  playBtn.addEventListener('click', function () {
+    var p;
+    try {
+      p = video.play();
+      if (p && typeof p.then === 'function') {
+        p.then(function () {
+          phoneOverlay.classList.add('hidden');
+          setRecPlaying(true);
+        }).catch(function () {});
+      }
+    } catch (e) {
+      phoneOverlay.classList.add('hidden');
+      setRecPlaying(true);
+    }
+  });
+
+  video.addEventListener('ended', function () {
+    setRecPlaying(false);
+    settleCall();
+  });
+
+  video.addEventListener('error', function () {
+    phoneOverlay.classList.add('hidden');
+    phoneError.hidden = false;
+    setRecPlaying(false);
+  });
+
+  skipBtn.addEventListener('click', function () {
+    try { video.pause(); } catch (e) {}
+    setRecPlaying(false);
+    settleCall();
+  });
+
+  replayBtn.addEventListener('click', function () {
+    runSequence();
+  });
+
+  /* ---------------- Boot ---------------- */
+  var d = new Date();
+  var daysToMonday = ((8 - d.getDay()) % 7) || 7;
+  d.setDate(d.getDate() + daysToMonday);
+  apptDate.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+  runSequence();
+})();
+</script>
+</body>
+</html>
