@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Appointment Setter for Real Estate | MashaAI Connect</title>
+<title>AI Appointment Setter for Real Estate Teams | MashaAI Connect</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
@@ -13,9 +13,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Contrast fix: ensure step/card text is visible regardless of underlying styles.css rules */
+  #how-re .step-body h4,
+  #why .uc-card h4,
+  #built-for .uc-card h4{
+    color:#0a0f1c !important;
+    opacity:1 !important;
+  }
+  #how-re .step-body p,
+  #why .uc-card p,
+  #built-for .uc-card p{
+    color:#47536b !important;
+    opacity:1 !important;
+  }
 
-<meta name="description" content="MashaAI Connect calls real estate leads within 60 seconds, qualifies buyers and sellers, and books viewings into your calendar.">
-<meta name="keywords" content="AI appointment setter real estate, speed to lead real estate, real estate lead follow up automation, AI for real estate teams, real estate ISA alternative, Zillow lead follow up">
+  /* Industries dropdown: open on hover instead of click-only (desktop) */
+  .has-dropdown{ position:relative; }
+  .has-dropdown .dropdown{
+    transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+    top:100% !important;
+    margin-top:0 !important;
+    z-index:60 !important;
+  }
+  .has-dropdown:hover .dropdown{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateY(0) !important;
+    display:block !important;
+  }
+  .has-dropdown .dropdown a{
+    position:relative;
+    z-index:61;
+  }
+</style>
+
+<meta name="description" content="MashaAI Connect calls real estate leads within 60 seconds, qualifies buyers and sellers, and books viewings into your calendar - built for 5-20 agent teams running paid lead sources.">
+<meta name="keywords" content="AI appointment setter real estate, speed to lead real estate, real estate lead follow up automation, AI for real estate teams, real estate ISA alternative, Zillow Premier Agent lead follow up, AI cold calling real estate agents, real estate lead response time, automated lead qualification real estate, AI receptionist real estate team, real estate CRM AI calling, instant lead response real estate">
 <meta name="author" content="MashaAI Connect">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://mashaaiconnect.com/real-estate.html">
@@ -55,6 +90,19 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How MashaAI Connect works for a real estate team",
+  "step": [
+    {"@type": "HowToStep","name": "Lead comes in from your paid source","text": "A lead submits a form on Zillow Premier Agent, a Facebook or Google ad, or your website - the data is sent to MashaAI Connect instantly."},
+    {"@type": "HowToStep","name": "AI calls within 60 seconds","text": "The AI places a natural-sounding call to the lead within 60 seconds and starts a qualifying conversation."},
+    {"@type": "HowToStep","name": "Buyer or seller qualification","text": "The AI asks about budget, financing or pre-approval status, timeline, and property preferences, handling common objections along the way."},
+    {"@type": "HowToStep","name": "Viewing or call booked automatically","text": "Once qualified, the AI checks the team's live calendar, books a viewing or call with the assigned agent, and sends confirmation and reminder messages."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {"@type": "Question","name": "How fast should a real estate team call a new lead?","acceptedAnswer": {"@type": "Answer","text": "Studies on lead conversion widely cite the first 5 minutes as critical; response after 30 minutes sees dramatically lower contact and conversion rates. MashaAI Connect calls within 60 seconds so your team never loses a lead to slow follow-up."}},
@@ -81,7 +129,7 @@
       <button type="button" class="dropdown-trigger" onclick="toggleDropdown(this)">Industries <i class="fas fa-chevron-down chev" aria-hidden="true"></i></button>
       <div class="dropdown">
         <a href="real-estate.html" class="active">Real Estate</a>
-        <a href="water-damage-restoration.html" class="active">Water Damage Restoration</a>
+        <a href="water-damage-restoration.html">Water Damage Restoration</a>
       </div>
     </li>
     <li><a href="index.html#compare">AI vs Human</a></li>
@@ -124,27 +172,48 @@
 </section>
 
 <section id="how-re" class="section" style="background:var(--bg2)">
-  <div class="section-inner content-block">
-    <h2>Why speed to lead matters more in real estate than almost any other industry</h2>
-    <p>Real estate leads are uniquely perishable. A buyer who fills out a form on a Zillow listing or a Facebook ad is often looking at three or four other properties or agents at the same time. Response time research across industries consistently shows contact and conversion rates fall sharply once follow-up passes the 5-minute mark, and keep falling the longer a lead waits. For a 5-20 agent team relying on paid lead sources, that gap is where deals are lost - not to a better agent, but to whoever called first.</p>
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <div class="tag">How It Works</div>
+      <h2 class="sec-title">From Form Submit to Booked Viewing</h2>
+      <p class="sec-sub center">Four steps, fully automated, start to finish.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">01</div><div class="step-body"><h4>Lead comes in from your paid source</h4><p>Zillow Premier Agent, Facebook or Google ads, or your website form - MashaAI Connect receives the lead the instant it comes in.</p></div></div>
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">02</div><div class="step-body"><h4>AI calls within 60 seconds</h4><p>A natural-sounding call goes out immediately - no hold music, no delay, no lead sitting in a queue.</p></div></div>
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">03</div><div class="step-body"><h4>Buyer or seller qualification</h4><p>Budget, financing or pre-approval status, timeline, and property preferences - the same questions a trained ISA would ask.</p></div></div>
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">04</div><div class="step-body"><h4>Viewing booked automatically</h4><p>The AI checks live calendar availability, books the viewing with the assigned agent, and sends confirmation and reminder messages.</p></div></div>
+    </div>
+  </div>
+</section>
 
-    <h2>How MashaAI Connect works for a real estate team</h2>
-    <h3>1. Lead comes in from your paid source</h3>
-    <p>Whether the lead comes from Zillow Premier Agent, a Facebook or Google ad, or your own website form, MashaAI Connect receives it instantly.</p>
-    <h3>2. AI calls within 60 seconds</h3>
-    <p>The AI places a natural-sounding call to the lead, introduces itself, and starts a qualifying conversation - no hold music, no delay.</p>
-    <h3>3. Buyer or seller qualification</h3>
-    <p>The AI asks the questions your team actually needs answered: budget range, financing or pre-approval status, timeline to buy or sell, and property preferences. It handles common objections the way a trained ISA would.</p>
-    <h3>4. Viewing or call booked automatically</h3>
-    <p>Once qualified, the AI checks your team's live calendar and books a property viewing or a call with the assigned agent, then sends confirmation and reminder messages to cut down on no-shows.</p>
+<section id="why" class="section" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <div class="tag">Why It Matters</div>
+      <h2 class="sec-title">Speed to Lead Decides Who Gets the Deal</h2>
+      <p class="sec-sub center">Real estate leads are uniquely perishable - here's why.</p>
+    </div>
+    <div class="uc-grid">
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-stopwatch"></i></div><h4>The First 5 Minutes</h4><p>Response time research consistently shows contact and conversion rates fall sharply once follow-up passes the 5-minute mark - and keep falling the longer a lead waits.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-users"></i></div><h4>Everyone's Calling at Once</h4><p>A buyer who fills out a form on a listing or ad is usually looking at several other properties or agents at the same time. First contact often wins the relationship.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-moon"></i></div><h4>After-Hours Leads Are Real Leads</h4><p>Most real estate inquiries come in evenings and weekends - exactly when a 5-20 agent team is least likely to have someone free to answer the phone.</p></div>
+    </div>
+  </div>
+</section>
 
-    <h2>Built for the way real estate teams actually operate</h2>
-    <ul>
-      <li>Works alongside your existing ISA or agents - it handles the first response, they handle the relationship</li>
-      <li>Fits teams running paid lead sources like Zillow Premier Agent or Facebook/Instagram lead ads</li>
-      <li>Supports multiple agents with round-robin or rules-based routing of booked appointments</li>
-      <li>Handles after-hours and weekend leads, when most real estate inquiries actually come in</li>
-    </ul>
+<section id="built-for" class="section">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <div class="tag">Fit for Your Team</div>
+      <h2 class="sec-title">Built for the Way Real Estate Teams Operate</h2>
+    </div>
+    <div class="uc-grid">
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-handshake"></i></div><h4>Works Alongside Your ISA</h4><p>It handles the instant first response - your ISA or agents handle the relationship from there.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-bullseye"></i></div><h4>Built for Paid Lead Sources</h4><p>Fits teams running Zillow Premier Agent, Facebook, or Instagram lead ads.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-random"></i></div><h4>Multi-Agent Routing</h4><p>Round-robin or rules-based routing sends booked appointments to the right agent automatically.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-clock"></i></div><h4>Nights & Weekends Covered</h4><p>Handles after-hours and weekend leads, when most real estate inquiries actually come in.</p></div>
+    </div>
   </div>
 </section>
 
@@ -168,12 +237,11 @@
   <div class="section-inner">
     <div class="section-center reveal">
       <div class="tag">Explore More</div>
-      <h2 class="sec-title">Other Industries We Serve</h2>
+      <h2 class="sec-title">Also Explore</h2>
     </div>
     <div class="related-grid">
-      <a href="healthcare.html" class="related-card reveal"><div class="tag">Healthcare</div><h4>AI Receptionist for Clinics</h4><p>Patient booking, appointment reminders, and reduced no-shows for clinics and practices.</p><div class="rlink">Read more →</div></a>
-      <a href="agencies.html" class="related-card reveal"><div class="tag">Agencies</div><h4>AI Appointment Setting for Agencies</h4><p>White-label AI lead follow-up marketing and sales agencies resell to their own clients.</p><div class="rlink">Read more →</div></a>
-      <a href="speed-to-lead.html" class="related-card reveal"><div class="tag">Research</div><h4>Speed to Lead: The Data</h4><p>MIT, InsideSales.com, and WAV Group research on how response time affects real estate conversion rates.</p><div class="rlink">Read the data →</div></a>
+      <a href="water-damage-restoration.html" class="related-card reveal"><div class="tag">Water Damage Restoration</div><h4>AI Emergency Call Answering & Dispatch</h4><p>Answers every emergency call, captures loss details, and dispatches a crew - 24/7.</p><div class="rlink">Read more →</div></a>
+      <a href="index.html#pricing" class="related-card reveal"><div class="tag">Pricing</div><h4>See Full Pricing</h4><p>Compare AI Appointment Setter and AI Calling Agent plans and pick what fits your team.</p><div class="rlink">View pricing →</div></a>
     </div>
   </div>
 </section>
@@ -227,7 +295,7 @@
       <p>Intelligent AI automation that books more appointments, handles more calls, and drives more revenue - without adding headcount.</p>
     </div>
     <div class="footer-col"><h5>Services</h5><ul><li><a href="index.html#services">AI Appointment Setter</a></li><li><a href="index.html#services">AI Calling Agents</a></li><li><a href="index.html#how">How It Works</a></li><li><a href="index.html#pricing">Pricing</a></li></ul></div>
-    <div class="footer-col"><h5>Industries</h5><ul><li><a href="real-estate.html">Real Estate</a></li><li><a href="healthcare.html">Healthcare & Clinics</a></li><li><a href="agencies.html">Agencies</a></li></ul></div>
+    <div class="footer-col"><h5>Industries</h5><ul><li><a href="real-estate.html">Real Estate</a></li><li><a href="water-damage-restoration.html">Water Damage Restoration</a></li></ul></div>
     <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html#compare">AI vs Human</a></li><li><a href="speed-to-lead.html">Speed to Lead Data</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
   </div>
   <div class="footer-bottom">
@@ -239,3 +307,4 @@
 <script src="main.js" defer></script>
 </body>
 </html>
+
