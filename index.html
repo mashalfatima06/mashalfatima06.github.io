@@ -13,6 +13,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Industries dropdown: open on hover instead of click-only (desktop) */
+  .has-dropdown{ position:relative; }
+  .has-dropdown .dropdown{
+    transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+    top:100% !important;
+    margin-top:0 !important;
+    z-index:60 !important;
+  }
+  .has-dropdown:hover .dropdown{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateY(0) !important;
+    display:block !important;
+  }
+  .has-dropdown .dropdown a{
+    position:relative;
+    z-index:61;
+  }
+
+  /* Industries grid: center 2 cards evenly instead of left-aligning / stretching oddly */
+  .ind-grid-2{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(260px, 400px));
+    justify-content:center;
+    gap:24px;
+  }
+  @media (max-width:640px){
+    .ind-grid-2{ grid-template-columns:1fr; }
+  }
+</style>
 
 <meta name="description" content="AI appointment setters and calling agents that call leads in under 60 seconds, qualify them, and book appointments automatically - built for real estate teams and water damage restoration companies.">
 <meta name="keywords" content="AI appointment setter, AI calling agents, speed to lead, speed to lead software, real estate lead follow up, AI appointment setter real estate, AI receptionist for real estate team, real estate ISA AI, AI cold calling real estate agents, AI answering service water damage restoration, AI dispatch restoration company, 24/7 emergency call answering restoration, water damage lead response time, AI voice agent restoration company, automated lead response system, AI phone answering service, AI voice agents, MashaAI Connect">
@@ -261,8 +293,8 @@
   <div class="section-inner">
     <div class="section-center reveal">
       <div class="tag">Industries We Serve</div>
-      <h2 class="sec-title">Built for Every Sector</h2>
-      <p class="sec-sub center">MashaAI Connect is customized for your industry's language, compliance needs, and buyer behavior.</p>
+      <h2 class="sec-title">Where We Go Deep</h2>
+      <p class="sec-sub center">MashaAI Connect is deeply customized for these two industries' language, urgency, and buyer behavior - not stretched thin across a dozen verticals.</p>
     </div>
     <div class="ind-grid ind-grid-2">
       <a href="real-estate.html" class="ind-card reveal"><div class="ind-icon" aria-hidden="true"><i class="fas fa-home"></i></div><h4>Real Estate</h4><p>Instant buyer & seller lead follow-up, viewing scheduling, and property tour booking</p></a>
@@ -334,9 +366,9 @@
         <div class="setup-price"><span>$</span>700</div>
       </div>
       <div class="plans-grid">
-        <div class="plan-card reveal"><div class="plan-name">Starter</div><div class="plan-price"><sup>$</sup>399</div><div class="plan-period">per month</div><p class="plan-desc">Perfect for solo operators and small teams getting started with AI appointment automation.</p><ul class="plan-feats"><li>AI appointment setter system</li><li>Lead follow-up automation</li><li>Calendar booking integration</li><li>Email support</li><li><strong>100 lead/month</strong></li><li><strong>2 call attempts + 1 follow-up SMS per lead</strong></li><li>Basic analytics dashboard</li></ul><a href="index.html#cta" class="plan-btn plan-btn-outline">Get Started</a></div>
-        <div class="plan-card popular reveal"><div class="plan-name">Growth</div><div class="plan-price"><sup>$</sup>799</div><div class="plan-period">per month</div><p class="plan-desc">The most popular plan for scaling businesses that want maximum automation and performance.</p><ul class="plan-feats"><li>Everything in Starter</li><li>Advanced automation flows</li><li>Smart follow-up sequences</li><li>CRM integration (GHL, HubSpot)</li><li><strong>210 lead/month</strong></li><li><strong>2 call attempts + 1 follow-up SMS per lead</strong></li><li>Priority support</li></ul><a href="index.html#cta" class="plan-btn plan-btn-fill">Get Started</a></div>
-        <div class="plan-card reveal"><div class="plan-name">Pro</div><div class="plan-price"><sup>$</sup>1,399</div><div class="plan-period">per month</div><p class="plan-desc">For high-volume teams and agencies needing multi-workflow automation and deep integrations.</p><ul class="plan-feats"><li>Everything in Growth</li><li>Multi-workflow automation</li><li>Advanced CRM & API integrations</li><li><strong>370 lead/month</strong></li><li><strong>2 call attempts + 1 follow-up SMS per lead</strong></li><li>Dedicated account manager</li><li>Custom reporting & analytics</li></ul><a href="index.html#cta" class="plan-btn plan-btn-outline">Get Started</a></div>
+        <div class="plan-card reveal"><div class="plan-name">Starter</div><div class="plan-price"><sup>$</sup>399</div><div class="plan-period">per month</div><p class="plan-desc">Perfect for solo operators and small teams getting started with AI appointment automation.</p><ul class="plan-feats"><li>AI appointment setter system</li><li>Lead follow-up automation</li><li>Calendar booking integration</li><li>Email support</li><li><strong>250 lead calls/month</strong></li><li>Basic analytics dashboard</li></ul><a href="index.html#cta" class="plan-btn plan-btn-outline">Get Started</a></div>
+        <div class="plan-card popular reveal"><div class="plan-name">Growth</div><div class="plan-price"><sup>$</sup>799</div><div class="plan-period">per month</div><p class="plan-desc">The most popular plan for scaling businesses that want maximum automation and performance.</p><ul class="plan-feats"><li>Everything in Starter</li><li>Advanced automation flows</li><li>Smart follow-up sequences</li><li>CRM integration (GHL, HubSpot)</li><li><strong>550 lead calls/month</strong></li><li>Priority support</li></ul><a href="index.html#cta" class="plan-btn plan-btn-fill">Get Started</a></div>
+        <div class="plan-card reveal"><div class="plan-name">Pro</div><div class="plan-price"><sup>$</sup>1,399</div><div class="plan-period">per month</div><p class="plan-desc">For high-volume teams and agencies needing multi-workflow automation and deep integrations.</p><ul class="plan-feats"><li>Everything in Growth</li><li>Multi-workflow automation</li><li>Advanced CRM & API integrations</li><li><strong>1000 lead calls/month</strong></li><li>Dedicated account manager</li><li>Custom reporting & analytics</li></ul><a href="index.html#cta" class="plan-btn plan-btn-outline">Get Started</a></div>
       </div>
     </div>
     <div class="pricing-section" id="price-caller">
