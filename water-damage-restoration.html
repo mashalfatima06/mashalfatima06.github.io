@@ -13,9 +13,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Contrast fix: ensure step/card text is visible regardless of underlying styles.css rules */
+  #how-wdr .step-body h4,
+  #why .uc-card h4,
+  #built-for .uc-card h4{
+    color:#0a0f1c !important;
+    opacity:1 !important;
+  }
+  #how-wdr .step-body p,
+  #why .uc-card p,
+  #built-for .uc-card p{
+    color:#47536b !important;
+    opacity:1 !important;
+  }
 
-<meta name="description" content="MashaAI Connect is an AI emergency call answering and dispatch system for water damage restoration companies that answers every call, captures the loss details, and dispatches a crew - live 24/7, in the minutes that matter most.">
-<meta name="keywords" content="AI answering service water damage restoration, AI dispatch restoration company, emergency call answering water mitigation, AI lead response restoration company, 24/7 answering service flood damage">
+  /* Industries dropdown: open on hover instead of click-only (desktop) */
+  .has-dropdown{ position:relative; }
+  .has-dropdown .dropdown{
+    transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+    top:100% !important;
+    margin-top:0 !important;
+    z-index:60 !important;
+  }
+  .has-dropdown:hover .dropdown{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:translateY(0) !important;
+    display:block !important;
+  }
+  .has-dropdown .dropdown a{
+    position:relative;
+    z-index:61;
+  }
+</style>
+
+<meta name="description" content="MashaAI Connect answers every emergency water damage call, captures loss details, and dispatches a crew - 24/7 - so restoration companies win the job before a competitor calls back.">
+<meta name="keywords" content="AI answering service water damage restoration, AI dispatch restoration company, emergency call answering water mitigation, AI lead response restoration company, 24/7 answering service flood damage, restoration company call answering, water damage emergency dispatch AI, AI receptionist restoration company, missed call water damage company, flood damage lead response time">
 <meta name="author" content="MashaAI Connect">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://mashaaiconnect.com/water-damage-restoration.html">
@@ -49,6 +84,19 @@
   "itemListElement": [
     {"@type": "ListItem","position": 1,"name": "Home","item": "https://mashaaiconnect.com/"},
     {"@type": "ListItem","position": 2,"name": "Water Damage Restoration","item": "https://mashaaiconnect.com/water-damage-restoration.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How MashaAI Connect works for a water damage restoration company",
+  "step": [
+    {"@type": "HowToStep","name": "AI answers every inbound call, day or night","text": "The AI answers immediately, 24/7, including after-hours and emergency calls - no hold music, no voicemail."},
+    {"@type": "HowToStep","name": "Structured loss intake","text": "The AI asks for source of water, affected rooms, category of water, occupancy status, and contact and address details."},
+    {"@type": "HowToStep","name": "Immediate dispatch or callback","text": "Based on availability, the AI confirms a crew is on the way, schedules an assessment window, or routes true emergencies to the on-call team."},
+    {"@type": "HowToStep","name": "Follow-up on quotes and assessments","text": "The AI follows up on outstanding quotes so leads don't go cold while the team is focused on active jobs."}
   ]
 }
 </script>
@@ -94,7 +142,6 @@
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
   <a href="index.html" onclick="closeMob()">Home</a>
   <a href="real-estate.html" onclick="closeMob()">Real Estate</a>
-  <a href="water-damage-restoration.html" onclick="closeMob()">Water Damage Restoration</a>
   <a href="index.html#pricing" onclick="closeMob()">Pricing</a>
   <a href="#faq" onclick="closeMob()">FAQ</a>
   <a href="#cta" class="nav-cta" onclick="closeMob()">Book a Demo →</a>
@@ -125,27 +172,48 @@
 </section>
 
 <section id="how-wdr" class="section" style="background:var(--bg2)">
-  <div class="section-inner content-block">
-    <h2>Why speed decides who wins the job in restoration</h2>
-    <p>Water damage is one of the most time-sensitive calls in home services. A homeowner or property manager dealing with an active flood or burst pipe is rarely calling just one company - they're calling several, and the job typically goes to whoever picks up and shows urgency first. A missed call at 2am or during an active jobsite isn't just a lost lead, it's a job that's already gone to a competitor by the time you call back.</p>
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <div class="tag">How It Works</div>
+      <h2 class="sec-title">From Emergency Call to Crew Dispatched</h2>
+      <p class="sec-sub center">Four steps, fully automated, start to finish.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">01</div><div class="step-body"><h4>AI answers, day or night</h4><p>Middle of the night, weekend, or while your crew is already on a job - the AI answers immediately, no voicemail, no lost lead.</p></div></div>
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">02</div><div class="step-body"><h4>Structured loss intake</h4><p>Source of water, affected rooms, category of water, occupancy status, and full contact and address details - captured on the call.</p></div></div>
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">03</div><div class="step-body"><h4>Immediate dispatch or callback</h4><p>Confirms a crew is on the way, schedules an assessment window, or routes true emergencies straight to your on-call team.</p></div></div>
+      <div class="how-step reveal"><div class="step-num" aria-hidden="true">04</div><div class="step-body"><h4>Follow-up on open quotes</h4><p>Calls back leads who haven't booked yet, so a quote doesn't go cold while your team is focused on active jobs.</p></div></div>
+    </div>
+  </div>
+</section>
 
-    <h2>How MashaAI Connect works for a restoration company</h2>
-    <h3>1. AI answers every inbound call, day or night</h3>
-    <p>Whether it's the middle of the night, a weekend, or while your crew is already on a job, the AI answers immediately - no hold music, no voicemail, no lost lead.</p>
-    <h3>2. Structured loss intake</h3>
-    <p>The AI asks the questions your dispatcher needs - source of water, affected rooms, category of water, whether the property is occupied, and the caller's contact and address details - so your crew shows up prepared, not guessing.</p>
-    <h3>3. Immediate dispatch or callback</h3>
-    <p>Based on availability, the AI can confirm a crew is on the way, schedule an assessment window, or immediately route true emergencies to your on-call team with full context from the call.</p>
-    <h3>4. Follow-up on quotes and assessments</h3>
-    <p>For jobs that need a full assessment or insurance scope before work starts, the AI can follow up on outstanding quotes so leads don't go cold while you're focused on active jobs.</p>
+<section id="why" class="section" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <div class="tag">Why It Matters</div>
+      <h2 class="sec-title">Speed Decides Who Wins the Job</h2>
+      <p class="sec-sub center">Water damage is one of the most time-sensitive calls in home services.</p>
+    </div>
+    <div class="uc-grid">
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-droplet"></i></div><h4>Damage Compounds by the Hour</h4><p>The longer water sits, the worse - and more expensive - the damage gets. Homeowners know this and act fast.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-phone-volume"></i></div><h4>They're Calling Several Companies</h4><p>A homeowner dealing with an active flood is rarely calling just one restoration company - the job usually goes to whoever picks up first.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-moon"></i></div><h4>Emergencies Don't Wait for Business Hours</h4><p>A missed call at 2am isn't just a lost lead - it's a job that's already gone to a competitor by the time you call back.</p></div>
+    </div>
+  </div>
+</section>
 
-    <h2>Built for the way restoration companies actually operate</h2>
-    <ul>
-      <li>Works alongside your dispatcher and crews - it handles the first response, they handle the job</li>
-      <li>Fits water damage, flood, mold remediation, and general mitigation companies</li>
-      <li>Covers the after-hours and weekend calls that make up a large share of true emergencies</li>
-      <li>Reduces the chance of losing a job simply because no one picked up in time</li>
-    </ul>
+<section id="built-for" class="section">
+  <div class="section-inner">
+    <div class="section-center reveal">
+      <div class="tag">Fit for Your Company</div>
+      <h2 class="sec-title">Built for the Way Restoration Companies Operate</h2>
+    </div>
+    <div class="uc-grid">
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-headset"></i></div><h4>Works Alongside Your Dispatcher</h4><p>It handles the first response - your dispatcher and crews handle the job.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-house-flood-water"></i></div><h4>Fits Water, Flood & Mold Companies</h4><p>Built for water damage, flood, mold remediation, and general mitigation businesses.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-clock"></i></div><h4>After-Hours & Weekend Coverage</h4><p>Covers the calls that make up a large share of true emergencies - nights, weekends, holidays.</p></div>
+      <div class="uc-card reveal"><div class="uc-icon" aria-hidden="true"><i class="fas fa-file-invoice-dollar"></i></div><h4>Recovers Stalled Quotes</h4><p>Follows up on assessments that need a decision, so fewer jobs slip away while your team is on-site elsewhere.</p></div>
+    </div>
   </div>
 </section>
 
