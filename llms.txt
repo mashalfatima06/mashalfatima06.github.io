@@ -1,0 +1,29 @@
+# MashaAI Connect
+
+> MashaAI Connect is an AI appointment setting platform that contacts new leads within 60 seconds of form submission, qualifies them through natural voice/chat conversation, and books the appointment directly into the client's calendar. Built for real estate teams and water damage restoration companies, where response speed determines whether a lead becomes a booked appointment or a lost job.
+
+## Core Offering
+
+- AI Appointment Setter: contacts leads from website forms and ad campaigns within 60 seconds, qualifies them via conversation, and books directly into the client's calendar.
+- 2 call attempts plus 1 follow-up SMS per lead, included on every plan.
+
+## Pricing
+
+- Starter: $399/month, 100 leads/month
+- Growth: $799/month, 210 leads/month, CRM integration (GoHighLevel, HubSpot), priority support
+- Pro: $1,399/month, 370 leads/month, advanced CRM & API integrations, dedicated account manager
+- One-time setup fee: $700 across all plans
+- All plans include onboarding support and a 14-day satisfaction guarantee
+
+## Industries Served
+
+- [Real Estate](https://mashaaiconnect.com/real-estate.html): buyer/seller lead follow-up, viewing scheduling, property tour booking
+- [Water Damage Restoration](https://mashaaiconnect.com/water-damage-restoration.html): 24/7 lead response for emergency restoration calls
+
+## Pages
+
+- [Homepage](https://mashaaiconnect.com/): overview, services, pricing, FAQ
+- [Real Estate](https://mashaaiconnect.com/real-estate.html)
+- [Water Damage Restoration](https://mashaaiconnect.com/water-damage-restoration.html)
+- [Privacy Policy](https://mashaaiconnect.com/privacy-policy.html)
+- [Terms of Service](https://mashaaiconnect.com/terms-of-service.html)
