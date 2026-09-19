@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MashaAI Connect — How It Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0F1C;
+    --surface:#121A2B;
+    --surface-2:#182238;
+    --border:#24304A;
+    --text:#EAF0FF;
+    --muted:#8B97B4;
+    --muted-2:#5C6A8A;
+    --blue:#5B8DEF;
+    --blue-soft:rgba(91,141,239,0.14);
+    --green:#35D399;
+    --green-soft:rgba(53,211,153,0.14);
+    --amber:#F5A623;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(120% 120% at 50% 0%, #101a30 0%, var(--bg) 55%);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    padding:48px 16px;
+  }
+
+  .wrap{ width:100%; max-width:880px; }
+
+  /* Header */
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--blue);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin:0 0 10px;
+    text-align:center;
+  }
+  .headline{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(28px,4vw,40px);
+    text-align:center;
+    margin:0 0 10px;
+    color:var(--text);
+  }
+  .sub{
+    text-align:center;
+    color:var(--muted);
+    font-size:14.5px;
+    max-width:480px;
+    margin:0 auto 32px;
+    line-height:1.5;
+  }
+
+  .frame{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,0.6);
+  }
+
+  .chrome{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:12px 18px;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--border);
+  }
+  .dots{display:flex; gap:6px;}
+  .dots span{width:9px;height:9px;border-radius:50%;background:#2C3956;}
+  .chrome-url{
+    flex:1;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--muted-2);
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:5px 10px;
+    text-align:center;
+  }
+
+  .tracker{ display:flex; align-items:center; padding:20px 24px 16px; gap:0; }
+  .step{ display:flex; align-items:center; gap:8px; flex:1; position:relative; }
+  .step .dot{
+    width:22px;height:22px;border-radius:50%;
+    background:var(--surface-2); border:1.5px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted-2);
+    flex-shrink:0; transition:all .35s ease; z-index:1;
+  }
+  .step .label{ font-size:11px; color:var(--muted-2); font-weight:500; white-space:nowrap; transition:color .35s ease; }
+  .step:not(:last-child)::before{
+    content:''; position:absolute; top:11px; left:22px; width:100%; height:1.5px;
+    background:var(--border); z-index:0;
+  }
+  .step.fill:not(:last-child)::after{
+    content:''; position:absolute; top:11px; left:22px; width:100%; height:1.5px;
+    background:var(--blue); z-index:0; animation:growline .5s ease forwards;
+  }
+  @keyframes growline{ from{width:0;} to{width:100%;} }
+  .step.active .dot{ border-color:var(--blue); color:var(--blue); background:var(--blue-soft); }
+  .step.active .label{ color:var(--text); }
+  .step.done .dot{ border-color:var(--green); background:var(--green-soft); color:var(--green); }
+  .step.done .label{ color:var(--muted); }
+
+  .timer-wrap{ display:flex; align-items:center; justify-content:space-between; padding:0 24px 18px; }
+  .timer-tag{ font-size:11px; color:var(--muted-2); font-weight:500; text-transform:uppercase; letter-spacing:.06em; }
+  .timer{
+    font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:600; color:var(--muted);
+    background:var(--surface-2); border:1px solid var(--border); padding:4px 10px; border-radius:6px;
+    transition:all .3s ease;
+  }
+  .timer.hot{ color:var(--amber); border-color:rgba(245,166,35,0.35); }
+  .timer.done{ color:var(--green); border-color:rgba(53,211,153,0.35); }
+
+  .stage{
+    position:relative; height:340px; margin:0 24px 24px;
+    border:1px solid var(--border); border-radius:12px; background:var(--bg);
+    overflow:hidden; transition:height .4s ease;
+  }
+  .stage.expanded{ height:520px; }
+  .panel{
+    position:absolute; inset:0; padding:28px; opacity:0; transform:translateY(8px);
+    pointer-events:none; transition:opacity .4s ease, transform .4s ease;
+  }
+  .panel.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+
+  .flash{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(10,15,28,0.9); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:5;
+  }
+  .flash.show{ opacity:1; }
+  .flash-text{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; letter-spacing:.02em;
+    text-align:center; display:flex; align-items:center; gap:12px; transform:scale(.9);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1.2);
+  }
+  .flash.show .flash-text{ transform:scale(1); }
+  .flash-text.c-blue{ color:var(--blue); }
+  .flash-text.c-green{ color:var(--green); }
+  .flash-text svg{ width:28px;height:28px; }
+
+  .form-title{ font-family:'Space Grotesk'; font-size:14px; font-weight:600; color:var(--text); margin:0 0 4px;}
+  .form-sub{ font-size:12px; color:var(--muted-2); margin:0 0 20px; }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:10.5px; color:var(--muted-2); margin-bottom:5px; font-weight:500; text-transform:uppercase; letter-spacing:.05em;}
+  .field .box{
+    height:34px; border:1px solid var(--border); border-radius:7px; background:var(--surface);
+    display:flex; align-items:center; padding:0 10px; font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--text);
+  }
+  .field .box .caret{ display:inline-block; width:1.5px; height:13px; background:var(--blue); margin-left:1px; animation:blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .checkbox-row{ display:flex; align-items:center; gap:8px; margin:16px 0 18px; }
+  .checkbox{ width:15px;height:15px;border:1.5px solid var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center; transition:all .2s ease; }
+  .checkbox.checked{ background:var(--blue); border-color:var(--blue); }
+  .checkbox svg{ width:10px; opacity:0; transition:opacity .15s ease; }
+  .checkbox.checked svg{ opacity:1; }
+  .checkbox-row span{ font-size:11px; color:var(--muted-2); }
+  .submit-btn{
+    height:36px; width:140px; border-radius:7px; border:none; background:var(--muted-2); color:var(--bg);
+    font-weight:600; font-size:12.5px; font-family:'Inter'; display:flex; align-items:center; justify-content:center;
+    transition:all .25s ease;
+  }
+  .submit-btn.armed{ background:var(--blue); color:#fff; }
+  .submit-btn.pressed{ transform:scale(.94); }
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0 16px; }
+
+  .flow{ display:flex; align-items:center; justify-content:center; gap:0; height:100%; }
+  .node{ display:flex; flex-direction:column; align-items:center; gap:10px; width:120px; }
+  .node-circle{
+    width:52px;height:52px;border-radius:14px; background:var(--surface-2); border:1.5px solid var(--border);
+    display:flex; align-items:center; justify-content:center; transition:all .3s ease;
+  }
+  .node-circle svg{ width:22px; height:22px; stroke:var(--muted-2); transition:stroke .3s ease; }
+  .node.lit .node-circle{ background:var(--blue-soft); border-color:var(--blue); }
+  .node.lit .node-circle svg{ stroke:var(--blue); }
+  .node-label{ font-size:11px; color:var(--muted-2); font-weight:500; text-align:center; transition:color .3s ease;}
+  .node.lit .node-label{ color:var(--text); }
+  .connector{ width:50px; height:1.5px; background:var(--border); position:relative; overflow:hidden; margin-bottom:32px;}
+  .connector .pulse{ position:absolute; inset:0; background:var(--blue); width:0%; transition:width .5s ease; }
+  .connector.on .pulse{ width:100%; }
+
+  /* Real call panel */
+  .call-real-wrap{ display:flex; gap:28px; height:100%; align-items:center; justify-content:center; }
+  .call-copy{ max-width:220px; }
+  .call-copy .tag{ font-size:10.5px; color:var(--green); font-weight:600; text-transform:uppercase; letter-spacing:.06em; display:flex; align-items:center; gap:6px; margin-bottom:10px;}
+  .call-copy .tag .rec{ width:6px;height:6px;border-radius:50%; background:var(--green); animation:pulse2 1.2s ease-in-out infinite;}
+  @keyframes pulse2{ 0%,100%{opacity:1;} 50%{opacity:.3;} }
+  .call-copy h4{ font-family:'Space Grotesk'; font-size:16px; margin:0 0 8px; color:var(--text); }
+  .call-copy p{ font-size:12.5px; color:var(--muted); line-height:1.5; margin:0 0 16px; }
+  .skip-link{
+    font-size:11.5px; color:var(--muted-2); background:none; border:none; cursor:pointer;
+    text-decoration:underline; padding:0; font-family:'Inter';
+  }
+  .skip-link:hover{ color:var(--text); }
+
+  .phone-frame{
+    width:180px; aspect-ratio:9/19.5; border-radius:26px; border:3px solid var(--surface-2);
+    background:#000; overflow:hidden; position:relative; flex-shrink:0;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,0.7);
+  }
+  .phone-frame video{ width:100%; height:100%; object-fit:cover; display:block; background:#000; }
+  .play-overlay{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:rgba(10,15,28,0.55); cursor:pointer; transition:opacity .3s ease; gap:10px;
+  }
+  .play-overlay.hide{ opacity:0; pointer-events:none; }
+  .play-btn{
+    width:48px;height:48px;border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 20px rgba(91,141,239,0.5);
+  }
+  .play-btn svg{ width:18px; height:18px; fill:#fff; margin-left:2px; }
+  .play-overlay span{ font-size:10.5px; color:#fff; font-weight:500; text-align:center; padding:0 14px; }
+  .video-missing{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:16px; font-size:11px; color:var(--muted-2); background:var(--surface-2); line-height:1.5;
+  }
+
+  .booked-wrap{ display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:16px; text-align:center;}
+  .check-circle{
+    width:56px;height:56px;border-radius:50%; background:var(--green-soft); border:1.5px solid var(--green);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .check-circle svg{ width:26px; height:26px; stroke:var(--green); }
+  .booked-title{ font-family:'Space Grotesk'; font-weight:700; font-size:20px; color:var(--text); margin:0;}
+  .booked-card{
+    margin-top:6px; padding:12px 20px; background:var(--surface-2); border:1px solid var(--border); border-radius:10px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .booked-card .cal{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted);}
+  .booked-card .cal b{ color:var(--text); }
+
+  .footer{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px 22px; }
+  .footer-brand{ font-family:'Space Grotesk'; font-weight:600; font-size:13px; color:var(--text); }
+  .footer-brand span{ color:var(--blue); }
+  .replay{
+    font-family:'Inter'; font-size:12px; font-weight:500; color:var(--muted);
+    background:transparent; border:1px solid var(--border); border-radius:7px;
+    padding:7px 14px; cursor:pointer; display:flex; align-items:center; gap:6px; transition:all .2s ease;
+  }
+  .replay:hover{ color:var(--text); border-color:var(--muted-2); }
+  .replay svg{ width:13px; height:13px; }
+
+  @media (max-width:600px){
+    .form-grid{ grid-template-columns:1fr; }
+    .call-real-wrap{ flex-direction:column; gap:16px; }
+    .step .label{ display:none; }
+    .stage{ height:420px; }
+    .stage.expanded{ height:560px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">How it works</p>
+  <h2 class="headline">From form to booked appointment — automatically</h2>
+  <p class="sub">Watch what happens the moment a lead submits a form on your site. This is a real call, unedited.</p>
+
+  <div class="frame">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="chrome-url">mashaaiconnect.com/live-demo</div>
+    </div>
+
+    <div class="tracker" id="tracker">
+      <div class="step" data-step="0"><div class="dot">1</div><div class="label">Lead fills form</div></div>
+      <div class="step" data-step="1"><div class="dot">2</div><div class="label">Workflow triggers</div></div>
+      <div class="step" data-step="2"><div class="dot">3</div><div class="label">AI calls lead</div></div>
+      <div class="step" data-step="3"><div class="dot">4</div><div class="label">Appointment booked</div></div>
+    </div>
+
+    <div class="timer-wrap">
+      <div class="timer-tag">Response time</div>
+      <div class="timer" id="timer">00:00</div>
+    </div>
+
+    <div class="stage" id="stage">
+
+      <div class="panel show" id="panel-form">
+        <p class="form-title">Get a free rate quote</p>
+        <p class="form-sub">Skyline Realty Group — lead intake form</p>
+        <div class="form-grid">
+          <div class="field"><label>Full name</label><div class="box" id="f-name"></div></div>
+          <div class="field"><label>Phone</label><div class="box" id="f-phone"></div></div>
+          <div class="field"><label>Email</label><div class="box" id="f-email"></div></div>
+          <div class="field"><label>Interested in</label><div class="box" id="f-interest"></div></div>
+        </div>
+        <div class="checkbox-row">
+          <div class="checkbox" id="f-check"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="#0A0F1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>I agree to be contacted by phone or text</span>
+        </div>
+        <button class="submit-btn" id="f-submit">Submit request</button>
+      </div>
+
+      <div class="panel" id="panel-trigger">
+        <div class="flow">
+          <div class="node" id="n1">
+            <div class="node-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke-width="1.8"/><path d="M8 10h8M8 14h5" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <div class="node-label">Lead received</div>
+          </div>
+          <div class="connector" id="c1"><div class="pulse"></div></div>
+          <div class="node" id="n2">
+            <div class="node-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4.5 4 1 6-4.5-3-4.5 3 1-6L4 9l5.5-.5z" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <div class="node-label">Lead qualified</div>
+          </div>
+          <div class="connector" id="c2"><div class="pulse"></div></div>
+          <div class="node" id="n3">
+            <div class="node-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21v-2a4 4 0 014-4h4a4 4 0 014 4v2M12 11a4 4 0 100-8 4 4 0 000 8z" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="node-label">Agent dispatched</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-call">
+        <div class="call-real-wrap">
+          <div class="phone-frame">
+            <video id="call-video" playsinline preload="metadata">
+              <source src="call-recording.mp4" type="video/mp4">
+            </video>
+            <div class="play-overlay" id="play-overlay">
+              <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+              <span>Tap to play — real client call</span>
+            </div>
+            <div class="video-missing" id="video-missing" style="display:none;">
+              call-recording.mp4 not found.<br>Place it next to this HTML file.
+            </div>
+          </div>
+          <div class="call-copy">
+            <div class="tag"><span class="rec"></span>Real call · unedited</div>
+            <h4>The AI agent is calling the lead right now</h4>
+            <p>This is an actual recording — the same form above, the same lead, the same call. Nothing staged.</p>
+            <button class="skip-link" id="skip-link">Skip to result →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-booked">
+        <div class="booked-wrap">
+          <div class="check-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 class="booked-title">Appointment booked</h3>
+          <div class="booked-card">
+            <span class="cal">Thu, Jul 30 · <b>2:00 PM</b> · Property walkthrough</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flash" id="flash">
+        <div class="flash-text" id="flash-text"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-brand">Masha<span>AI</span> Connect</div>
+      <button class="replay" id="replay-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 105.64 18.36L1 14M3.51 15A9 9 0 0018.36 5.64L23 10"/></svg>
+        Replay
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const $ = id => document.getElementById(id);
+
+const NAME = "Daniel Reyes", PHONE = "(602) 555-0148", EMAIL = "d.reyes@email.com", INTEREST = "3-bed home";
+
+async function typeInto(el, text, speed=38){
+  el.innerHTML = '<span class="txt"></span><span class="caret"></span>';
+  const txtEl = el.querySelector('.txt');
+  for(let i=0;i<text.length;i++){
+    txtEl.textContent += text[i];
+    await sleep(speed);
+  }
+  el.querySelector('.caret')?.remove();
+}
+
+function setStep(index, state){
+  const steps = document.querySelectorAll('.step');
+  steps.forEach(s => {
+    const i = +s.dataset.step;
+    s.classList.remove('active','done','fill');
+    if(i < index) s.classList.add('done','fill');
+    else if(i === index) s.classList.add(state === 'done' ? 'done' : 'active');
+    if(i === index && state === 'done') s.classList.add('fill');
+  });
+}
+
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
+  $(id).classList.add('show');
+  $('stage').classList.toggle('expanded', id === 'panel-call');
+}
+
+async function flash(text, cls, ms=1100){
+  const f = $('flash'), t = $('flash-text');
+  t.className = 'flash-text ' + cls;
+  t.innerHTML = text;
+  f.classList.add('show');
+  await sleep(ms);
+  f.classList.remove('show');
+  await sleep(300);
+}
+
+let timerInterval;
+function startTimer(){
+  let t = 0;
+  $('timer').textContent = '00:00';
+  $('timer').className = 'timer';
+  timerInterval = setInterval(() => {
+    t++;
+    const mm = String(Math.floor(t/60)).padStart(2,'0');
+    const ss = String(t%60).padStart(2,'0');
+    $('timer').textContent = `${mm}:${ss}`;
+    if(t >= 8) $('timer').classList.add('hot');
+  }, 1000);
+}
+function stopTimer(){
+  clearInterval(timerInterval);
+  $('timer').classList.remove('hot');
+  $('timer').classList.add('done');
+}
+
+async function resetAll(){
+  ['f-name','f-phone','f-email','f-interest'].forEach(id => $(id).innerHTML = '<span class="caret"></span>');
+  $('f-check').classList.remove('checked');
+  $('f-submit').classList.remove('armed','pressed');
+  $('f-submit').textContent = 'Submit request';
+  ['n1','n2','n3'].forEach(id => $(id).classList.remove('lit'));
+  ['c1','c2'].forEach(id => $(id).classList.remove('on'));
+  const video = $('call-video');
+  video.pause();
+  video.currentTime = 0;
+  $('play-overlay').classList.remove('hide');
+  showPanel('panel-form');
+  setStep(0,'active');
+  clearInterval(timerInterval);
+  $('timer').textContent = '00:00';
+  $('timer').className = 'timer';
+}
+
+function waitForCallStep(){
+  return new Promise(resolve => {
+    const video = $('call-video');
+    let done = false;
+    const finish = () => { if(done) return; done = true; resolve(); };
+    video.addEventListener('ended', finish, { once:true });
+    $('skip-link').addEventListener('click', finish, { once:true });
+    // If video file is missing, show a fallback message but still let skip work
+    video.addEventListener('error', () => {
+      $('video-missing').style.display = 'flex';
+      $('play-overlay').classList.add('hide');
+    }, { once:true });
+  });
+}
+
+$('play-overlay').addEventListener('click', () => {
+  const video = $('call-video');
+  video.play().then(() => {
+    $('play-overlay').classList.add('hide');
+  }).catch(() => {
+    $('video-missing').style.display = 'flex';
+    $('play-overlay').classList.add('hide');
+  });
+});
+
+async function playSequence(){
+  await resetAll();
+  await sleep(500);
+
+  setStep(0,'active');
+  startTimer();
+  await typeInto($('f-name'), NAME);
+  await sleep(150);
+  await typeInto($('f-phone'), PHONE);
+  await sleep(150);
+  await typeInto($('f-email'), EMAIL, 30);
+  await sleep(150);
+  await typeInto($('f-interest'), INTEREST);
+  await sleep(300);
+  $('f-check').classList.add('checked');
+  await sleep(300);
+  $('f-submit').classList.add('armed');
+  await sleep(400);
+  $('f-submit').classList.add('pressed');
+  $('f-submit').textContent = 'Submitting…';
+  await sleep(250);
+  $('f-submit').classList.remove('pressed');
+
+  setStep(0,'done');
+  await flash('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>FORM SUBMITTED', 'c-blue', 1000);
+
+  showPanel('panel-trigger');
+  setStep(1,'active');
+  $('n1').classList.add('lit');
+  await sleep(500);
+  $('c1').classList.add('on');
+  await sleep(500);
+  $('n2').classList.add('lit');
+  await sleep(500);
+  $('c2').classList.add('on');
+  await sleep(500);
+  $('n3').classList.add('lit');
+  await sleep(700);
+  setStep(1,'done');
+  await flash('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>WORKFLOW TRIGGERED', 'c-blue', 1000);
+
+  showPanel('panel-call');
+  setStep(2,'active');
+  await waitForCallStep();
+  setStep(2,'done');
+
+  showPanel('panel-booked');
+  setStep(3,'active');
+  await sleep(400);
+  stopTimer();
+  setStep(3,'done');
+  await sleep(300);
+  await flash('APPOINTMENT BOOKED', 'c-green', 1300);
+}
+
+$('replay-btn').addEventListener('click', () => { playSequence(); });
+
+playSequence();
+</script>
+</body>
+</html>
