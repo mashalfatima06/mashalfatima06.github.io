@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MashaAI Connect - AI that turns missed HVAC calls into booked jobs</title>
+<meta name="description" content="AI appointment setter built for HVAC companies. Responds to every lead in under 60 seconds, 24/7, qualifies homeowners, and books jobs straight to your calendar.">
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top">
+      <img src="logo.jpeg" alt="MashaAI Connect logo">
+      <span class="brand-name">MashaAI <span>Connect</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#product">Product</a>
+      <a href="#compare">AI vs Human</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary" href="#cta">Book a Demo</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero grid-bg" id="top">
+  <div class="container hero-inner">
+    <div class="eyebrow reveal"><span class="pulse-dot"></span> Built for HVAC companies</div>
+    <h1 class="reveal d1">AI that turns missed HVAC calls into <em>booked jobs.</em></h1>
+    <p class="hero-sub reveal d2">Every no-cool call, every emergency, every after-hours lead - answered in seconds, qualified automatically, and booked straight to your dispatch calendar.</p>
+    <div class="hero-actions reveal d3">
+      <a class="btn btn-primary" href="#cta">Book a Demo</a>
+      <a class="btn btn-ghost" href="#how">See How It Works <i class="bx bx-right-arrow-alt"></i></a>
+    </div>
+
+    <div class="hero-shots reveal d4">
+      <div class="toast toast-1">
+        <i class="bx bx-message-rounded-dots t-aqua"></i>
+        <div><div>New lead received</div><div class="t-muted">"AC not cooling"</div></div>
+      </div>
+      <div class="toast toast-2">
+        <span class="spinner"></span>
+        <div><div>AI calling homeowner</div><div class="t-muted">in 12 seconds</div></div>
+      </div>
+      <div class="toast toast-3">
+        <i class="bx bx-badge-check t-green"></i>
+        <div><div>Job qualified</div><div class="t-muted">system type + urgency + address</div></div>
+      </div>
+      <div class="toast toast-4">
+        <i class="bx bx-calendar-check t-aqua"></i>
+        <div><div>Appointment booked</div><div class="t-muted">added to dispatch board</div></div>
+      </div>
+
+      <div class="frame">
+        <div class="frame-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <img src="dashboard.jpeg" alt="MashaAI Connect live dashboard showing HVAC leads, response times, and booked jobs">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="capabilities">
+  <div class="container center">
+    <div class="label reveal">Capabilities</div>
+    <h2 class="section-title reveal d1">Every call. Every lead. Every job.</h2>
+    <p class="section-sub reveal d2">MashaAI Connect never sends an HVAC lead to voicemail - it answers, qualifies, and books around the clock, including nights, weekends, and heat waves.</p>
+
+    <div class="cap-grid">
+      <div class="cap-card reveal d1">
+        <div class="cap-icon"><i class="bx bx-timer"></i></div>
+        <h3>&lt; 60 sec</h3>
+        <p>Lead response</p>
+      </div>
+      <div class="cap-card reveal d2">
+        <div class="cap-icon"><i class="bx bx-time-five"></i></div>
+        <h3>24/7</h3>
+        <p>Answers nights &amp; weekends</p>
+      </div>
+      <div class="cap-card reveal d3">
+        <div class="cap-icon"><i class="bx bx-phone-call"></i></div>
+        <h3>AI Voice</h3>
+        <p>Natural conversations</p>
+      </div>
+      <div class="cap-card reveal d4">
+        <div class="cap-icon"><i class="bx bx-calendar-check"></i></div>
+        <h3>Automated</h3>
+        <p>Job booking to dispatch</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="container center">
+    <div class="label reveal">How It Works</div>
+    <h2 class="section-title reveal d1">What happens when a homeowner calls?</h2>
+
+    <div class="ba-grid">
+      <div class="ba-col before reveal d2">
+        <span class="ba-tag">Without MashaAI</span>
+        <h3>Calls go to voicemail. Jobs go to competitors.</h3>
+        <div class="flow">
+          <div class="flow-step"><i class="bx bx-user-plus"></i> Homeowner calls about no A/C</div>
+          <div class="flow-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="flow-step"><i class="bx bx-bell"></i> Truck is busy, phone rings out</div>
+          <div class="flow-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="flow-step"><i class="bx bx-time-five"></i> They call the next company on Google</div>
+          <div class="flow-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="flow-step"><i class="bx bx-exit"></i> You never knew the lead existed</div>
+        </div>
+      </div>
+
+      <div class="ba-col after reveal d3">
+        <span class="ba-tag">With MashaAI</span>
+        <h3>Every call answered. Every job booked.</h3>
+        <div class="flow" data-stagger>
+          <div class="flow-step"><i class="bx bx-user-plus"></i> Homeowner calls or submits a form</div>
+          <div class="flow-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="flow-step"><i class="bx bx-phone-call"></i> AI responds in seconds</div>
+          <div class="flow-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="flow-step"><i class="bx bx-badge-check"></i> Job qualified: system, urgency, address</div>
+          <div class="flow-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="flow-step"><i class="bx bx-calendar-check"></i> Appointment on your dispatch board</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section product" id="product">
+  <div class="container center">
+    <div class="label reveal">Product</div>
+    <h2 class="section-title reveal d1">See every call. Know every booked job.</h2>
+    <p class="section-sub reveal d2">One dashboard for every HVAC lead, call, and appointment across your service area.</p>
+
+    <div class="frame reveal d3" style="margin-top: 54px;">
+      <div class="frame-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="feed">
+        <div class="feed-head">
+          <h5>Live HVAC Lead Feed</h5>
+          <span class="live-pill"><span class="pulse-dot"></span> Live</span>
+        </div>
+        <div class="feed-row">
+          <span class="feed-av">SM</span>
+          <div class="feed-body">
+            <div class="feed-name">Sarah Miller <span class="badge qualified">Qualified</span></div>
+            <div class="feed-msg">AI: "Sorry about the heat - is your system running at all, or blowing warm air?"</div>
+          </div>
+          <span class="feed-time">2m ago</span>
+        </div>
+        <div class="feed-row">
+          <span class="feed-av">JA</span>
+          <div class="feed-body">
+            <div class="feed-name">James Anderson <span class="badge calling">Calling</span></div>
+            <div class="feed-msg">AI voice call started - qualifying system type, address, and urgency.</div>
+          </div>
+          <span class="feed-time">4m ago</span>
+        </div>
+        <div class="feed-row">
+          <span class="feed-av">ED</span>
+          <div class="feed-body">
+            <div class="feed-name">Emily Davis <span class="badge booked">Booked</span></div>
+            <div class="feed-msg">No-cool job booked automatically - Tue 8-10 AM window added to dispatch.</div>
+          </div>
+          <span class="feed-time">11m ago</span>
+        </div>
+        <div class="feed-row">
+          <span class="feed-av">MB</span>
+          <div class="feed-body">
+            <div class="feed-name">Michael Brown <span class="badge followup">Call-back</span></div>
+            <div class="feed-msg">Missed first call - automatic call-back scheduled in 5 minutes.</div>
+          </div>
+          <span class="feed-time">26m ago</span>
+        </div>
+        <div class="feed-row">
+          <span class="feed-av">RK</span>
+          <div class="feed-body">
+            <div class="feed-name">Rachel Kim <span class="badge calling">Calling</span></div>
+            <div class="feed-msg">New lead via Google Local Services - AI responded in 9 seconds.</div>
+          </div>
+          <span class="feed-time">1h ago</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs reveal d4">
+      <button class="tab active" data-tab="response">Lead Response</button>
+      <button class="tab" data-tab="calls">Calls</button>
+      <button class="tab" data-tab="appointments">Appointments</button>
+      <button class="tab" data-tab="followups">Call-backs</button>
+      <button class="tab" data-tab="analytics">Analytics</button>
+    </div>
+
+    <div class="tab-panel active" data-panel="response">
+      <h4>Every lead gets a fast answer.</h4>
+      <p>MashaAI responds to new HVAC leads within 60 seconds, day or night, by phone.</p>
+      <div class="ticks"><span>Phone leads</span><span>Website forms</span><span>Google &amp; Meta ads</span></div>
+    </div>
+    <div class="tab-panel" data-panel="calls">
+      <h4>Real conversations. Real qualification.</h4>
+      <p>Your AI agent calls homeowners, collecting the details your techs need before they roll.</p>
+      <div class="ticks"><span>Natural voice</span><span>Call recording</span><span>Transcripts</span></div>
+    </div>
+    <div class="tab-panel" data-panel="appointments">
+      <h4>Jobs land on your dispatch calendar.</h4>
+      <p>Qualified jobs are booked into open time windows automatically - no back-and-forth.</p>
+      <div class="ticks"><span>Auto-sync</span><span>Service windows</span><span>Google Calendar</span></div>
+    </div>
+    <div class="tab-panel" data-panel="followups">
+      <h4>Missed a call? No problem.</h4>
+      <p>If a homeowner doesn't pick up on the first call, your AI agent calls back automatically.</p>
+      <div class="ticks"><span>Call-back</span><span>Voicemail</span><span>Re-dial</span></div>
+    </div>
+    <div class="tab-panel" data-panel="analytics">
+      <h4>Know exactly what happened.</h4>
+      <p>See every conversation, its outcome, and what was booked - all in one view.</p>
+      <div class="ticks"><span>Outcome tracking</span><span>Response time</span><span>Booked jobs</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section voice">
+  <div class="container voice-grid">
+    <div class="phone reveal d2">
+      <div class="phone-screen">
+        <div class="phone-head">
+          <div class="ph-label">AI CALL</div>
+          <div class="ph-name">No-Cool Lead</div>
+          <div class="ph-status"><span class="pulse-dot"></span> Connected</div>
+        </div>
+        <div class="phone-body">
+          <div class="chat-line" data-chat>
+            <span>"Sorry it's hot in there - is your system running but blowing warm air, or not turning on at all?"</span><span class="cursor"></span>
+          </div>
+          <div class="checklist">
+            <div class="check-item" data-chk><i class="bx bx-check-circle"></i> System <span>Central A/C, not cooling</span></div>
+            <div class="check-item" data-chk><i class="bx bx-check-circle"></i> Urgency <span>Same-day</span></div>
+            <div class="check-item" data-chk><i class="bx bx-check-circle"></i> Address <span>Verified</span></div>
+          </div>
+          <div class="qualified-pill" data-qualified><i class="bx bx-badge-check"></i> JOB BOOKED</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-copy">
+      <div class="label reveal">AI Voice</div>
+      <h3 class="reveal d1">An AI agent that speaks <em>homeowner, not robot.</em></h3>
+      <p class="reveal d2">Ask. Understand. Qualify. Book. MashaAI holds natural conversations that capture exactly what your dispatcher needs - system type, symptoms, urgency, and address - before an appointment is set.</p>
+      <div class="voice-feats">
+        <div class="vfeat reveal d2">
+          <i class="bx bx-message-rounded-dots"></i>
+          <div><strong>Natural conversations</strong><small>Sounds human, asks the right HVAC questions.</small></div>
+        </div>
+        <div class="vfeat reveal d3">
+          <i class="bx bx-phone-call"></i>
+          <div><strong>Call-first</strong><small>Instant call to the homeowner.</small></div>
+        </div>
+        <div class="vfeat reveal d3">
+          <i class="bx bx-shield-quarter"></i>
+          <div><strong>24/7 availability</strong><small>Answers the 2 AM emergency just like noon.</small></div>
+        </div>
+        <div class="vfeat reveal d4">
+          <i class="bx bx-transfer-alt"></i>
+          <div><strong>Hands off to humans</strong><small>Transfers to your office when needed.</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="industries">
+  <div class="container">
+    <div class="label reveal">Seasonality</div>
+    <h2 class="section-title reveal d1">Built for HVAC's <em style="font-style:normal; color:var(--aqua);">boom-and-bust rhythm.</em></h2>
+
+    <div class="ind-grid">
+      <div class="ind-card reveal d2">
+        <div class="ind-icon"><i class="bx bx-sun"></i></div>
+        <h3>Peak Season</h3>
+        <p>When the first heat wave hits, call volume spikes 3-5x overnight. MashaAI answers every one of them in parallel - no hold music, no voicemail, no leads leaking to competitors.</p>
+        <div class="ind-flow accent">
+          <div class="if-step"><i class="bx bx-user-plus"></i> Call volume spike</div>
+          <div class="if-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="if-step"><i class="bx bx-bot"></i> AI answers all in parallel</div>
+          <div class="if-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="if-step"><i class="bx bx-badge-check"></i> Every job qualified</div>
+          <div class="if-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="if-step"><i class="bx bx-calendar-check"></i> Calendar filled ahead of crews</div>
+        </div>
+      </div>
+
+      <div class="ind-card reveal d3">
+        <div class="ind-icon"><i class="bx bx-moon"></i></div>
+        <h3>Off-Season &amp; After Hours</h3>
+        <p>Furnace fails in January at 11 PM. Maintenance plans in the shoulder months. MashaAI works every hour your office is closed, so emergency calls still turn into scheduled work.</p>
+        <div class="ind-flow accent">
+          <div class="if-step"><i class="bx bx-time-five"></i> 11:07 PM emergency</div>
+          <div class="if-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="if-step"><i class="bx bx-bot"></i> MashaAI answers</div>
+          <div class="if-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="if-step"><i class="bx bx-user-check"></i> Homeowner qualified</div>
+          <div class="if-arrow"><i class="bx bx-chevron-down"></i></div>
+          <div class="if-step"><i class="bx bx-calendar-check"></i> First available slot booked</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container center">
+    <div class="label reveal">Integrations</div>
+    <h2 class="section-title reveal d1">Connects where your HVAC leads already are.</h2>
+    <div class="reveal d2" style="margin-top: 54px;">
+      <div class="int-node">
+        <div class="int-row">
+          <span class="int-chip"><i class="bx bx-globe"></i> Website</span>
+          <span class="int-chip"><i class="bx bxs-phone-call"></i> Missed Calls</span>
+          <span class="int-chip"><i class="bx bx-search-alt"></i> Google LSA</span>
+          <span class="int-chip"><i class="bx bxl-facebook-circle"></i> Facebook Ads</span>
+        </div>
+        <div class="int-conn"><i class="bx bxs-down-arrow"></i></div>
+        <div class="int-hub">MASHA AI</div>
+        <div class="int-conn"><i class="bx bxs-down-arrow"></i></div>
+        <div class="int-row">
+          <span class="int-chip"><i class="bx bx-calendar"></i> Dispatch Calendar</span>
+          <span class="int-chip"><i class="bx bx-data"></i> CRM / ServiceTitan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <div class="container">
+    <div class="label reveal">AI vs Human</div>
+    <h2 class="section-title reveal d1">Why AI Wins - Every Time.</h2>
+    <p class="section-sub reveal d2">Compare MashaAI Connect against a traditional human receptionist or appointment-setting team.</p>
+
+    <div class="compare reveal d3">
+      <div class="compare-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th class="cap-col">Capability</th>
+              <th class="ai-col">MashaAI Connect</th>
+              <th class="human-col">Human Team</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cap-col">Response Time to New Lead</td>
+              <td class="ai-col"><i class="bx bxs-check-circle"></i>Within 60 seconds</td>
+              <td class="human-col">30 min - 24 hrs</td>
+            </tr>
+            <tr>
+              <td class="cap-col">Working Hours</td>
+              <td class="ai-col"><i class="bx bxs-check-circle"></i>24 hours / 7 days</td>
+              <td class="human-col">9am-5pm weekdays</td>
+            </tr>
+            <tr>
+              <td class="cap-col">Simultaneous Calls</td>
+              <td class="ai-col"><i class="bx bxs-check-circle"></i>Handles unlimited in parallel</td>
+              <td class="human-col">One caller at a time</td>
+            </tr>
+            <tr>
+              <td class="cap-col">Monthly Cost</td>
+              <td class="ai-col"><i class="bx bxs-check-circle"></i>From $399/month</td>
+              <td class="human-col">$3,000-$6,000+ per rep</td>
+            </tr>
+            <tr>
+              <td class="cap-col">Follow-Up Persistence</td>
+              <td class="ai-col"><i class="bx bxs-check-circle"></i>Never gives up on a lead</td>
+              <td class="human-col">Often stops after 2-3 tries</td>
+            </tr>
+            <tr>
+              <td class="cap-col">CRM &amp; Dispatch Integration</td>
+              <td class="ai-col"><i class="bx bxs-check-circle"></i>Fully automated &amp; real-time</td>
+              <td class="human-col">Manual entry, often missed</td>
+            </tr>
+            <tr>
+              <td class="cap-col">Sick Days / Vacation / Turnover</td>
+              <td class="ai-col"><i class="bx bxs-check-circle"></i>Zero downtime</td>
+              <td class="human-col">Phone rings out, leads lost</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compare-foot">
+        <p><strong>MashaAI Connect responds to every HVAC lead within 60 seconds</strong>, at a fraction of the cost of a human appointment-setting team.</p>
+        <a class="btn btn-primary" href="#cta">Get Started <i class="bx bx-right-arrow-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stats">
+  <div class="container center">
+    <div class="label reveal">Why Speed Wins</div>
+    <h2 class="section-title reveal d1">Response time is the <em>difference.</em></h2>
+    <p class="section-sub reveal d2">Home-services research shows the same thing over and over: the company that responds first, fastest, and keeps following up wins the job - not the one with the biggest ad budget.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card reveal d2">
+        <div class="stat-big">21x</div>
+        <h3>More Likely to Qualify</h3>
+        <p>Businesses that contact a lead within 5 minutes are about 21 times more likely to qualify that lead than those who wait 30 minutes.</p>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-big">48%</div>
+        <h3>Never Get a Response</h3>
+        <p>A major broker study found the average response time to buyer inquiries was over 15 hours, and 48% received no response at all. Homeowners calling HVAC companies see the same pattern.</p>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-big">78%</div>
+        <h3>First Responder Usually Wins</h3>
+        <p>Industry research found that 78% of converted leads went to whichever company responded first - not the most established one.</p>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-big">+70%</div>
+        <h3>Persistence Compounds Speed</h3>
+        <p>Leads who received six or more contact attempts converted at rates roughly 70% higher than leads who received only one or two attempts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="pricing">
+  <div class="container center">
+    <div class="label reveal">Transparent Pricing</div>
+    <h2 class="section-title reveal d1">Simple. Honest. No Surprises.</h2>
+    <p class="section-sub reveal d2">All plans include onboarding support and a 14-day satisfaction guarantee.</p>
+
+    <div class="setup reveal d3">
+      <span class="setup-label">One-Time Setup Fee</span>
+      <span class="setup-text">We build, deploy, configure and fully test your AI Appointment Setter done for you, ready in days not months.</span>
+      <span class="setup-price">$700</span>
+    </div>
+
+    <div class="price-grid reveal d3">
+      <div class="price-card">
+        <div class="price-top">
+          <div class="price-name">Starter</div>
+          <div class="price-plan"><span class="price-amount">$399</span><span class="price-per">per month</span></div>
+        </div>
+        <p class="price-desc">Perfect for solo operators and small HVAC teams getting started with AI appointment automation.</p>
+        <ul class="price-list">
+          <li><i class="bx bx-check-circle"></i> AI appointment setter system</li>
+          <li><i class="bx bx-check-circle"></i> Missed-call call-backs</li>
+          <li><i class="bx bx-check-circle"></i> Calendar booking integration</li>
+          <li><i class="bx bx-check-circle"></i> Email support</li>
+          <li><i class="bx bx-check-circle"></i> <strong>100 lead/month</strong></li>
+          <li><i class="bx bx-check-circle"></i> <strong>2 call attempts + 1 follow-up message per lead</strong></li>
+          <li><i class="bx bx-check-circle"></i> Basic analytics dashboard</li>
+        </ul>
+        <a class="btn btn-primary" href="#cta">Get Started</a>
+      </div>
+
+      <div class="price-card popular">
+        <span class="price-badge">Most Popular</span>
+        <div class="price-top">
+          <div class="price-name">Growth</div>
+          <div class="price-plan"><span class="price-amount">$799</span><span class="price-per">per month</span></div>
+        </div>
+        <p class="price-desc">For scaling HVAC companies that want maximum automation and performance.</p>
+        <ul class="price-list">
+          <li><i class="bx bx-check-circle"></i> Everything in Starter</li>
+          <li><i class="bx bx-check-circle"></i> Advanced automation flows</li>
+          <li><i class="bx bx-check-circle"></i> Smart re-dial &amp; call-backs</li>
+          <li><i class="bx bx-check-circle"></i> CRM integration (GHL, HubSpot)</li>
+          <li><i class="bx bx-check-circle"></i> <strong>210 lead/month</strong></li>
+          <li><i class="bx bx-check-circle"></i> <strong>2 call attempts + 1 follow-up message per lead</strong></li>
+          <li><i class="bx bx-check-circle"></i> Priority support</li>
+        </ul>
+        <a class="btn btn-primary" href="#cta">Get Started</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-top">
+          <div class="price-name">Pro</div>
+          <div class="price-plan"><span class="price-amount">$1,399</span><span class="price-per">per month</span></div>
+        </div>
+        <p class="price-desc">For high-volume HVAC teams and multi-location operations needing deep integrations.</p>
+        <ul class="price-list">
+          <li><i class="bx bx-check-circle"></i> Everything in Growth</li>
+          <li><i class="bx bx-check-circle"></i> Multi-workflow automation</li>
+          <li><i class="bx bx-check-circle"></i> Advanced CRM &amp; API integrations</li>
+          <li><i class="bx bx-check-circle"></i> <strong>370 lead/month</strong></li>
+          <li><i class="bx bx-check-circle"></i> <strong>2 call attempts + 1 follow-up message per lead</strong></li>
+          <li><i class="bx bx-check-circle"></i> Dedicated account manager</li>
+          <li><i class="bx bx-check-circle"></i> Custom reporting &amp; analytics</li>
+        </ul>
+        <a class="btn btn-primary" href="#cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="center">
+      <div class="label reveal">FAQ</div>
+      <h2 class="section-title reveal d1" style="margin: 0 auto;">Questions, answered.</h2>
+    </div>
+
+    <div class="faq reveal d3">
+      <div class="acc-item open">
+        <button class="acc-q">What is an AI appointment setter for HVAC?<i class="bx bx-plus"></i></button>
+        <div class="acc-a"><div class="acc-a-inner">An AI appointment setter contacts new leads automatically - by voice or message - asks qualifying questions about the system issue, urgency, and location, and books a confirmed appointment into your dispatch calendar, without a human handling the call.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">How fast does MashaAI Connect call a new lead?<i class="bx bx-plus"></i></button>
+        <div class="acc-a"><div class="acc-a-inner">MashaAI calls a new lead within 60 seconds of the lead arriving - before the homeowner calls the next company on the search results page.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">Which industries does MashaAI Connect support?<i class="bx bx-plus"></i></button>
+        <div class="acc-a"><div class="acc-a-inner">MashaAI Connect is purpose-built for HVAC companies - where response speed directly determines whether a homeowner books you or the competitor they call next.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">Does the AI replace my office staff?<i class="bx bx-plus"></i></button>
+        <div class="acc-a"><div class="acc-a-inner">No. MashaAI handles the first response and qualification step, then hands a booked, qualified appointment to your team so your office only spends time on prospects worth talking to.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">What does MashaAI Connect cost?<i class="bx bx-plus"></i></button>
+        <div class="acc-a"><div class="acc-a-inner">Plans start at $399 per month with a one-time setup fee.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">Does MashaAI Connect integrate with my CRM and dispatch calendar?<i class="bx bx-plus"></i></button>
+        <div class="acc-a"><div class="acc-a-inner">Yes. MashaAI integrates with common CRMs and calendar tools including Google Calendar, Calendly, HubSpot, and GoHighLevel to sync bookings automatically.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q">Can MashaAI answer calls after hours and during peak season?<i class="bx bx-plus"></i></button>
+        <div class="acc-a"><div class="acc-a-inner">Yes. MashaAI works 24/7 and handles unlimited calls in parallel, so a 2 AM furnace emergency or a heat-wave call spike each get an immediate response, qualification, and a clear next step.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta grid-bg" id="cta">
+  <div class="container" style="position: relative; z-index: 1;">
+    <h2 class="reveal">Stop letting HVAC leads <em>call your competitor.</em></h2>
+    <p class="reveal d1">Let MashaAI answer, qualify, and book every homeowner automatically - while your team focuses on the jobs in the field.</p>
+    <div class="cta-card reveal d2" id="demoFormWrap">
+      <form id="demoForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="3aa93d8f-dec2-4a6a-9e8f-c4b84841298f">
+        <input type="hidden" name="subject" value="New MashaAI Connect HVAC Demo Request">
+        <input type="hidden" name="from_name" value="MashaAI Connect HVAC Website">
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cf-name">Full Name *</label>
+            <input id="cf-name" name="name" type="text" placeholder="Alex Morgan" required>
+          </div>
+          <div class="cf-field">
+            <label for="cf-email">Email *</label>
+            <input id="cf-email" name="email" type="email" placeholder="alex@company.com" required>
+          </div>
+        </div>
+        <div class="cf-field">
+          <label for="cf-company">Company *</label>
+          <input id="cf-company" name="company" type="text" placeholder="Arizona Comfort Heating &amp; Air" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-industry">Industry *</label>
+          <select id="cf-industry" name="industry" required>
+            <option value="" selected disabled>Select your industry</option>
+            <option selected>HVAC</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label>Product *</label>
+          <div class="cf-products">
+            <label class="cf-product">
+              <input type="radio" name="product" value="AI Appointment Setter" checked>
+              <span><strong>AI Appointment Setter</strong><small>Books confirmed HVAC jobs automatically.</small></span>
+            </label>
+          </div>
+        </div>
+        <label class="cf-terms">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to receive communications from MashaAI Connect.</span>
+        </label>
+        <button type="submit" class="btn btn-primary cf-submit">Book a Demo <i class="bx bx-right-arrow-alt"></i></button>
+        <p class="cf-msg" id="cf-msg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-inner">
+    <a class="brand" href="#top">
+      <img src="logo.jpeg" alt="MashaAI Connect logo">
+      <span class="brand-name">MashaAI <span>Connect</span></span>
+    </a>
+    <div class="foot-links">
+      <a href="#capabilities">Solutions</a>
+      <a href="#how">How It Works</a>
+      <a href="#product">Product</a>
+      <a href="#compare">AI vs Human</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="foot-meta">
+      <div class="foot-social">
+        <a href="https://www.linkedin.com/company/mashaai-connect/" target="_blank" rel="noopener" aria-label="MashaAI Connect on LinkedIn"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://www.instagram.com/mashaai_connect/" target="_blank" rel="noopener" aria-label="MashaAI Connect on Instagram"><i class="bx bxl-instagram"></i></a>
+      </div>
+      <div class="foot-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+      </div>
+      <span class="foot-copy">© 2026 MashaAI Connect</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
