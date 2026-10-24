@@ -1,29 +1,34 @@
 # MashaAI Connect
 
-> MashaAI Connect is an AI appointment setting platform that contacts new leads within 60 seconds of form submission, qualifies them through natural voice/chat conversation, and books the appointment directly into the client's calendar. Built for real estate teams and water damage restoration companies, where response speed determines whether a lead becomes a booked appointment or a lost job.
+> MashaAI Connect is an AI appointment setter built for HVAC companies. It responds to new leads within 60 seconds, 24/7, qualifies homeowners by AI voice conversation (system type, symptoms, urgency, address), and books jobs directly onto the company's dispatch calendar. It also calls back automatically on missed calls. HVAC is a speed-driven business, where the first company to respond usually wins the job.
 
 ## Core Offering
 
-- AI Appointment Setter: contacts leads from website forms and ad campaigns within 60 seconds, qualifies them via conversation, and books directly into the client's calendar.
-- 2 call attempts plus 1 follow-up SMS per lead, included on every plan.
+- AI Appointment Setter: contacts new HVAC leads from website forms, missed calls, Google Local Services and Facebook/Meta ads within 60 seconds, qualifies them, and books confirmed appointments into the dispatch calendar.
+- Natural AI voice: asks the HVAC-specific questions a dispatcher needs (system type, symptoms, urgency, address) and hands off to the company's office when needed.
+- Answers 24/7, including nights, weekends, emergencies and peak-season call spikes, and handles multiple calls at the same time.
+- Missed-call call-backs, re-dial and voicemail.
+- 2 call attempts plus 1 follow-up message per lead, included on every plan.
+- Dashboard with live lead feed, call recordings and transcripts, appointments, call-backs and analytics (outcomes, response time, booked jobs).
+
+## Integrations
+
+- Google Calendar, Calendly, HubSpot, GoHighLevel
+- Lead sources: website forms, missed calls, Google Local Services, Facebook Ads
 
 ## Pricing
 
-- Starter: $399/month, 100 leads/month
-- Growth: $799/month, 210 leads/month, CRM integration (GoHighLevel, HubSpot), priority support
-- Pro: $1,399/month, 370 leads/month, advanced CRM & API integrations, dedicated account manager
-- One-time setup fee: $700 across all plans
+- Starter: $399/month, 100 leads/month, missed-call call-backs, calendar booking integration, basic analytics dashboard, email support
+- Growth: $799/month, 210 leads/month, advanced automation flows, smart re-dial and call-backs, CRM integration (GoHighLevel, HubSpot), priority support
+- Pro: $1,399/month, 370 leads/month, multi-workflow automation, advanced CRM and API integrations, dedicated account manager, custom reporting and analytics
+- One-time setup fee: $700 across all plans (we build, deploy, configure and test the system, ready in days)
 - All plans include onboarding support and a 14-day satisfaction guarantee
-
-## Industries Served
-
-- [Real Estate](https://mashaaiconnect.com/real-estate.html): buyer/seller lead follow-up, viewing scheduling, property tour booking
-- [Water Damage Restoration](https://mashaaiconnect.com/water-damage-restoration.html): 24/7 lead response for emergency restoration calls
 
 ## Pages
 
-- [Homepage](https://mashaaiconnect.com/): overview, services, pricing, FAQ
-- [Real Estate](https://mashaaiconnect.com/real-estate.html)
-- [Water Damage Restoration](https://mashaaiconnect.com/water-damage-restoration.html)
+- [Homepage](https://mashaaiconnect.com/): HVAC overview, how it works, product, AI vs human comparison, pricing, FAQ, demo request
+- [Pricing](https://mashaaiconnect.com/#pricing)
+- [FAQ](https://mashaaiconnect.com/#faq)
+- [Book a Demo](https://mashaaiconnect.com/#cta)
 - [Privacy Policy](https://mashaaiconnect.com/privacy-policy.html)
 - [Terms of Service](https://mashaaiconnect.com/terms-of-service.html)
